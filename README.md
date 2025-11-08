@@ -9,13 +9,19 @@
 
 ## 📋 项目简介
 
-WiseFido_TDPv1_Coding_Dictionary 是基于 **TDPv1 协议**和 **FHIR/SNOMED CT** 标准构建的医疗编码术语字典库。
+WiseFido_TDPv1_Coding_Dictionary 是基于 **TDPv1 协议**和 **FHIR/SNOMED CT** 标准构建的医疗编码术语字典库，服务于 **OWL Monitor System**（老人健康监测系统）的完整术语体系。
+
+本字典库涵盖整个系统的多传感器健康检测能力，包括：
+- **60GHz 毫米波雷达**：运动状态、姿态、跌倒检测、生命体征监测
+- **睡眠板（Sleep Pad）**：心率、呼吸、翻身、抽搐检测（PTZ压电传感器 + 应变传感器）
+- **MEMS 地震传感器**：跌倒检测、振动事件识别
+- **SOS 紧急呼叫系统**：手动报警、语音通信
 
 - ✅ **机器可信**：JSON 作为"唯一事实源"，Schema 强校验
 - ✅ **人类可读**：自动生成 Markdown 表格文档
 - ✅ **变更追踪**：基于快照自动记录词条变化历史
 - ✅ **医疗标准**：兼容 FHIR、SNOMED CT、LOINC
-- ✅ **雷达检测**：标注 60GHz 毫米波雷达可检测能力
+- ✅ **多传感器检测**：标注各传感器（雷达、睡眠板、地震仪等）的检测能力
 - ✅ **预警支持**：内置帕金森、卒中、心梗预警规则映射
 
 ---
@@ -28,7 +34,8 @@ WiseFido_TDPv1_Coding_Dictionary/
 ├── README.md                      (M) 项目总览与使用文档
 ├── 原始参考文件/                   (M) 只读原始资料
 │   ├── TDPv1-0916-fixed.md       
-│   └── FHIR与SNOMED_CT代码.md     
+│   ├── FHIR与SNOMED_CT代码.md
+│   └── FDA-v0923.md              (OWL Monitor System 系统架构参考)     
 │
 ├── dictionary/                    (M) 唯一事实源 JSON
 │   └── coding_terms.json         (M) 主词条文件
@@ -196,25 +203,40 @@ git push
       "section": "三、实际可检测的运动状态总结"
     }
   ],
-  "detection": {
-    "radar_60ghz": {
-      "detectable": "direct",
-      "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
-      "confidence": "high"
+    "detection": {
+      "radar_60ghz": {
+        "detectable": "direct",
+        "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
+        "confidence": "high"
+      },
+      "sleep_pad": {
+        "detectable": "indirect",
+        "method": "通过体动模式间接推断",
+        "confidence": "medium"
+      }
     }
-  }
 }
 ```
 
 ---
 
-## 🎯 雷达检测能力标注
+## 🎯 多传感器检测能力标注
+
+本字典库为每个词条标注了不同传感器的检测能力，包括：
+
+### 传感器类型
+- **radar_60ghz**：60GHz 毫米波雷达（运动、姿态、跌倒、生命体征）
+- **sleep_pad**：睡眠板传感器（心率、呼吸、翻身、抽搐）
+- **mems_seismic**：MEMS 地震传感器（跌倒、振动事件）
+- **sos_handle**：SOS 紧急呼叫手柄（手动报警）
+
+### 检测级别
 
 | 检测级别 | 标记 | 说明 |
 |----------|------|------|
-| 直接检测 | ✅ | 雷达信号可直接映射 |
+| 直接检测 | ✅ | 传感器信号可直接映射 |
 | 间接检测 | ⚠️ | 需算法+模型辅助 |
-| 不可检测 | ❌ | 需其他传感器 |
+| 不可检测 | ❌ | 需其他传感器或方法 |
 
 ---
 
@@ -344,6 +366,7 @@ docs: 更新文档
 |------|------|
 | [TDPv1-0916-fixed.md](原始参考文件/TDPv1-0916-fixed.md) | 协议定义与危险等级 |
 | [FHIR与SNOMED_CT代码.md](原始参考文件/FHIR与SNOMED_CT代码.md) | 医疗编码标准 |
+| [FDA-v0923.md](原始参考文件/FDA-v0923.md) | OWL Monitor System 完整系统架构（雷达、睡眠板、地震传感器、SOS系统等） |
 | [FHIR CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | FHIR 标准 |
 
 ---
@@ -352,8 +375,9 @@ docs: 更新文档
 
 - **医疗编码仅作互操作参考**，临床使用需结合最新版本与监管要求
 - **预警逻辑需二次确认**，如心梗/卒中组合需在后端规则引擎中验证
-- **雷达检测能力标注**基于理论分析，实际部署需现场验证
+- **多传感器检测能力标注**基于理论分析和系统设计，实际部署需现场验证
 - **本项目不构成医疗诊断依据**
+- **系统参考**：本字典库服务于 OWL Monitor System，涵盖雷达、睡眠板、地震传感器、SOS 等完整传感器体系
 
 ---
 
