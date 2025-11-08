@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "VS Code JSON Schema Validator compatible version",
+  "title": "CodingItem",
+  "type": "object",
+  "required": ["id", "code", "system", "display", "display_zh", "category", "status", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_./:+-]+$",
+      "description": "全局唯一标识符"
+    },
+    "code": {
+      "type": "string",
+      "description": "编码值"
+    },
+    "system": {
+      "type": "string",
+      "description": "编码系统 URI"
+    },
+    "display": {
+      "type": "string",
+      "description": "英文显示名称"
+    },
+    "display_zh": {
+      "type": "string",
+      "description": "中文显示名称"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["posture", "motion_state", "health_condition", "danger_level", "tag"],
+      "description": "词条分类"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "draft"],
+      "description": "词条状态"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "语义版本号"
+    },
+    "description": {
+      "type": "string",
+      "description": "英文详细描述"
+    },
+    "description_zh": {
+      "type": "string",
+      "description": "中文详细描述"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "英文同义词列表"
+    },
+    "synonyms_zh": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "中文同义词列表"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file"],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "来源文件"
+          },
+          "section": {
+            "type": "string",
+            "description": "来源章节"
+          }
+        }
+      },
+      "description": "来源追溯"
+    },
+    "detection": {
+      "type": "object",
+      "description": "检测能力标注",
+      "properties": {
+        "radar_60ghz": {
+          "type": "object",
+          "properties": {
+            "detectable": {
+              "type": "string",
+              "enum": ["direct", "indirect", "not_detectable"]
+            },
+            "method": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": ["low", "medium", "high"]
+            },
+            "frequency_range": {
+              "type": "string"
+            },
+            "velocity_threshold": {
+              "type": "string"
+            },
+            "requires_ml": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "fhir": {
+      "type": "object",
+      "description": "FHIR 资源映射",
+      "properties": {
+        "resource_type": {
+          "type": "string"
+        },
+        "loinc_code": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

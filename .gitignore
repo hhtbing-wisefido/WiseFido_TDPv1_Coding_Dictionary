@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+desktop.ini
+# Editors
+.vscode/
+.idea/
+# Python
+__pycache__/
+.env
+.venv/
+03_generated/cache/
+03_generated/md_export/
+# Temp files
+temp/
+*.tmp.json
+*.temp.json
