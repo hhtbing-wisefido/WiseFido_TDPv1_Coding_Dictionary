@@ -28,8 +28,15 @@
     },
     "category": {
       "type": "string",
-      "enum": ["posture", "motion_state", "health_condition", "danger_level", "tag"],
-      "description": "词条分类"
+      "enum": [
+        "posture_codes",
+        "motion_codes",
+        "physiological_codes",
+        "disorder_condition_codes",
+        "safety_alert_codes",
+        "tag"
+      ],
+      "description": "词条分类：posture_codes（姿态编码）、motion_codes（运动编码）、physiological_codes（生理指标编码）、disorder_condition_codes（疾病状况编码）、safety_alert_codes（安全警报编码）、tag（标签）"
     },
     "status": {
       "type": "string",

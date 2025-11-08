@@ -109,4 +109,4 @@ python scripts/validate_json.py
 
 - [FHIR CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept)
 - [SNOMED CT](https://www.snomed.org/)
-- [TDPv1 协议规范](../原始参考文件/TDPv1-0916-fixed.md)
+- [TDPv1 协议规范](../原始参考文件/tdpv1-0916-fixed.md)

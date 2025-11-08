@@ -14,10 +14,11 @@ OUT_DIR = Path("generated/markdown")
 
 # 分类名称映射
 CATEGORY_NAMES = {
-    "motion_state": "运动状态 (Motion State)",
-    "posture": "体位 (Posture)",
-    "health_condition": "健康状况 (Health Condition)",
-    "danger_level": "危险等级 (Danger Level)",
+    "posture_codes": "姿态编码 (Posture Codes)",
+    "motion_codes": "运动编码 (Motion Codes)",
+    "physiological_codes": "生理指标编码 (Physiological Codes)",
+    "disorder_condition_codes": "疾病状况编码 (Disorder & Condition Codes)",
+    "safety_alert_codes": "安全警报编码 (Safety & Alert Codes)",
     "tag": "标签 (Tag)"
 }
 
@@ -38,7 +39,8 @@ def run():
     # 按分类分组
     grouped = defaultdict(list)
     for item in items:
-        grouped[item['category']].append(item)
+        category = item['category']
+        grouped[category].append(item)
     
     # 创建输出目录
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -72,7 +74,14 @@ def run():
     ]
     
     # 按分类顺序输出
-    category_order = ["motion_state", "posture", "health_condition", "danger_level", "tag"]
+    category_order = [
+        "posture_codes",
+        "motion_codes",
+        "physiological_codes",
+        "disorder_condition_codes",
+        "safety_alert_codes",
+        "tag"
+    ]
     
     for category in category_order:
         if category not in grouped:

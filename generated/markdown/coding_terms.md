@@ -22,24 +22,7 @@
 
 ---
 
-## 运动状态 (Motion State)
-
-**词条数 / Count**: 9
-
-| ID | Code | Display / 显示名 | Description / 描述 | System | Status | Version |
-|-----|------|------------------|-------------------|--------|--------|---------|
-| `snomed:129006008` | `129006008` | Walking / 步行 | Periodic gait pattern with low to modera...<br>周期性步态，速度低到中等。 | SNOMED CT | active | 1.0.0 |
-| `internal:0002` | `0002` | Running / 奔跑 | Fast movement with increased step freque...<br>速度较快,步频提升。 | motion_state | active | 1.0.0 |
-| `internal:0004` | `0004` | Standing Still / 静止站立 | Stationary position without horizontal d...<br>无水平位移的静止状态。 | motion_state | active | 1.0.0 |
-| `snomed:263821009` | `263821009` | Static / 静止 | No significant displacement or movement.<br>无明显位移或运动。 | SNOMED CT | active | 1.0.0 |
-| `snomed:22325002` | `22325002` | Abnormal Gait / 异常步态 | Irregular or pathological walking patter...<br>不规则或病理性行走模式。 | SNOMED CT | active | 1.0.0 |
-| `snomed:228439008` | `228439008` | Slow Walking / 缓慢行走 | Walking at reduced speed.<br>以较慢速度行走。 | SNOMED CT | active | 1.0.0 |
-| `snomed:217082002` | `217082002` | Falls / 跌倒 | Unintentional descent to lower level.<br>非自主性地下降到较低水平。 | SNOMED CT | active | 1.0.0 |
-| `internal:0005` | `0005` | Lying Down / 躺下 | 躺下动作。<br>躺下动作。 | motion_state | active | 1.0.0 |
-| `internal:0006` | `0006` | Sitting Down / 坐下 | 坐下动作。<br>坐下动作。 | motion_state | active | 1.0.0 |
-
-
-## 体位 (Posture)
+## 姿态编码 (Posture Codes)
 
 **词条数 / Count**: 8
 
@@ -55,24 +38,49 @@
 | `internal:0011` | `0011` | Lying Prone / 俯卧 | 俯卧姿态。<br>俯卧姿态。 | posture | active | 1.0.0 |
 
 
-## 健康状况 (Health Condition)
+## 运动编码 (Motion Codes)
 
-**词条数 / Count**: 4
+**词条数 / Count**: 8
+
+| ID | Code | Display / 显示名 | Description / 描述 | System | Status | Version |
+|-----|------|------------------|-------------------|--------|--------|---------|
+| `snomed:129006008` | `129006008` | Walking / 步行 | Periodic gait pattern with low to modera...<br>周期性步态，速度低到中等。 | SNOMED CT | active | 1.0.0 |
+| `internal:0002` | `0002` | Running / 奔跑 | Fast movement with increased step freque...<br>速度较快,步频提升。 | motion_state | active | 1.0.0 |
+| `internal:0004` | `0004` | Standing Still / 静止站立 | Stationary position without horizontal d...<br>无水平位移的静止状态。 | motion_state | active | 1.0.0 |
+| `snomed:263821009` | `263821009` | Static / 静止 | No significant displacement or movement.<br>无明显位移或运动。 | SNOMED CT | active | 1.0.0 |
+| `snomed:22325002` | `22325002` | Abnormal Gait / 异常步态 | Irregular or pathological walking patter...<br>不规则或病理性行走模式。 | SNOMED CT | active | 1.0.0 |
+| `snomed:228439008` | `228439008` | Slow Walking / 缓慢行走 | Walking at reduced speed.<br>以较慢速度行走。 | SNOMED CT | active | 1.0.0 |
+| `internal:0005` | `0005` | Lying Down / 躺下 | 躺下动作。<br>躺下动作。 | motion_state | active | 1.0.0 |
+| `internal:0006` | `0006` | Sitting Down / 坐下 | 坐下动作。<br>坐下动作。 | motion_state | active | 1.0.0 |
+
+
+## 生理指标编码 (Physiological Codes)
+
+**词条数 / Count**: 3
 
 | ID | Code | Display / 显示名 | Description / 描述 | System | Status | Version |
 |-----|------|------------------|-------------------|--------|--------|---------|
 | `snomed:3424008` | `3424008` | Tachycardia / 心动过速 | Abnormally fast heart rate (>100 bpm).<br>心率异常过快（>100次/分钟）。 | SNOMED CT | active | 1.0.0 |
 | `snomed:48867003` | `48867003` | Bradycardia / 心动过缓 | Abnormally slow heart rate (<60 bpm).<br>心率异常过慢（<60次/分钟）。 | SNOMED CT | active | 1.0.0 |
 | `snomed:1023001` | `1023001` | Apnea / 呼吸暂停 | Temporary cessation of breathing.<br>暂时性呼吸停止。 | SNOMED CT | active | 1.0.0 |
-| `snomed:258158006` | `258158006` | Sleep / 睡眠 | Natural periodic state of rest.<br>自然周期性休息状态。 | SNOMED CT | active | 1.0.0 |
 
 
-## 危险等级 (Danger Level)
+## 疾病状况编码 (Disorder & Condition Codes)
 
-**词条数 / Count**: 8
+**词条数 / Count**: 1
 
 | ID | Code | Display / 显示名 | Description / 描述 | System | Status | Version |
 |-----|------|------------------|-------------------|--------|--------|---------|
+| `snomed:258158006` | `258158006` | Sleep / 睡眠 | Natural periodic state of rest.<br>自然周期性休息状态。 | SNOMED CT | active | 1.0.0 |
+
+
+## 安全警报编码 (Safety & Alert Codes)
+
+**词条数 / Count**: 9
+
+| ID | Code | Display / 显示名 | Description / 描述 | System | Status | Version |
+|-----|------|------------------|-------------------|--------|--------|---------|
+| `snomed:217082002` | `217082002` | Falls / 跌倒 | Unintentional descent to lower level.<br>非自主性地下降到较低水平。 | SNOMED CT | active | 1.0.0 |
 | `tdp:tdp://danger_level/emergency` | `tdp://danger_level/emergency` | Emergency / 紧急 | Immediate life-threatening situation req...<br>立即威胁生命的情况，需要紧急干预。 | TDP:danger_level | active | 1.0.0 |
 | `tdp:tdp://danger_level/alert` | `tdp://danger_level/alert` | Alert / 警报 | Serious situation requiring prompt atten...<br>严重情况，需要及时关注。 | TDP:danger_level | active | 1.0.0 |
 | `tdp:tdp://danger_level/critical` | `tdp://danger_level/critical` | Critical / 危急 | Severe abnormality requiring immediate e...<br>严重异常，需要立即评估。 | TDP:danger_level | active | 1.0.0 |

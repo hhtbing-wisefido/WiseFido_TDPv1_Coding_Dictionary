@@ -161,7 +161,7 @@ git push
 | `code` | 编码值 | `129006008` |
 | `system` | 编码系统 URI | `http://snomed.info/sct` |
 | `display` | 显示名称 | `Walking` |
-| `category` | 分类 | `motion_state` |
+| `category` | 分类 | `motion_codes` |
 | `status` | 状态 | `active` |
 | `version` | 语义版本 | `1.0.0` |
 
@@ -176,13 +176,18 @@ git push
 
 ### 词条分类
 
+本字典库采用统一的分类体系，所有词条必须使用以下分类之一：
+
 | 分类 | 说明 | 例子 |
 |------|------|------|
-| `motion_state` | 运动状态 | Walking, Tremor, Shuffling gait |
-| `posture` | 身体姿态 | Sitting, Standing, Lying |
-| `health_condition` | 健康状况 | Fall, Myocardial infarction |
-| `danger_level` | 危险等级 | EMERGENCY, ALERT, CRITICAL |
-| `tag` | AI 标签 | Tachycardia, Fall, OutOfBed |
+| `posture_codes` | 姿态编码 | Standing, Sitting, Lying Supine, Lying Prone |
+| `motion_codes` | 运动编码 | Walking, Running, Static, Falling Down |
+| `physiological_codes` | 生理指标编码 | Tachycardia, Bradycardia, Apnea, Tachypnea |
+| `disorder_condition_codes` | 疾病状况编码 | Sleep, Sleep Disorder |
+| `safety_alert_codes` | 安全警报编码 | Falls, Emergency, Alert, Warning, Critical |
+| `tag` | AI 标签（自定义） | Fall Risk, Mobility Impaired, Elderly |
+
+> **注意**：所有新词条必须使用上述分类之一。分类选择应基于词条的实际语义，而非历史习惯。
 
 ---
 
@@ -194,29 +199,32 @@ git push
   "code": "129006008",
   "system": "http://snomed.info/sct",
   "display": "Walking",
-  "category": "motion_state",
+  "display_zh": "步行",
+  "category": "motion_codes",
   "status": "active",
   "version": "1.0.0",
-  "description": "步行：周期性步态，速度低到中等。",
-  "synonyms": ["步行", "行走"],
+  "description": "Periodic gait pattern with low to moderate speed.",
+  "description_zh": "周期性步态，速度低到中等。",
+  "synonyms": ["Ambulation", "Gait"],
+  "synonyms_zh": ["行走", "走路"],
   "source_refs": [
     {
       "file": "原始参考文件/fhir与snomed_ct代码.md",
       "section": "三、实际可检测的运动状态总结"
     }
   ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
-        "confidence": "high"
-      },
-      "sleep_pad": {
-        "detectable": "indirect",
-        "method": "通过体动模式间接推断",
-        "confidence": "medium"
-      }
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
+      "confidence": "high"
+    },
+    "sleep_pad": {
+      "detectable": "indirect",
+      "method": "通过体动模式间接推断",
+      "confidence": "medium"
     }
+  }
 }
 ```
 
@@ -299,14 +307,15 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 
 ## 📈 当前统计
 
-| 分类 | 数量 | 完成度 |
-|------|------|--------|
-| motion_state | 7 | 🟢 50% |
-| posture | 7 | 🟢 70% |
-| health_condition | 4 | 🟡 30% |
-| danger_level | 6 | 🟢 100% |
-| tag | 4 | 🟡 20% |
-| **总计** | **28** | 🟡 **45%** |
+| 分类 | 数量 | 说明 |
+|------|------|------|
+| `motion_codes` | 8 | 运动编码（步行、奔跑、静止、跌倒等） |
+| `posture_codes` | 8 | 姿态编码（站立、坐、仰卧、俯卧等） |
+| `physiological_codes` | 3 | 生理指标编码（心动过速、心动过缓、呼吸暂停等） |
+| `disorder_condition_codes` | 1 | 疾病状况编码（睡眠、睡眠障碍等） |
+| `safety_alert_codes` | 9 | 安全警报编码（跌倒、紧急、警告、严重等） |
+| `tag` | 5 | AI 标签（跌倒风险、行动不便、老年人等） |
+| **总计** | **34** | 持续更新中 |
 
 ---
 

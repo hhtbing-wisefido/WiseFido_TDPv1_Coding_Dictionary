@@ -14,11 +14,11 @@ FILE = Path("dictionary/coding_terms.json")
 TEMP_FILE = Path("temp/coding_terms_scaffold_new_tmp.json")
 
 TEMPLATES = [
-    ("motion_state", "lying_down", "internal://motion_state", "0005", "Lying Down", "躺下", "躺下动作。", "躺下动作。"),
-    ("motion_state", "sitting_down", "internal://motion_state", "0006", "Sitting Down", "坐下", "坐下动作。", "坐下动作。"),
-    ("posture", "lying_prone", "internal://posture", "0011", "Lying Prone", "俯卧", "俯卧姿态。", "俯卧姿态。"),
-    ("danger_level", "high", "internal://danger_level", "dl3", "High Risk", "高风险", "高风险等级。", "高风险等级。"),
-    ("danger_level", "critical", "internal://danger_level", "dl4", "Critical", "严重风险", "严重风险等级。", "严重风险等级。"),
+    ("motion_codes", "lying_down", "internal://motion_codes", "0005", "Lying Down", "躺下", "躺下动作。", "躺下动作。"),
+    ("motion_codes", "sitting_down", "internal://motion_codes", "0006", "Sitting Down", "坐下", "坐下动作。", "坐下动作。"),
+    ("posture_codes", "lying_prone", "internal://posture_codes", "0011", "Lying Prone", "俯卧", "俯卧姿态。", "俯卧姿态。"),
+    ("safety_alert_codes", "high", "internal://safety_alert_codes", "dl3", "High Risk", "高风险", "高风险等级。", "高风险等级。"),
+    ("safety_alert_codes", "critical", "internal://safety_alert_codes", "dl4", "Critical", "严重风险", "严重风险等级。", "严重风险等级。"),
     ("tag", "new_tag_1", "internal://tag", "tag_001", "New Tag 1", "新标签1", "新增标签示例。", "新增标签示例。"),
     ("tag", "new_tag_2", "internal://tag", "tag_002", "New Tag 2", "新标签2", "新增标签示例。", "新增标签示例。"),
 ]
@@ -28,7 +28,7 @@ def get_system_short(system: str) -> str:
     """将 system URI 转换为简短的标识符
     
     Args:
-        system: 编码系统 URI，如 "http://snomed.info/sct", "internal://motion_state", "tdp://danger_level"
+        system: 编码系统 URI，如 "http://snomed.info/sct", "internal://motion_codes", "internal://safety_alert_codes"
     
     Returns:
         简短的 system 标识符，如 "snomed", "internal", "tdp"
