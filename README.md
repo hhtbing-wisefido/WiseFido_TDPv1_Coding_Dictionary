@@ -32,10 +32,12 @@ WiseFido_TDPv1_Coding_Dictionary 是基于 **TDPv1 协议**和 **FHIR/SNOMED CT*
 WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── README.md                      (M) 项目总览与使用文档
-├── 原始参考文件/                   (M) 只读原始资料
-│   ├── TDPv1-0916-fixed.md       
-│   ├── FHIR与SNOMED_CT代码.md
-│   └── FDA-v0923.md              (OWL Monitor System 系统架构参考)     
+├── docs/                          (M) 开发规范文档
+│   └── id_format_guide.md        (ID 格式规范)
+├── 原始参考文件/                   (M) 业务参考文档（只读）
+│   ├── tdpv1-0916-fixed.md       
+│   ├── fhir与snomed_ct代码.md
+│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)     
 │
 ├── dictionary/                    (M) 唯一事实源 JSON
 │   └── coding_terms.json         (M) 主词条文件
@@ -54,7 +56,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 ├── generated/                     (G) 自动生成【禁止手改】
 │   ├── markdown/                 
 │   │   └── coding_terms.md       
-│   ├── CHANGELOG.md              
+│   ├── changelog.md              
 │   └── .snapshot.json            
 │
 ├── temp/                          (T) 临时文件夹【可安全删除】
@@ -90,7 +92,7 @@ python scripts/tools.py
 菜单选项：
 - `1` - 校验 JSON 词条
 - `2` - 生成 Markdown 表格
-- `3` - 更新 CHANGELOG
+- `3` - 更新 changelog
 - `4` - 完整流程（校验+生成+更新）
 - `5` - 显示统计信息
 - `6` - 清理临时文件
@@ -199,7 +201,7 @@ git push
   "synonyms": ["步行", "行走"],
   "source_refs": [
     {
-      "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
       "section": "三、实际可检测的运动状态总结"
     }
   ],
@@ -245,7 +247,7 @@ git push
 ### ⚠️ 禁止手改
 
 1. **禁止修改** `generated/` 目录任何文件
-2. **禁止修改** `CHANGELOG.md`（自动生成）
+2. **禁止修改** `changelog.md`（自动生成）
 3. **禁止修改** `generated/markdown/coding_terms.md`（自动生成）
 
 ### 📁 临时文件夹说明
@@ -364,9 +366,9 @@ docs: 更新文档
 
 | 文档 | 说明 |
 |------|------|
-| [TDPv1-0916-fixed.md](原始参考文件/TDPv1-0916-fixed.md) | 协议定义与危险等级 |
-| [FHIR与SNOMED_CT代码.md](原始参考文件/FHIR与SNOMED_CT代码.md) | 医疗编码标准 |
-| [FDA-v0923.md](原始参考文件/FDA-v0923.md) | OWL Monitor System 完整系统架构（雷达、睡眠板、地震传感器、SOS系统等） |
+| [tdpv1-0916-fixed.md](原始参考文件/tdpv1-0916-fixed.md) | 协议定义与危险等级 |
+| [fhir与snomed_ct代码.md](原始参考文件/fhir与snomed_ct代码.md) | 医疗编码标准 |
+| [fda-v0923.md](原始参考文件/fda-v0923.md) | OWL Monitor System 完整系统架构（雷达、睡眠板、地震传感器、SOS系统等） |
 | [FHIR CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | FHIR 标准 |
 
 ---

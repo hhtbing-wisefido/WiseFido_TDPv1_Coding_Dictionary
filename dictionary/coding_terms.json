@@ -20,7 +20,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "三、实际可检测的运动状态总结"
       }
     ],
@@ -76,7 +76,7 @@
     "description_zh": "无明显位移或运动。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "二、运动状态（MotionState Category）"
       }
     ],
@@ -101,7 +101,7 @@
     "description_zh": "不规则或病理性行走模式。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "三、实际可检测的运动状态总结"
       }
     ],
@@ -127,7 +127,7 @@
     "description_zh": "以较慢速度行走。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "三、实际可检测的运动状态总结"
       }
     ],
@@ -160,7 +160,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ],
@@ -191,7 +191,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -216,7 +216,7 @@
     "description_zh": "有支撑的坐着姿势。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -248,7 +248,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -279,7 +279,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -310,7 +310,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -335,7 +335,7 @@
     "description_zh": "斜靠或后仰的姿势。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "一、体位（Posture Category）"
       }
     ],
@@ -379,7 +379,7 @@
     "description_zh": "心率异常过快（>100次/分钟）。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "四、健康状况（HealthCondition Category）"
       }
     ],
@@ -405,7 +405,7 @@
     "description_zh": "心率异常过慢（<60次/分钟）。",
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "四、健康状况（HealthCondition Category）"
       }
     ],
@@ -438,7 +438,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "四、健康状况（HealthCondition Category）"
       }
     ],
@@ -470,7 +470,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/FHIR与SNOMED_CT代码.md",
+        "file": "原始参考文件/fhir与snomed_ct代码.md",
         "section": "四、健康状况（HealthCondition Category）"
       }
     ],
@@ -504,7 +504,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -529,7 +529,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -553,7 +553,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -578,7 +578,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -604,7 +604,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -628,7 +628,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "DangerLevel定义"
       }
     ]
@@ -653,7 +653,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "Tag定义"
       }
     ]
@@ -678,7 +678,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "Tag定义"
       }
     ]
@@ -704,7 +704,7 @@
     ],
     "source_refs": [
       {
-        "file": "原始参考文件/TDPv1-0916-fixed.md",
+        "file": "原始参考文件/tdpv1-0916-fixed.md",
         "section": "Tag定义"
       }
     ]

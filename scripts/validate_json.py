@@ -73,6 +73,31 @@ def run(file_path=None):
             item_id = item.get("id", f"索引{idx}")
             errors.append(f"词条 {item_id}: {e.message}")
         
+        # ID 格式验证：确保使用简洁格式，避免臃肿格式
+        item_id = item.get("id", "")
+        if item_id:
+            # 检查是否使用了旧格式（category.code.system.code 的臃肿格式）
+            if "." in item_id and len(item_id.split(".")) >= 4:
+                # 检查是否匹配旧格式模式：category.xxx.system.xxx
+                parts = item_id.split(".")
+                if len(parts) >= 4:
+                    # 可能是旧格式，检查是否包含 category 和 system 信息
+                    category = item.get("category", "")
+                    system = item.get("system", "")
+                    if category and parts[0] == category:
+                        errors.append(
+                            f"词条 {item_id}: ID 使用了旧格式（臃肿格式）。"
+                            f"应使用简洁格式，如 'snomed:129006008' 或 'internal:0002'，"
+                            f"而不是 '{item_id}'"
+                        )
+            
+            # 验证新格式：应该是 system_prefix:code 或 tdp:uri 格式
+            # 允许的格式：snomed:xxx, internal:xxx, tdp:xxx
+            if not any(item_id.startswith(prefix) for prefix in ["snomed:", "internal:", "tdp:"]):
+                if not item_id.startswith("tdp://"):
+                    # 如果不是标准格式，给出警告（但不阻止，因为可能有其他合法格式）
+                    pass
+        
         # 检查重复 (code + system)
         code = item.get("code")
         system = item.get("system")

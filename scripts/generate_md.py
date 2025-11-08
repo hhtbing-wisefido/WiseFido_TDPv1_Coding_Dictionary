@@ -91,7 +91,7 @@ def run():
         ])
         
         for item in items_in_category:
-            item_id = item['id']
+            item_id = item['id']  # 直接使用 JSON 中的 ID，不进行任何转换
             code = item['code']
             display = f"{item['display']} / {item.get('display_zh', '')}"
             desc_en = item.get('description', '')[:40] + "..." if len(item.get('description', '')) > 40 else item.get('description', '')
@@ -112,7 +112,7 @@ def run():
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("\n".join(lines))
     
-    print(f"\n[✓] Markdown 已生成: {output_file}")
+    print(f"\n[OK] Markdown generated: {output_file}")
 
 
 if __name__ == "__main__":

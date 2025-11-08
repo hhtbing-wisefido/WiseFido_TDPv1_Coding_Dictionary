@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 SRC = Path("dictionary/coding_terms.json")
-OUT = Path("generated/CHANGELOG.md")
+OUT = Path("generated/changelog.md")
 SNAP = Path("generated/.snapshot.json")
 
 
@@ -78,12 +78,12 @@ def run():
         with OUT.open("a", encoding="utf-8") as w:
             w.write("\n".join(lines))
         
-        print(f"\n[✓] CHANGELOG 已更新")
-        print(f"  - 新增: {len(added)}")
-        print(f"  - 修改: {len(modified)}")
-        print(f"  - 废弃: {len(deprecated)}")
+        print(f"\n[OK] CHANGELOG updated")
+        print(f"  - Added: {len(added)}")
+        print(f"  - Modified: {len(modified)}")
+        print(f"  - Deprecated: {len(deprecated)}")
     else:
-        print("\n[✓] 无变化")
+        print("\n[OK] No changes")
     
     # 保存快照
     SNAP.parent.mkdir(parents=True, exist_ok=True)
