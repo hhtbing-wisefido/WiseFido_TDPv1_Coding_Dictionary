@@ -2,6 +2,9 @@
 CHANGELOG 生成器
 基于快照对比生成变更日志
 """
+# 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
+import _config  # noqa: F401
+
 import json
 from datetime import datetime, timezone
 from pathlib import Path

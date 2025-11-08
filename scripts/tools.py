@@ -9,6 +9,9 @@ WiseFido Coding Dictionary 主工具
   python scripts/tools.py --stats      # 显示统计信息
   python scripts/tools.py --clean      # 清理临时文件
 """
+# 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
+import _config  # noqa: F401
+
 import argparse
 import json
 import shutil

@@ -37,6 +37,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── coding_item.schema.json   
 │
 ├── scripts/                       (M) 一键式工具脚本
+│   ├── _config.py                (公共配置：统一 __pycache__ 到 temp 目录)
 │   ├── tools.py                  (主入口)
 │   ├── validate_json.py          (校验器)
 │   ├── generate_md.py            (Markdown 生成器)
@@ -50,7 +51,8 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── .snapshot.json            
 │
 ├── temp/                          (T) 临时文件夹【可安全删除】
-│   └── *.tmp.json                (临时文件使用，生成测试等)
+│   ├── __pycache__/              (Python 缓存文件，自动生成)
+│   └── *.tmp.json, *.py, etc.    (临时文件、测试脚本、迁移工具等)
 │
 ├── .github/workflows/             (M) CI/CD 自动化
 │   └── ci.yml                    
@@ -226,8 +228,9 @@ git push
 
 `temp/` 文件夹用于存放**临时生成文件**，完全可以安全删除：
 - 所有临时输出文件都在此目录，不会污染主项目目录
+- **Python 缓存**：所有 `__pycache__` 统一生成到 `temp/__pycache__/`，保持项目结构整洁
 - 文件命名规范：`*_tmp.json`、`*_temp.json` 等明确标记
-- 用途：测试、验证中间步骤、批量编辑草稿等
+- 用途：测试、验证中间步骤、批量编辑草稿、Python 字节码缓存等
 - **建议**：定期清理此文件夹，保持项目整洁
 
 ```bash

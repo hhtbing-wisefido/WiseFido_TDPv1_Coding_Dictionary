@@ -3,6 +3,9 @@
 用法: python scripts/add_coding_dict.py
      python scripts/add_coding_dict.py --dry-run  # 生成到 temp/ 供验证
 """
+# 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
+import _config  # noqa: F401
+
 import json
 import sys
 from pathlib import Path

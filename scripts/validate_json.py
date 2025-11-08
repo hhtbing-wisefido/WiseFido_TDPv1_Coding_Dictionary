@@ -2,6 +2,9 @@
 JSON 词条校验器
 使用 JSON Schema 验证词条文件
 """
+# 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
+import _config  # noqa: F401
+
 import json
 import sys
 from pathlib import Path

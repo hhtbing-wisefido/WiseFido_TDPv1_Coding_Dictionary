@@ -2,6 +2,9 @@
 Markdown 生成器（双语支持版）
 从 JSON 生成双语 Markdown 文档，按分类分组展示
 """
+# 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
+import _config  # noqa: F401
+
 import json
 from pathlib import Path
 from collections import defaultdict
