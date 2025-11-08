@@ -1,6 +1,6 @@
 [
   {
-    "id": "motion_state.walking.snomed.129006008",
+    "id": "snomed:129006008",
     "code": "129006008",
     "system": "http://snomed.info/sct",
     "display": "Walking",
@@ -33,7 +33,7 @@
     }
   },
   {
-    "id": "motion_state.running.internal.motion_state.0002",
+    "id": "internal:0002",
     "code": "0002",
     "system": "internal://motion_state",
     "display": "Running",
@@ -52,7 +52,7 @@
     ]
   },
   {
-    "id": "motion_state.standing_still.internal.motion_state.0004",
+    "id": "internal:0004",
     "code": "0004",
     "system": "internal://motion_state",
     "display": "Standing Still",
@@ -64,7 +64,7 @@
     "description_zh": "无水平位移的静止状态。"
   },
   {
-    "id": "motion_state.static.snomed.263821009",
+    "id": "snomed:263821009",
     "code": "263821009",
     "system": "http://snomed.info/sct",
     "display": "Static",
@@ -89,7 +89,7 @@
     }
   },
   {
-    "id": "motion_state.abnormal_gait.snomed.22325002",
+    "id": "snomed:22325002",
     "code": "22325002",
     "system": "http://snomed.info/sct",
     "display": "Abnormal Gait",
@@ -115,7 +115,7 @@
     }
   },
   {
-    "id": "motion_state.slow_walking.snomed.228439008",
+    "id": "snomed:228439008",
     "code": "228439008",
     "system": "http://snomed.info/sct",
     "display": "Slow Walking",
@@ -140,7 +140,7 @@
     }
   },
   {
-    "id": "motion_state.falls.snomed.217082002",
+    "id": "snomed:217082002",
     "code": "217082002",
     "system": "http://snomed.info/sct",
     "display": "Falls",
@@ -173,7 +173,7 @@
     }
   },
   {
-    "id": "posture.standing.snomed.10904000",
+    "id": "snomed:10904000",
     "code": "10904000",
     "system": "http://snomed.info/sct",
     "display": "Standing",
@@ -204,7 +204,7 @@
     }
   },
   {
-    "id": "posture.sitting.snomed.33586001",
+    "id": "snomed:33586001",
     "code": "33586001",
     "system": "http://snomed.info/sct",
     "display": "Sitting",
@@ -229,7 +229,7 @@
     }
   },
   {
-    "id": "posture.lying_supine.snomed.40199007",
+    "id": "snomed:40199007",
     "code": "40199007",
     "system": "http://snomed.info/sct",
     "display": "Lying Supine",
@@ -261,7 +261,7 @@
     }
   },
   {
-    "id": "posture.lying_prone.snomed.1240000",
+    "id": "snomed:1240000",
     "code": "1240000",
     "system": "http://snomed.info/sct",
     "display": "Lying Prone",
@@ -292,7 +292,7 @@
     }
   },
   {
-    "id": "posture.lying_lateral.snomed.102538003",
+    "id": "snomed:102538003",
     "code": "102538003",
     "system": "http://snomed.info/sct",
     "display": "Lying Lateral",
@@ -323,7 +323,7 @@
     }
   },
   {
-    "id": "posture.recumbent.snomed.102536004",
+    "id": "snomed:102536004",
     "code": "102536004",
     "system": "http://snomed.info/sct",
     "display": "Recumbent",
@@ -348,7 +348,7 @@
     }
   },
   {
-    "id": "posture.crouching.internal.posture.0007",
+    "id": "internal:0007",
     "code": "0007",
     "system": "internal://posture",
     "display": "Crouching",
@@ -367,7 +367,7 @@
     ]
   },
   {
-    "id": "health_condition.tachycardia.snomed.3424008",
+    "id": "snomed:3424008",
     "code": "3424008",
     "system": "http://snomed.info/sct",
     "display": "Tachycardia",
@@ -393,7 +393,7 @@
     }
   },
   {
-    "id": "health_condition.bradycardia.snomed.48867003",
+    "id": "snomed:48867003",
     "code": "48867003",
     "system": "http://snomed.info/sct",
     "display": "Bradycardia",
@@ -419,7 +419,7 @@
     }
   },
   {
-    "id": "health_condition.apnea.snomed.1023001",
+    "id": "snomed:1023001",
     "code": "1023001",
     "system": "http://snomed.info/sct",
     "display": "Apnea",
@@ -451,7 +451,7 @@
     }
   },
   {
-    "id": "health_condition.sleep.snomed.258158006",
+    "id": "snomed:258158006",
     "code": "258158006",
     "system": "http://snomed.info/sct",
     "display": "Sleep",
@@ -484,7 +484,7 @@
     }
   },
   {
-    "id": "danger_level.emergency.tdp.tdp://danger_level/emergency",
+    "id": "tdp:tdp://danger_level/emergency",
     "code": "tdp://danger_level/emergency",
     "system": "tdp://danger_level",
     "display": "Emergency",
@@ -510,7 +510,7 @@
     ]
   },
   {
-    "id": "danger_level.alert.tdp.tdp://danger_level/alert",
+    "id": "tdp:tdp://danger_level/alert",
     "code": "tdp://danger_level/alert",
     "system": "tdp://danger_level",
     "display": "Alert",
@@ -535,7 +535,7 @@
     ]
   },
   {
-    "id": "danger_level.critical.tdp.tdp://danger_level/critical",
+    "id": "tdp:tdp://danger_level/critical",
     "code": "tdp://danger_level/critical",
     "system": "tdp://danger_level",
     "display": "Critical",
@@ -559,7 +559,7 @@
     ]
   },
   {
-    "id": "danger_level.warning.tdp.tdp://danger_level/warning",
+    "id": "tdp:tdp://danger_level/warning",
     "code": "tdp://danger_level/warning",
     "system": "tdp://danger_level",
     "display": "Warning",
@@ -584,7 +584,7 @@
     ]
   },
   {
-    "id": "danger_level.normal.tdp.tdp://danger_level/normal",
+    "id": "tdp:tdp://danger_level/normal",
     "code": "tdp://danger_level/normal",
     "system": "tdp://danger_level",
     "display": "Normal",
@@ -610,7 +610,7 @@
     ]
   },
   {
-    "id": "danger_level.unknown.tdp.tdp://danger_level/unknown",
+    "id": "tdp:tdp://danger_level/unknown",
     "code": "tdp://danger_level/unknown",
     "system": "tdp://danger_level",
     "display": "Unknown",
@@ -634,7 +634,7 @@
     ]
   },
   {
-    "id": "tag.fall_risk.internal.tag.fall_risk",
+    "id": "internal:fall_risk",
     "code": "fall_risk",
     "system": "internal://tag",
     "display": "Fall Risk",
@@ -659,7 +659,7 @@
     ]
   },
   {
-    "id": "tag.mobility_impaired.internal.tag.mobility_impaired",
+    "id": "internal:mobility_impaired",
     "code": "mobility_impaired",
     "system": "internal://tag",
     "display": "Mobility Impaired",
@@ -684,7 +684,7 @@
     ]
   },
   {
-    "id": "tag.elderly.internal.tag.elderly",
+    "id": "internal:elderly",
     "code": "elderly",
     "system": "internal://tag",
     "display": "Elderly",
@@ -710,7 +710,7 @@
     ]
   },
   {
-    "id": "motion_state.lying_down.motion_state.0005",
+    "id": "internal:0005",
     "code": "0005",
     "system": "internal://motion_state",
     "display": "Lying Down",
@@ -722,7 +722,7 @@
     "description_zh": "躺下动作。"
   },
   {
-    "id": "motion_state.sitting_down.motion_state.0006",
+    "id": "internal:0006",
     "code": "0006",
     "system": "internal://motion_state",
     "display": "Sitting Down",
@@ -734,7 +734,7 @@
     "description_zh": "坐下动作。"
   },
   {
-    "id": "posture.lying_prone.posture.0011",
+    "id": "internal:0011",
     "code": "0011",
     "system": "internal://posture",
     "display": "Lying Prone",
@@ -746,7 +746,7 @@
     "description_zh": "俯卧姿态。"
   },
   {
-    "id": "danger_level.high.danger_level.dl3",
+    "id": "internal:dl3",
     "code": "dl3",
     "system": "internal://danger_level",
     "display": "High Risk",
@@ -758,7 +758,7 @@
     "description_zh": "高风险等级。"
   },
   {
-    "id": "danger_level.critical.danger_level.dl4",
+    "id": "internal:dl4",
     "code": "dl4",
     "system": "internal://danger_level",
     "display": "Critical",
@@ -770,7 +770,7 @@
     "description_zh": "严重风险等级。"
   },
   {
-    "id": "tag.new_tag_1.tag.tag_001",
+    "id": "internal:tag_001",
     "code": "tag_001",
     "system": "internal://tag",
     "display": "New Tag 1",
@@ -782,7 +782,7 @@
     "description_zh": "新增标签示例。"
   },
   {
-    "id": "tag.new_tag_2.tag.tag_002",
+    "id": "internal:tag_002",
     "code": "tag_002",
     "system": "internal://tag",
     "display": "New Tag 2",

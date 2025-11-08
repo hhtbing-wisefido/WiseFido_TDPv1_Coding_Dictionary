@@ -128,7 +128,7 @@ git push
 
 | 字段 | 说明 | 示例 |
 |------|------|------|
-| `id` | 全局唯一标识 | `motion_state.walking.snomed.129006008` |
+| `id` | 全局唯一标识 | `snomed:129006008` |
 | `code` | 编码值 | `129006008` |
 | `system` | 编码系统 URI | `http://snomed.info/sct` |
 | `display` | 显示名称 | `Walking` |
@@ -161,7 +161,7 @@ git push
 
 ```json
 {
-  "id": "motion_state.walking.snomed.129006008",
+  "id": "snomed:129006008",
   "code": "129006008",
   "system": "http://snomed.info/sct",
   "display": "Walking",

@@ -21,6 +21,38 @@ TEMPLATES = [
 ]
 
 
+def get_system_short(system: str) -> str:
+    """将 system URI 转换为简短的标识符
+    
+    Args:
+        system: 编码系统 URI，如 "http://snomed.info/sct", "internal://motion_state", "tdp://danger_level"
+    
+    Returns:
+        简短的 system 标识符，如 "snomed", "internal", "tdp"
+    """
+    if not system:
+        return "unknown"
+    
+    # 处理 http:// 或 https:// 开头的 URI
+    if system.startswith("http://") or system.startswith("https://"):
+        # 提取域名部分，去掉协议和路径
+        parts = system.replace("http://", "").replace("https://", "").split("/")
+        domain = parts[0]
+        # 对于 snomed.info/sct，返回 "snomed"
+        if "snomed" in domain:
+            return "snomed"
+        # 其他情况返回域名的主要部分
+        return domain.split(".")[0] if "." in domain else domain
+    
+    # 处理 internal:// 或 tdp:// 等自定义协议
+    if "://" in system:
+        protocol = system.split("://")[0]
+        return protocol
+    
+    # 其他情况，返回最后一个路径段
+    return system.split("/")[-1] if "/" in system else system
+
+
 def main():
     dry_run = "--dry-run" in sys.argv
     
@@ -38,8 +70,8 @@ def main():
     added = 0
     
     for cat, key, system, code, display, display_zh, desc_en, desc_zh in TEMPLATES:
-        system_short = system.split("://")[-1] if "://" in system else system.split("/")[-1]
-        _id = f"{cat}.{key}.{system_short}.{code}"
+        system_short = get_system_short(system)
+        _id = f"{system_short}:{code}"
         
         if _id in existing_ids:
             print(f"[SKIP] 已存在: {_id}")
@@ -65,7 +97,7 @@ def main():
         TEMP_FILE.parent.mkdir(parents=True, exist_ok=True)
         with open(TEMP_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"\n[✓] 草稿已保存到临时文件: {TEMP_FILE}")
+        print(f"\n[OK] 草稿已保存到临时文件: {TEMP_FILE}")
         print(f"   新增词条数: {added}")
         print(f"   总词条数: {len(data)}")
         print("\n   请运行以下命令验证:")
@@ -75,7 +107,7 @@ def main():
     else:
         with open(FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"\n[✓] 完成: 新增 {added} 条，总数 {len(data)}")
+        print(f"\n[OK] 完成: 新增 {added} 条，总数 {len(data)}")
 
 
 if __name__ == "__main__":

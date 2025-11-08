@@ -69,7 +69,7 @@ def run(data_file=None):
         print("=" * 50)
         sys.exit(1)
     
-    print(f"\n[✓] 校验通过，词条数: {len(data)}")
+    print(f"\n[OK] 校验通过，词条数: {len(data)}")
 
 
 if __name__ == "__main__":
