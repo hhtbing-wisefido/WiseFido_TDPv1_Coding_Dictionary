@@ -2,11 +2,11 @@
 WiseFido Coding Dictionary 主工具
 用法:
   python scripts/tools.py              # 交互菜单
-  python scripts/tools.py --validate   # 仅校验
-  python scripts/tools.py --generate-md # 仅生成 Markdown
-  python scripts/tools.py --changelog  # 仅更新 CHANGELOG
-  python scripts/tools.py --all        # 完整流程（校验+生成+更新）
-  python scripts/tools.py --stats      # 显示统计信息
+  python scripts/tools.py -v, --validate   # 仅校验
+  python scripts/tools.py -g, --generate-md # 仅生成 Markdown
+  python scripts/tools.py -c, --changelog  # 仅更新 CHANGELOG
+  python scripts/tools.py -a, --all        # 完整流程（校验+生成+更新）
+  python scripts/tools.py -s, --stats      # 显示统计信息
   python scripts/tools.py --clean      # 清理临时文件
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
@@ -181,11 +181,11 @@ def menu():
 def parse_args():
     """解析命令行参数"""
     ap = argparse.ArgumentParser(description="WiseFido Dictionary Tool")
-    ap.add_argument("--validate", action="store_true", help="校验 JSON")
-    ap.add_argument("--generate-md", action="store_true", help="生成 Markdown")
-    ap.add_argument("--changelog", action="store_true", help="更新 CHANGELOG")
-    ap.add_argument("--all", action="store_true", help="完整流程（校验+生成+更新）")
-    ap.add_argument("--stats", action="store_true", help="显示统计信息")
+    ap.add_argument("-v", "--validate", action="store_true", help="校验 JSON")
+    ap.add_argument("-g", "--generate-md", action="store_true", help="生成 Markdown")
+    ap.add_argument("-c", "--changelog", action="store_true", help="更新 CHANGELOG")
+    ap.add_argument("-a", "--all", action="store_true", help="完整流程（校验+生成+更新）")
+    ap.add_argument("-s", "--stats", action="store_true", help="显示统计信息")
     ap.add_argument("--clean", action="store_true", help="清理临时文件")
     return ap.parse_args()
 

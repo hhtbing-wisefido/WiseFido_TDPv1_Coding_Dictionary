@@ -91,21 +91,23 @@ python scripts/tools.py
 
 ### 3️⃣ 命令行模式
 
+支持长选项（`--`）和短选项（`-`）两种格式：
+
 ```bash
 # 校验词条
-python scripts/tools.py --validate
+python scripts/tools.py --validate    # 或: python scripts/tools.py -v
 
 # 生成 Markdown 文档
-python scripts/tools.py --generate-md
+python scripts/tools.py --generate-md # 或: python scripts/tools.py -g
 
 # 更新变更日志
-python scripts/tools.py --changelog
+python scripts/tools.py --changelog   # 或: python scripts/tools.py -c
 
 # 完整流程（一次性执行校验+生成+更新）
-python scripts/tools.py --all
+python scripts/tools.py --all         # 或: python scripts/tools.py -a
 
 # 显示统计信息
-python scripts/tools.py --stats
+python scripts/tools.py --stats       # 或: python scripts/tools.py -s
 
 # 清理临时文件
 python scripts/tools.py --clean
