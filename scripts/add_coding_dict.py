@@ -1,7 +1,7 @@
 """
-批量添加占位词条
-用法: python scripts/scaffold_append.py
-     python scripts/scaffold_append.py --dry-run  # 生成到 temp/ 供验证
+批量添加编码字典词条
+用法: python scripts/add_coding_dict.py
+     python scripts/add_coding_dict.py --dry-run  # 生成到 temp/ 供验证
 """
 import json
 import sys
@@ -103,7 +103,7 @@ def main():
         print("\n   请运行以下命令验证:")
         print(f"   python scripts/validate.py temp/coding_terms_scaffold_new_tmp.json")
         print("\n   验证通过后，运行以下命令应用到主文件:")
-        print(f"   python scripts/scaffold_append.py --apply")
+        print(f"   python scripts/add_coding_dict.py")
     else:
         with open(FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
@@ -112,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -37,11 +37,11 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── coding_item.schema.json   
 │
 ├── scripts/                       (M) 一键式工具脚本
-│   ├── tool.py                   (主入口)
-│   ├── validate.py               (校验器)
+│   ├── tools.py                  (主入口)
+│   ├── validate_json.py          (校验器)
 │   ├── generate_md.py            (Markdown 生成器)
 │   ├── changelog.py              (CHANGELOG 生成器)
-│   └── scaffold_append.py        (批量占位脚本)
+│   └── add_coding_dict.py        (批量添加编码字典词条脚本)
 │
 ├── generated/                     (G) 自动生成【禁止手改】
 │   ├── markdown/                 
@@ -75,26 +75,38 @@ pip install -r requirements.txt
 ### 2️⃣ 交互式菜单
 
 ```bash
-python scripts/tool.py
+python scripts/tools.py
 ```
 
 菜单选项：
 - `1` - 校验 JSON 词条
 - `2` - 生成 Markdown 表格
 - `3` - 更新 CHANGELOG
+- `4` - 完整流程（校验+生成+更新）
+- `5` - 显示统计信息
+- `6` - 清理临时文件
 - `0` - 退出
 
 ### 3️⃣ 命令行模式
 
 ```bash
 # 校验词条
-python scripts/tool.py --validate
+python scripts/tools.py --validate
 
 # 生成 Markdown 文档
-python scripts/tool.py --generate-md
+python scripts/tools.py --generate-md
 
 # 更新变更日志
-python scripts/tool.py --changelog
+python scripts/tools.py --changelog
+
+# 完整流程（一次性执行校验+生成+更新）
+python scripts/tools.py --all
+
+# 显示统计信息
+python scripts/tools.py --stats
+
+# 清理临时文件
+python scripts/tools.py --clean
 ```
 
 ---
@@ -105,14 +117,18 @@ python scripts/tool.py --changelog
 # 1. 编辑词条（手动维护）
 # 编辑 dictionary/coding_terms.json
 
+# 2-4. 一键执行完整流程（推荐）
+python scripts/tools.py --all
+
+# 或者分步执行：
 # 2. 验证数据
-python scripts/tool.py --validate
+python scripts/tools.py --validate
 
 # 3. 生成文档
-python scripts/tool.py --generate-md
+python scripts/tools.py --generate-md
 
 # 4. 更新变更日志
-python scripts/tool.py --changelog
+python scripts/tools.py --changelog
 
 # 5. 提交到 GitHub
 git add dictionary/ generated/
@@ -225,13 +241,13 @@ rm -r temp/*
 
 ```bash
 # 1. 生成草稿到临时文件（不修改主文件）
-python scripts/scaffold_append.py --dry-run
+python scripts/add_coding_dict.py --dry-run
 
 # 2. 验证临时文件内容
-python scripts/validate.py temp/coding_terms_scaffold_new_tmp.json
+python scripts/validate_json.py temp/coding_terms_scaffold_new_tmp.json
 
 # 3. 验证通过后，正式应用到主文件
-python scripts/scaffold_append.py
+python scripts/add_coding_dict.py
 
 # 4. 清理临时文件
 rm temp/*
@@ -240,7 +256,7 @@ rm temp/*
 或验证其他临时 JSON：
 
 ```bash
-python scripts/validate.py temp/your_custom_coding_terms_tmp.json
+python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 ```
 
 ### ✅ 必须遵守
@@ -293,12 +309,13 @@ git checkout -b feature/new-terms
 # 2. 编辑词条
 vim dictionary/coding_terms.json
 
-# 3. 验证
-python scripts/tool.py --validate
+# 3. 验证并生成文档（推荐使用完整流程）
+python scripts/tools.py --all
 
-# 4. 生成文档
-python scripts/tool.py --generate-md
-python scripts/tool.py --changelog
+# 或者分步执行：
+# python scripts/tools.py --validate
+# python scripts/tools.py --generate-md
+# python scripts/tools.py --changelog
 
 # 5. 提交
 git commit -m "feat: 添加新词条"
