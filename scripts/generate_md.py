@@ -17,8 +17,7 @@ from pathlib import Path
 import sys
 
 # 引入Schema Markdown生成逻辑
-from generate_schema_md import generate_schema_markdown
-import _config
+
 
 SCHEMA_FILE = _config.SCHEMA_FILE
 SCHEMA_MD_FILE = Path("auto_generated/markdown/coding_dictionary.schema.md")
@@ -148,6 +147,72 @@ def run():
         print(f"[OK] Schema Markdown generated: {SCHEMA_MD_FILE}")
     except Exception as e:
         print(f"[ERR] Schema Markdown生成失败: {e}")
+
+
+# 直接合并原 generate_schema_markdown 函数实现
+def generate_schema_markdown(schema: dict) -> str:
+    """
+    根据 JSON Schema 生成 Markdown 规范文档
+    :param schema: dict, 解析后的 JSON Schema
+    :return: str, Markdown 文本
+    """
+    lines = []
+    title = schema.get("title", "CodingItem Schema 规范")
+    description = schema.get("description", "")
+    lines.append(f"# {title} 规范")
+    if description:
+        lines.append(f"> {description}")
+    lines.append("")
+    # Schema 信息
+    lines.append("## 📋 Schema 信息")
+    lines.append(f"- **Schema URI**: `{schema.get('$schema', '')}`")
+    lines.append(f"- **标题**: {title}")
+    lines.append(f"- **说明**: {description}")
+    lines.append(f"- **允许额外属性**: {'✅ 是' if schema.get('additionalProperties', True) else '❌ 否 (严格模式)'}")
+    required_fields = schema.get("required", [])
+    lines.append(f"- **必填字段数量**: {len(required_fields)} 个")
+    lines.append("\n---\n")
+
+    # 字段列表
+    lines.append("## 🔑 字段列表")
+    lines.append("| 字段名 | 必填/可选 | 类型 | 说明 | 约束条件 |")
+    lines.append("|--------|----------|------|------|---------|")
+    properties = schema.get("properties", {})
+    for field, prop in properties.items():
+        is_required = "✅ 必填" if field in required_fields else "可选"
+        typ = prop.get("type", "-")
+        desc = prop.get("description", "-")
+        constraint = "-"
+        if "enum" in prop:
+            constraint = f"枚举值: {', '.join([f'`{v}`' for v in prop['enum']])}"
+        elif "pattern" in prop:
+            constraint = f"正则: `{prop['pattern']}`"
+        lines.append(f"| **`{field}`** | {is_required} | {typ} | {desc} | {constraint} |")
+    lines.append("\n---\n")
+
+    # 枚举类型详细说明
+    for field, prop in properties.items():
+        if "enum" in prop:
+            lines.append(f"### `{field}` 枚举值说明")
+            lines.append(f"**说明**: {prop.get('description', '-')}")
+            lines.append("**可选值**:")
+            for v in prop["enum"]:
+                lines.append(f"- `{v}`")
+            lines.append("")
+
+    # 相关文档
+    lines.append("## 📚 相关文档")
+    lines.append("- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范")
+    lines.append("- [分类体系规范](../../spec/coding_dictionary_classification.md) - 分类定义")
+    lines.append("- [README.md](../../README.md) - 项目主文档")
+    lines.append("\n---\n")
+
+    # 注意事项
+    lines.append("## ⚠️ 注意事项")
+    lines.append("1. 本文档由 Schema 自动生成，请勿手动编辑")
+    lines.append(f"2. 如需修改，请编辑 `schema/coding_dictionary.schema.json`")
+    lines.append("3. 详细的使用说明和示例请参考 [coding_dictionary.spec.md](../../spec/coding_dictionary.spec.md)")
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":
