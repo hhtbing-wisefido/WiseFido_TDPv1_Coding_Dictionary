@@ -22,13 +22,13 @@ jobs:
         run: pip install -r requirements.txt
       
       - name: Validate
-        run: python scripts/tools.py --validate
+        run: python scripts/dic_tools.py --validate
       
       - name: Generate Markdown
-        run: python scripts/tools.py --generate-md
+        run: python scripts/dic_tools.py --generate-md
       
       - name: Update CHANGELOG
-        run: python scripts/tools.py --changelog
+        run: python scripts/dic_tools.py --changelog
       
       - name: Show changes
         run: git diff --name-only

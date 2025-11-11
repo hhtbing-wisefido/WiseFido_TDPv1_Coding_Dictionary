@@ -1,6 +1,9 @@
 # WiseFido_TDPv1_Coding_Dictionary
 
-> 🎯 **可复用的医疗编码字典库** — JSON 作为唯一事实源 | 自动生成 Markdown | 变更追踪 | FHIR 兼容
+> 🎯 **可复├── scripts/                       (M) 一键式工具脚本
+│   ├── _config.py                (公共配置:统一 __pycache__ 到 temp 目录)
+│   ├── dic_tools.py              (主入口)
+│   ├── validate_json.py          (校验器)编码字典库** — JSON 作为唯一事实源 | 自动生成 Markdown | 变更追踪 | FHIR 兼容
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -47,7 +50,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── scripts/                       (M) 一键式工具脚本
 │   ├── _config.py                (公共配置：统一 __pycache__ 到 temp 目录)
-│   ├── tools.py                  (主入口)
+│   ├── dic_tools.py              (主入口)
 │   ├── validate_json.py          (校验器)
 │   ├── generate_md.py            (Markdown 生成器)
 │   ├── changelog.py              (CHANGELOG 生成器)
@@ -91,19 +94,28 @@ pip install -r requirements.txt
 ### 2️⃣ 交互式菜单
 
 ```bash
-python scripts/tools.py
+python scripts/dic_tools.py
 ```
 
 菜单选项：
+（进入循环模式，执行完一个操作后按 Enter 返回主菜单）
 
-- `1` - 校验 JSON 词条
-- `2` - 生成 Markdown 表格
-- `3` - 更新 changelog
-- `4` - 完整流程（校验+生成+更新）
-- `5` - 显示统计信息
-- `6` - 清理临时文件
-- `7` - 运行测试套件 🧪
-- `0` - 退出
+| 编号 | 分组           | 功能说明                          |
+| ---- | -------------- | --------------------------------- |
+| 1    | 数据管理       | 校验词条数据（Schema + 逻辑）     |
+| 2    | 数据管理       | 生成 Markdown 文档                |
+| 3    | 数据管理       | 更新变更日志                      |
+| 4    | 数据管理       | 完整流程（1→2→3）                 |
+| 5    | 数据查询       | 显示统计信息（分类/系统/状态等）  |
+| 6    | 数据查询       | 搜索词条（交互式多条件）          |
+| 7    | 数据查询       | 查看词条详情                      |
+| 8    | 数据编辑       | 交互式添加单个词条（自动备份）    |
+| 13   | 数据编辑       | 撤回最近一次添加（基于临时记录）  |
+| 9    | 质量检测       | 运行测试套件 🧪（6 项数据质量）    |
+| 10   | 数据备份       | 手动备份主字典文件                |
+| 11   | 数据备份       | 从备份恢复（含二次确认 + 先备份） |
+| 12   | 系统维护       | 清理临时文件与 __pycache__        |
+| 0    | 系统           | 退出工具                          |
 
 ### 3️⃣ 命令行模式
 
@@ -111,26 +123,57 @@ python scripts/tools.py
 
 ```bash
 # 校验词条
-python scripts/tools.py --validate    # 或: python scripts/tools.py -v
+python scripts/dic_tools.py --validate    # 或: python scripts/dic_tools.py -v
 
 # 生成 Markdown 文档
-python scripts/tools.py --generate-md # 或: python scripts/tools.py -g
+python scripts/dic_tools.py --generate-md # 或: python scripts/dic_tools.py -g
 
 # 更新变更日志
-python scripts/tools.py --changelog   # 或: python scripts/tools.py -c
+python scripts/dic_tools.py --changelog   # 或: python scripts/dic_tools.py -c
 
 # 完整流程（一次性执行校验+生成+更新）
-python scripts/tools.py --all         # 或: python scripts/tools.py -a
+python scripts/dic_tools.py --all         # 或: python scripts/dic_tools.py -a
 
 # 显示统计信息
-python scripts/tools.py --stats       # 或: python scripts/tools.py -s
+python scripts/dic_tools.py --stats       # 或: python scripts/dic_tools.py -s
 
 # 运行测试套件 🧪
-python scripts/tools.py --test        # 或: python scripts/tools.py -t
+python scripts/dic_tools.py --test        # 或: python scripts/dic_tools.py -t
 
 # 清理临时文件
-python scripts/tools.py --clean
+python scripts/dic_tools.py --clean
+
+# 数据统计
+python scripts/dic_tools.py --stats
+
+# 备份 / 恢复
+python scripts/dic_tools.py --backup
+python scripts/dic_tools.py --restore
+
+# 搜索（格式: 类型:关键词）
+python scripts/dic_tools.py --search id:snomed
+python scripts/dic_tools.py --search category:motion_codes
+
+# 查看详情
+python scripts/dic_tools.py --view snomed:129006008
+
+# 执行后继续进入菜单（混合模式）
+python scripts/dic_tools.py --stats --menu-after
+
+# 撤回最近一次添加的词条（需之前通过菜单添加成功）
+python scripts/dic_tools.py --undo-last-add
 ```
+
+### 运行模式说明
+
+| 模式类型         | 触发方式                                          | 特点                                  | 适用场景                     |
+| ---------------- | ------------------------------------------------- | ------------------------------------- | ---------------------------- |
+| 交互循环模式     | `python scripts/dic_tools.py`                     | 菜单循环，人工选择，连续操作          | 日常维护、人工核对            |
+| 参数一次性模式   | `python scripts/dic_tools.py --stats`             | 执行后直接退出                        | CI、脚本自动化、批处理        |
+| 参数+菜单混合模式| `python scripts/dic_tools.py --stats --menu-after`| 先执行参数指定操作，再进入交互菜单    | 先跑一个任务再继续多步操作    |
+| 撤回操作模式     | `python scripts/dic_tools.py --undo-last-add`     | 删除最近一次添加（自动备份后执行）    | 误添加立即恢复               |
+
+> 提示：`--menu-after` 不改变默认行为，只在需要“执行一次再继续”时手动添加。
 
 ---
 
@@ -153,10 +196,10 @@ python scripts/tools.py --clean
 
 ```bash
 # 运行完整测试套件
-python scripts/tools.py --test
+python scripts/dic_tools.py --test
 
 # 或使用短选项
-python scripts/tools.py -t
+python scripts/dic_tools.py -t
 ```
 
 ### 测试输出示例
@@ -211,17 +254,17 @@ python scripts/tools.py -t
 # 编辑 dictionary/coding_terms.json
 
 # 2-4. 一键执行完整流程（推荐）
-python scripts/tools.py --all
+python scripts/dic_tools.py --all
 
 # 或者分步执行：
 # 2. 验证数据
-python scripts/tools.py --validate
+python scripts/dic_tools.py --validate
 
 # 3. 生成文档
-python scripts/tools.py --generate-md
+python scripts/dic_tools.py --generate-md
 
 # 4. 更新变更日志
-python scripts/tools.py --changelog
+python scripts/dic_tools.py --changelog
 
 # 5. 提交到 GitHub
 git add dictionary/ generated/
@@ -433,12 +476,12 @@ git checkout -b feature/new-terms
 vim dictionary/coding_terms.json
 
 # 3. 验证并生成文档（推荐使用完整流程）
-python scripts/tools.py --all
+python scripts/dic_tools.py --all
 
 # 或者分步执行：
-# python scripts/tools.py --validate
-# python scripts/tools.py --generate-md
-# python scripts/tools.py --changelog
+# python scripts/dic_tools.py --validate
+# python scripts/dic_tools.py --generate-md
+# python scripts/dic_tools.py --changelog
 
 # 5. 提交
 git commit -m "feat: 添加新词条"
@@ -485,5 +528,6 @@ docs: 更新文档
 ---
 
 **最后更新**：2025-11-08
-**版本**：v1.2.0
+**最后更新说明**：新增撤回最近一次添加功能（选项 13 / --undo-last-add），完善运行模式说明。
+**版本**：v1.2.2
 **维护者**：WiseFido Team
