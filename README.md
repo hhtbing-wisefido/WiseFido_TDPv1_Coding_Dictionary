@@ -313,3 +313,34 @@ python scripts/dic_tools.py --clean
 最后更新说明: 添加精简模式参数、修正文件路径错误、优化规则表述、修正PowerShell命令语法
 版本: v1.2.3
 维护者: WiseFido Team
+
+---
+
+## 版本里程碑
+
+### v1.2.3-milestone (2025-11-11)
+
+**Git Tag**: `v1.2.3-milestone` | **状态**: 稳定版本 ✅
+
+这是第一个稳定里程碑，包含 34 个编码词条和完整基础功能，作为后续大规模扩展的基准点。
+
+#### 恢复到此版本
+
+```bash
+# 方法 1: 使用标签（推荐）
+git checkout v1.2.3-milestone
+
+# 方法 2: 基于里程碑创建新分支
+git checkout -b feature/new-terms v1.2.3-milestone
+
+# 方法 3: 查看所有里程碑
+git tag -l "*milestone*"
+```
+
+#### 版本快照
+- 词条总数: 34（SNOMED CT 44.1%、Internal 38.2%、TDP 17.6%）
+- 分类数: 6 大类
+- 测试通过率: 100%
+- 详细说明: 参见 `MILESTONE_v1.2.3.md`
+
+---
