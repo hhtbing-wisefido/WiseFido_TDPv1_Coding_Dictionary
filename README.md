@@ -2,7 +2,7 @@
 
 > 🎯 **可复用医疗编码字典库** — JSON 作为唯一事实源 | 自动生成 Markdown | 变更追踪 | FHIR 兼容
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Copyright: WiseFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ---
@@ -545,7 +545,7 @@ docs: 更新文档
 
 ## 📄 许可证
 
-本项目采用 [MIT License](LICENSE)
+本项目的使用受公司政策约束，未经公司许可，不得用于商业目的或进行修改和分发。如有疑问，请联系：benson@wisefido.com。
 
 ---
 
