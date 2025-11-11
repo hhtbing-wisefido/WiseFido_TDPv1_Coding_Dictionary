@@ -12,11 +12,11 @@
 WiseFido_TDPv1_Coding_Dictionary 是基于 **TDPv1 协议**和 **FHIR/SNOMED CT** 标准构建的医疗编码术语字典库，服务于 **OWL Monitor System**（老人健康监测系统）的完整术语体系。
 
 本字典库涵盖整个系统的多传感器健康检测能力，包括：
+
 - **60GHz 毫米波雷达**：运动状态、姿态、跌倒检测、生命体征监测
 - **睡眠板（Sleep Pad）**：心率、呼吸、翻身、抽搐检测（PTZ压电传感器 + 应变传感器）
 - **MEMS 地震传感器**：跌倒检测、振动事件识别
 - **SOS 紧急呼叫系统**：手动报警、语音通信
-
 - ✅ **机器可信**：JSON 作为"唯一事实源"，Schema 强校验
 - ✅ **人类可读**：自动生成 Markdown 表格文档
 - ✅ **变更追踪**：基于快照自动记录词条变化历史
@@ -35,9 +35,9 @@ WiseFido_TDPv1_Coding_Dictionary/
 ├── docs/                          (M) 开发规范文档
 │   └── id_format_guide.md        (ID 格式规范)
 ├── 原始参考文件/                   (M) 业务参考文档（只读）
-│   ├── tdpv1-0916-fixed.md       
+│   ├── tdpv1-0916-fixed.md     
 │   ├── fhir与snomed_ct代码.md
-│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)     
+│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)   
 │
 ├── dictionary/                    (M) 唯一事实源 JSON
 │   └── coding_terms.json         (M) 主词条文件
@@ -54,17 +54,17 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── add_coding_dict.py        (批量添加编码字典词条脚本)
 │
 ├── generated/                     (G) 自动生成【禁止手改】
-│   ├── markdown/                 
-│   │   └── coding_terms.md       
-│   ├── changelog.md              
-│   └── .snapshot.json            
+│   ├── markdown/               
+│   │   └── coding_terms.md     
+│   ├── changelog.md            
+│   └── .snapshot.json          
 │
 ├── temp/                          (T) 临时文件夹【可安全删除】
 │   ├── __pycache__/              (Python 缓存文件，自动生成)
 │   └── *.tmp.json, *.py, etc.    (临时文件、测试脚本、迁移工具等)
 │
 ├── .github/workflows/             (M) CI/CD 自动化
-│   └── ci.yml                    
+│   └── ci.yml                  
 │
 ├── requirements.txt               (M) Python 依赖
 ├── .gitignore                    (M) Git 忽略规则
@@ -77,11 +77,16 @@ WiseFido_TDPv1_Coding_Dictionary/
 
 ## 🚀 快速开始
 
-### 1️⃣ 安装依赖
 
+### 1️⃣ 安装依赖（首次使用必做）
+
+请确保已安装 Python 3.8 及以上版本。
+
+**新用户请先运行：**
 ```bash
 pip install -r requirements.txt
 ```
+如遇依赖缺失或 ImportError，请务必先执行上述命令。
 
 ### 2️⃣ 交互式菜单
 
@@ -90,6 +95,7 @@ python scripts/tools.py
 ```
 
 菜单选项：
+
 - `1` - 校验 JSON 词条
 - `2` - 生成 Markdown 表格
 - `3` - 更新 changelog
@@ -134,14 +140,14 @@ python scripts/tools.py --clean
 
 ### 测试项目
 
-| 测试项 | 说明 | 检查内容 |
-|--------|------|----------|
-| **必填字段检查** | 验证所有词条包含必填字段 | id, code, system, display, display_zh, category, status, version |
-| **ID 格式检查** | 验证 ID 格式正确 | 格式为 `prefix:code` 或 `prefix:protocol://path` |
-| **重复 ID 检查** | 验证无重复 ID | 每个 ID 在字典中唯一 |
-| **code+system 唯一性** | 验证编码组合唯一 | 同一编码系统中 code 不重复 |
-| **分类有效性检查** | 验证使用有效分类 | 分类必须在预定义列表中 |
-| **版本号格式检查** | 验证版本号符合语义化版本 | 格式为 `X.Y.Z` |
+| 测试项                       | 说明                     | 检查内容                                                         |
+| ---------------------------- | ------------------------ | ---------------------------------------------------------------- |
+| **必填字段检查**       | 验证所有词条包含必填字段 | id, code, system, display, display_zh, category, status, version |
+| **ID 格式检查**        | 验证 ID 格式正确         | 格式为 `prefix:code` 或 `prefix:protocol://path`             |
+| **重复 ID 检查**       | 验证无重复 ID            | 每个 ID 在字典中唯一                                             |
+| **code+system 唯一性** | 验证编码组合唯一         | 同一编码系统中 code 不重复                                       |
+| **分类有效性检查**     | 验证使用有效分类         | 分类必须在预定义列表中                                           |
+| **版本号格式检查**     | 验证版本号符合语义化版本 | 格式为 `X.Y.Z`                                                 |
 
 ### 运行测试
 
@@ -229,37 +235,37 @@ git push
 
 ### 必填字段
 
-| 字段 | 说明 | 示例 |
-|------|------|------|
-| `id` | 全局唯一标识 | `snomed:129006008` |
-| `code` | 编码值 | `129006008` |
-| `system` | 编码系统 URI | `http://snomed.info/sct` |
-| `display` | 显示名称 | `Walking` |
-| `category` | 分类 | `motion_codes` |
-| `status` | 状态 | `active` |
-| `version` | 语义版本 | `1.0.0` |
+| 字段         | 说明         | 示例                       |
+| ------------ | ------------ | -------------------------- |
+| `id`       | 全局唯一标识 | `snomed:129006008`       |
+| `code`     | 编码值       | `129006008`              |
+| `system`   | 编码系统 URI | `http://snomed.info/sct` |
+| `display`  | 显示名称     | `Walking`                |
+| `category` | 分类         | `motion_codes`           |
+| `status`   | 状态         | `active`                 |
+| `version`  | 语义版本     | `1.0.0`                  |
 
 ### 可选字段
 
-| 字段 | 说明 |
-|------|------|
-| `description` | 中文描述 |
-| `synonyms` | 同义词列表 |
-| `source_refs` | 来源追溯 |
-| `detection` | 雷达检测能力 |
+| 字段            | 说明         |
+| --------------- | ------------ |
+| `description` | 中文描述     |
+| `synonyms`    | 同义词列表   |
+| `source_refs` | 来源追溯     |
+| `detection`   | 雷达检测能力 |
 
 ### 词条分类
 
 本字典库采用统一的分类体系，所有词条必须使用以下分类之一：
 
-| 分类 | 说明 | 例子 |
-|------|------|------|
-| `posture_codes` | 姿态编码 | Standing, Sitting, Lying Supine, Lying Prone |
-| `motion_codes` | 运动编码 | Walking, Running, Static, Falling Down |
-| `physiological_codes` | 生理指标编码 | Tachycardia, Bradycardia, Apnea, Tachypnea |
-| `disorder_condition_codes` | 疾病状况编码 | Sleep, Sleep Disorder |
-| `safety_alert_codes` | 安全警报编码 | Falls, Emergency, Alert, Warning, Critical |
-| `tag` | AI 标签（自定义） | Fall Risk, Mobility Impaired, Elderly |
+| 分类                         | 说明              | 例子                                         |
+| ---------------------------- | ----------------- | -------------------------------------------- |
+| `posture_codes`            | 姿态编码          | Standing, Sitting, Lying Supine, Lying Prone |
+| `motion_codes`             | 运动编码          | Walking, Running, Static, Falling Down       |
+| `physiological_codes`      | 生理指标编码      | Tachycardia, Bradycardia, Apnea, Tachypnea   |
+| `disorder_condition_codes` | 疾病状况编码      | Sleep, Sleep Disorder                        |
+| `safety_alert_codes`       | 安全警报编码      | Falls, Emergency, Alert, Warning, Critical   |
+| `tag`                      | AI 标签（自定义） | Fall Risk, Mobility Impaired, Elderly        |
 
 > **注意**：所有新词条必须使用上述分类之一。分类选择应基于词条的实际语义，而非历史习惯。
 
@@ -309,6 +315,7 @@ git push
 本字典库为每个词条标注了不同传感器的检测能力，包括：
 
 ### 传感器类型
+
 - **radar_60ghz**：60GHz 毫米波雷达（运动、姿态、跌倒、生命体征）
 - **sleep_pad**：睡眠板传感器（心率、呼吸、翻身、抽搐）
 - **mems_seismic**：MEMS 地震传感器（跌倒、振动事件）
@@ -316,11 +323,11 @@ git push
 
 ### 检测级别
 
-| 检测级别 | 标记 | 说明 |
-|----------|------|------|
-| 直接检测 | ✅ | 传感器信号可直接映射 |
-| 间接检测 | ⚠️ | 需算法+模型辅助 |
-| 不可检测 | ❌ | 需其他传感器或方法 |
+| 检测级别 | 标记 | 说明                 |
+| -------- | ---- | -------------------- |
+| 直接检测 | ✅   | 传感器信号可直接映射 |
+| 间接检测 | ⚠️ | 需算法+模型辅助      |
+| 不可检测 | ❌   | 需其他传感器或方法   |
 
 ---
 
@@ -335,6 +342,7 @@ git push
 ### 📁 临时文件夹说明
 
 `temp/` 文件夹用于存放**临时生成文件**，完全可以安全删除：
+
 - 所有临时输出文件都在此目录，不会污染主项目目录
 - **Python 缓存**：所有 `__pycache__` 统一生成到 `temp/__pycache__/`，保持项目结构整洁
 - 文件命名规范：`*_tmp.json`、`*_temp.json` 等明确标记
@@ -381,31 +389,34 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 
 ## 📈 当前统计
 
-| 分类 | 数量 | 说明 |
-|------|------|------|
-| `motion_codes` | 8 | 运动编码（步行、奔跑、静止、跌倒等） |
-| `posture_codes` | 8 | 姿态编码（站立、坐、仰卧、俯卧等） |
-| `physiological_codes` | 3 | 生理指标编码（心动过速、心动过缓、呼吸暂停等） |
-| `disorder_condition_codes` | 1 | 疾病状况编码（睡眠、睡眠障碍等） |
-| `safety_alert_codes` | 9 | 安全警报编码（跌倒、紧急、警告、严重等） |
-| `tag` | 5 | AI 标签（跌倒风险、行动不便、老年人等） |
-| **总计** | **34** | 持续更新中 |
+| 分类                         | 数量         | 说明                                           |
+| ---------------------------- | ------------ | ---------------------------------------------- |
+| `motion_codes`             | 8            | 运动编码（步行、奔跑、静止、跌倒等）           |
+| `posture_codes`            | 8            | 姿态编码（站立、坐、仰卧、俯卧等）             |
+| `physiological_codes`      | 3            | 生理指标编码（心动过速、心动过缓、呼吸暂停等） |
+| `disorder_condition_codes` | 1            | 疾病状况编码（睡眠、睡眠障碍等）               |
+| `safety_alert_codes`       | 9            | 安全警报编码（跌倒、紧急、警告、严重等）       |
+| `tag`                      | 5            | AI 标签（跌倒风险、行动不便、老年人等）        |
+| **总计**               | **34** | 持续更新中                                     |
 
 ---
 
 ## 🛠️ 扩展计划
 
 ### 近期
+
 - [ ] 补充异常步态词条
 - [ ] 添加呼吸异常类
 - [ ] 完善 Tag 分类
 
 ### 中期
+
 - [ ] FHIR 派生生成器
 - [ ] 外部数据合并工具
 - [ ] 多文件拆分支持
 
 ### 长期
+
 - [ ] NPM/PyPI 包发布
 - [ ] REST API 接口
 - [ ] Web 编辑器
@@ -437,6 +448,7 @@ git push origin feature/new-terms
 ```
 
 提交信息规范：
+
 ```
 feat: 添加新词条
 fix: 修复重复代码
@@ -447,12 +459,12 @@ docs: 更新文档
 
 ## 📚 参考文档
 
-| 文档 | 说明 |
-|------|------|
-| [tdpv1-0916-fixed.md](原始参考文件/tdpv1-0916-fixed.md) | 协议定义与危险等级 |
-| [fhir与snomed_ct代码.md](原始参考文件/fhir与snomed_ct代码.md) | 医疗编码标准 |
-| [fda-v0923.md](原始参考文件/fda-v0923.md) | OWL Monitor System 完整系统架构（雷达、睡眠板、地震传感器、SOS系统等） |
-| [FHIR CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | FHIR 标准 |
+| 文档                                                                         | 说明                                                                   |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [tdpv1-0916-fixed.md](原始参考文件/tdpv1-0916-fixed.md)                         | 协议定义与危险等级                                                     |
+| [fhir与snomed_ct代码.md](原始参考文件/fhir与snomed_ct代码.md)                   | 医疗编码标准                                                           |
+| [fda-v0923.md](原始参考文件/fda-v0923.md)                                       | OWL Monitor System 完整系统架构（雷达、睡眠板、地震传感器、SOS系统等） |
+| [FHIR CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | FHIR 标准                                                              |
 
 ---
 
@@ -472,6 +484,6 @@ docs: 更新文档
 
 ---
 
-**最后更新**：2025-11-08  
-**版本**：v1.2.0  
+**最后更新**：2025-11-08
+**版本**：v1.2.0
 **维护者**：WiseFido Team

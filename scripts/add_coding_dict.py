@@ -1,7 +1,11 @@
+# ============================================================
+# 新用户请先安装依赖：
+#   pip install -r requirements.txt
+# ============================================================
 """
 批量添加编码字典词条
 用法: python scripts/add_coding_dict.py
-     python scripts/add_coding_dict.py --dry-run  # 生成到 temp/ 供验证
+    python scripts/add_coding_dict.py --dry-run  # 生成到 temp/ 供验证
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
 import _config  # noqa: F401
