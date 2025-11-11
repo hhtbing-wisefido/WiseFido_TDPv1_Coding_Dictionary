@@ -39,9 +39,9 @@ WiseFido_TDPv1_Coding_Dictionary/
 ├── schema/                        (M) 数据验证规范【机器读】
 │   └── coding_dictionary.schema.json   (JSON Schema 自动验证规则)
 │
-├── docs/                          (M) 开发文档【人类读】
-│   ├── id_format_guide.md        (ID 格式规范说明)
-│   └── CLASSIFICATION_SUMMARY.md (分类汇总文档)
+├── spec/                          (M) 规范文档【人类读】
+│   ├── coding_dictionary_classification.md (分类体系规范)
+│   └── id_format_guide.md        (ID 格式规范说明)
 │
 ├── 原始参考文件/                   (M) 业务参考文档（只读）
 │   ├── tdpv1-0916-fixed.md     
