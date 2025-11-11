@@ -3,16 +3,37 @@
 Thumbs.db
 Desktop.ini
 desktop.ini
+
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
 # Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 .env
 .venv/
+venv/
+ENV/
+env/
+
+# Project specific
 03_generated/cache/
 03_generated/md_export/
+
 # Temp files
 temp/
+*.tmp
 *.tmp.json
 *.temp.json
+*.bak
+*.log
+
+# Generated files (optional - uncomment if you don't want to track generated files)
+# generated/
