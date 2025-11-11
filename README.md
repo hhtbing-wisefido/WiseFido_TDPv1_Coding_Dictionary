@@ -66,7 +66,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   ├── __pycache__/              (Python 缓存文件，自动生成)
 │   └── *.tmp.json, *.py, etc.    (临时文件、测试脚本、迁移工具等)
 │
-├── backups/                       (L) 本地备份【自动生成，不纳入版本控制】
+├── auto_backup/                   (L) 自动备份【自动生成，不纳入版本控制】
 │   └── coding_terms_backup_*.json (dic_tools.py 自动生成的时间戳备份)
 │
 ├── .github/workflows/             (M) CI/CD 自动化

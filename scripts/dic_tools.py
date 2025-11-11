@@ -466,7 +466,7 @@ def backup_data():
         return
     
     # 创建备份目录
-    backup_dir = Path("backups")
+    backup_dir = Path("auto_backup")
     backup_dir.mkdir(exist_ok=True)
     
     # 生成备份文件名（带时间戳）
@@ -488,7 +488,7 @@ def restore_data():
     print("  恢复词条数据")
     print("=" * 60)
     
-    backup_dir = Path("backups")
+    backup_dir = Path("auto_backup")
     if not backup_dir.exists() or not list(backup_dir.glob("*.json")):
         print("[INFO] 没有找到备份文件")
         return
