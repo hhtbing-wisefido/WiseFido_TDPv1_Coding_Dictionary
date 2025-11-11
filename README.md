@@ -2,7 +2,28 @@
 
 > 🎯 **可复用医疗编码字典库**｜JSON 唯一事实源｜自动生成 Markdown｜变更追踪｜FHIR/SNOMED CT 兼容
 
-[![Copyright: WiseFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
+[![Copyrigpython scripts/dic_tools.py --view snomed:129006008 # 查看详情
+python scripts/dic_tools.py --stats --menu-after  # 先执行再回菜单
+```
+
+> `--menu-after` 便于"先跑一项任务再继续人工操作"。
+
+#### 精简模式（短选项 `-`）
+
+```bash
+python scripts/dic_tools.py -v             # 校验
+python scripts/dic_tools.py -g             # 生成 Markdown
+python scripts/dic_tools.py -c             # 更新变更日志
+python scripts/dic_tools.py -a             # 完整流程
+python scripts/dic_tools.py -s             # 统计信息
+python scripts/dic_tools.py -t             # 测试套件
+```
+
+> **提示**：
+> - 精简模式仅支持常用功能，复杂操作需使用完整模式
+> - `--menu-after` 可与任何参数组合，先执行命令再进入交互菜单
+
+---eFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ---
@@ -103,6 +124,8 @@ python scripts/dic_tools.py
 
 ### 3. 常用参数模式
 
+#### 完整模式（长选项 `--`）
+
 ```bash
 python scripts/dic_tools.py --validate      # 校验
 python scripts/dic_tools.py --generate-md   # 生成 Markdown
@@ -198,7 +221,7 @@ git push
   "description_zh": "周期性步态，速度低至中等。",
   "synonyms": ["Ambulation", "Gait"],
   "source_refs": [{
-    "file": "原始参考文档/fhir与snomed_ct代码.md",
+    "file": "原始参考文件/fhir与snomed_ct代码.md",
     "section": "三、实际可检测的运动状态总结"
   }],
   "detection": {
@@ -220,9 +243,9 @@ git push
 
 ## 重要规则
 
-1. **禁止修改** `coding_dictionary/coding_dictionary.json` 以外的事实数据源。
-2. **禁止手动修改** `auto_generated/` 目录任何文件。
-3. **禁止手动修改** `auto_generated/changelog.md`（由脚本生成）。
+1. **唯一可编辑的数据源**：`coding_dictionary/coding_dictionary.json`（所有词条修改必须在此文件进行）
+2. **禁止手动修改** `auto_generated/` 目录下的任何文件（由脚本自动生成）
+3. **禁止手动修改** `changelog.md` 和 `.snapshot.json`（自动维护）
 
 ### 临时目录 `temp/`
 
@@ -277,7 +300,7 @@ python scripts/dic_tools.py --clean
 ## 环境与编码
 
 - 推荐使用虚拟环境：
-  - Windows PowerShell：`python -m venv .venv && .\.venv\Scripts\activate && pip install -r requirements.txt`
+  - Windows PowerShell：`python -m venv .venv; .\.venv\Scripts\Activate.ps1; pip install -r requirements.txt`
   - Linux/macOS：`python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
 - Windows 终端若出现中文乱码，可运行 `chcp 65001` 或设置 `$OutputEncoding` 为 UTF-8
 - 请使用 UTF-8 编码保存所有文件
@@ -300,6 +323,6 @@ python scripts/dic_tools.py --clean
 ---
 
 最后更新日期: 2025-11-11
-最后更新说明: 新增撤回最近一次添加功能（选项 9 / --undo-last-add），完善运行模式说明
-版本: v1.2.2
+最后更新说明: 添加精简模式参数、修正文件路径错误、优化规则表述、修正PowerShell命令语法
+版本: v1.2.3
 维护者: WiseFido Team
