@@ -48,8 +48,7 @@
 - `draft`
 
 ## 📚 相关文档
-- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范
-- [分类体系规范](../../spec/coding_dictionary_classification.md) - 分类定义
+- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范（含分类体系详解）
 - [README.md](../../README.md) - 项目主文档
 
 ---

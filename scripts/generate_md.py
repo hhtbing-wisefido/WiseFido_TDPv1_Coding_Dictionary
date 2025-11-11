@@ -202,8 +202,7 @@ def generate_schema_markdown(schema: dict) -> str:
 
     # 相关文档
     lines.append("## 📚 相关文档")
-    lines.append("- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范")
-    lines.append("- [分类体系规范](../../spec/coding_dictionary_classification.md) - 分类定义")
+    lines.append("- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范（含分类体系详解）")
     lines.append("- [README.md](../../README.md) - 项目主文档")
     lines.append("\n---\n")
 

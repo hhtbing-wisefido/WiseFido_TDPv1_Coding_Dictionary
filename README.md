@@ -40,8 +40,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── coding_dictionary.schema.json   (JSON Schema 自动验证规则)
 │
 ├── spec/                          (M) 规范文档【人类读】
-│   ├── coding_dictionary_classification.md (分类体系规范)
-│   └── coding_dictionary.spec.md (数据结构与字段规范)
+│   └── coding_dictionary.spec.md (数据结构与字段规范，含分类体系详解)
 │
 ├── 原始参考文件/                   (M) 业务参考文档（只读）
 │   ├── tdpv1-0916-fixed.md     
