@@ -16,9 +16,16 @@ from pathlib import Path
 try:
     import jsonschema
 except ImportError:
-    print("[ERR] 缺少依赖: jsonschema")
-    print("请运行: pip install -r requirements.txt")
-    exit(1)
+    print("\n" + "=" * 70)
+    print("  ⚠️  缺少必需的 Python 依赖包")
+    print("=" * 70)
+    print("\n[错误] 未安装 jsonschema 模块")
+    print("\n[解决方案] 请在项目根目录执行以下命令安装所有依赖：")
+    print("\n  pip install -r requirements.txt")
+    print("\n或单独安装 jsonschema：")
+    print("\n  pip install jsonschema")
+    print("\n" + "=" * 70)
+    sys.exit(1)
 
 DEFAULT_SRC = Path("coding_dictionary/coding_dictionary.json")
 SCHEMA = Path("schema/coding_dictionary.schema.json")

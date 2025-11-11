@@ -16,8 +16,23 @@ import shutil
 import sys
 from collections import Counter
 from pathlib import Path
-from tqdm import tqdm
 from datetime import datetime
+
+# 依赖检查
+try:
+    from tqdm import tqdm
+except ImportError:
+    print("\n" + "=" * 70)
+    print("  ⚠️  缺少必需的 Python 依赖包")
+    print("=" * 70)
+    print("\n[错误] 未安装 tqdm 模块")
+    print("\n[解决方案] 请在项目根目录执行以下命令安装所有依赖：")
+    print("\n  cd ..")
+    print("  pip install -r requirements.txt")
+    print("\n或单独安装 tqdm：")
+    print("\n  pip install tqdm")
+    print("\n" + "=" * 70)
+    sys.exit(1)
 
 # 添加脚本目录到路径
 sys.path.insert(0, str(Path(__file__).parent))
