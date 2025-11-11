@@ -14,6 +14,14 @@ from pathlib import Path
 from collections import defaultdict
 
 from pathlib import Path
+import sys
+
+# 引入Schema Markdown生成逻辑
+from generate_schema_md import generate_schema_markdown
+import _config
+
+SCHEMA_FILE = _config.SCHEMA_FILE
+SCHEMA_MD_FILE = Path("auto_generated/markdown/coding_dictionary.schema.md")
 
 # 数据源与输出路径
 SRC = Path("coding_dictionary/coding_dictionary.json")
@@ -31,7 +39,7 @@ CATEGORY_NAMES = {
 
 
 def run():
-    """生成双语 Markdown 文档"""
+    """生成双语 Markdown 文档和 Schema Markdown文档"""
     if not SRC.exists():
         print(f"[ERR] 缺失文件: {SRC}")
         return
@@ -123,12 +131,23 @@ def run():
         
         lines.extend(["", ""])
     
-    # 写入文件
+    # 写入数据表格文件
     output_file = OUT_DIR / "coding_dictionary.md"
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("\n".join(lines))
-    
     print(f"\n[OK] Markdown generated: {output_file}")
+
+    # 新增：生成Schema Markdown文档
+    try:
+        with open(SCHEMA_FILE, "r", encoding="utf-8") as f:
+            schema_data = json.load(f)
+        schema_md = generate_schema_markdown(schema_data)
+        SCHEMA_MD_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(SCHEMA_MD_FILE, "w", encoding="utf-8") as f:
+            f.write(schema_md)
+        print(f"[OK] Schema Markdown generated: {SCHEMA_MD_FILE}")
+    except Exception as e:
+        print(f"[ERR] Schema Markdown生成失败: {e}")
 
 
 if __name__ == "__main__":
