@@ -33,49 +33,54 @@ WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── README.md                      (M) 项目总览与使用文档
 │
-├── coding_dictionary/             (M) 唯一事实源 JSON
-│   └── coding_dictionary.json    (M) 主词条文件
+├── coding_dictionary/             (M) 核心数据源【唯一事实源】
+│   └── coding_dictionary.json         主词条文件（JSON格式）
 │
-├── schema/                        (M) 数据验证规范【机器读】
-│   └── coding_dictionary.schema.json   (JSON Schema 自动验证规则)
+├── schema/                        (M) 验证规范【机器读】
+│   └── coding_dictionary.schema.json  JSON Schema 自动验证规则
 │
 ├── spec/                          (M) 规范文档【人类读】
-│   └── coding_dictionary.schema.spec.md (Schema 数据结构与字段规范，含分类体系详解)
+│   └── coding_dictionary.schema.spec.md  数据结构与字段规范（含分类体系详解）
 │
-├── 原始参考文件/                   (M) 业务参考文档（只读）
-│   ├── tdpv1-0916-fixed.md     
-│   ├── fhir与snomed_ct代码.md
-│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)   
+├── scripts/                       (M) 工具脚本集【开发使用】
+│   ├── _config.py                     公共配置（统一 __pycache__ 到 temp）
+│   ├── dic_tools.py                   主工具入口（交互式菜单 + 命令行）
+│   ├── validate_json.py               数据校验器（Schema + 逻辑验证）
+│   ├── generate_md.py                 文档生成器（双 Markdown 输出）
+│   ├── changelog.py                   变更日志生成器
+│   └── add_coding_dict.py             批量添加词条脚本
 │
-├── scripts/                       (M) 一键式工具脚本
-│   ├── _config.py                (公共配置：统一 __pycache__ 到 temp 目录)
-│   ├── dic_tools.py              (主入口)
-│   ├── validate_json.py          (校验器)
-│   ├── generate_md.py            (Markdown 生成器)
-│   ├── changelog.py              (CHANGELOG 生成器)
-│   └── add_coding_dict.py        (批量添加编码字典词条脚本)
+├── requirements.txt               (M) Python 依赖配置
 │
-├── auto_generated/                (G) 自动生成【禁止手改】
-│   ├── coding_dictionary.md           (主数据表格)
-│   ├── coding_dictionary.schema.md    (Schema规范自动生成)
-│   ├── changelog.md            
-│   └── .snapshot.json          
+├── auto_generated/                (G) 自动生成【禁止手动编辑】
+│   ├── coding_dictionary.md           数据表格文档（按分类展示）
+│   ├── coding_dictionary.schema.md    Schema 规范文档（字段说明）
+│   ├── changelog.md                   变更历史记录
+│   └── .snapshot.json                 数据快照（用于变更对比）
 │
-├── temp/                          (T) 临时文件夹【可安全删除】
-│   ├── __pycache__/              (Python 缓存文件，自动生成)
-│   └── *.tmp.json, *.py, etc.    (临时文件、测试脚本、迁移工具等)
+├── 原始参考文件/                   (M) 业务参考资料【只读】
+│   ├── tdpv1-0916-fixed.md            TDP v1 协议规范
+│   ├── fhir与snomed_ct代码.md         FHIR 与 SNOMED CT 参考
+│   └── fda-v0923.md                   OWL Monitor System 架构参考
 │
-├── auto_backup/                   (L) 自动备份【自动生成，不纳入版本控制】
-│   └── coding_dictionary_backup_*.json (dic_tools.py 自动生成的时间戳备份)
+├── .github/workflows/             (M) CI/CD 自动化配置
+│   └── ci.yml                         GitHub Actions 工作流
 │
-├── .github/workflows/             (M) CI/CD 自动化
-│   └── ci.yml                  
+├── temp/                          (T) 临时文件【可安全删除】
+│   ├── __pycache__/                   Python 缓存（自动生成）
+│   └── *.tmp.json, *.py               临时文件、测试脚本、迁移工具等
 │
-├── requirements.txt               (M) Python 依赖
-├── .gitignore                    (M) Git 忽略规则
-└── LICENSE                       (M) MIT 许可证
+├── auto_backup/                   (L) 自动备份【不纳入版本控制】
+│   └── coding_dictionary_backup_*.json  时间戳备份（dic_tools.py 自动生成）
+│
+├── .gitignore                     (M) Git 忽略规则
+└── LICENSE                        (M) MIT 开源许可证
 
-(M)=手动维护  (G)=自动生成  (T)=临时文件  (L)=本地备份（Git忽略）
+图例说明：
+  (M) = 手动维护    - 需要人工编辑和管理
+  (G) = 自动生成    - 脚本自动创建，禁止手动修改
+  (T) = 临时文件    - 可随时删除，不影响项目运行
+  (L) = 本地备份    - Git 忽略，仅本地保存
 ```
 
 ---
