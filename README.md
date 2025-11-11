@@ -56,7 +56,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   ├── changelog.py              (CHANGELOG 生成器)
 │   └── add_coding_dict.py        (批量添加编码字典词条脚本)
 │
-├── generated/                     (G) 自动生成【禁止手改】
+├── auto_generated/                (G) 自动生成【禁止手改】
 │   ├── markdown/               
 │   │   └── coding_terms.md     
 │   ├── changelog.md            
@@ -270,7 +270,7 @@ python scripts/dic_tools.py --generate-md
 python scripts/dic_tools.py --changelog
 
 # 5. 提交到 GitHub
-git add dictionary/ generated/
+git add dictionary/ auto_generated/
 git commit -m "feat: 添加新词条"
 git push
 ```
@@ -381,9 +381,9 @@ git push
 
 ### ⚠️ 禁止手改
 
-1. **禁止修改** `generated/` 目录任何文件
+1. **禁止修改** `auto_generated/` 目录任何文件
 2. **禁止修改** `changelog.md`（自动生成）
-3. **禁止修改** `generated/markdown/coding_terms.md`（自动生成）
+3. **禁止修改** `auto_generated/markdown/coding_terms.md`（自动生成）
 
 ### 📁 临时文件夹说明
 

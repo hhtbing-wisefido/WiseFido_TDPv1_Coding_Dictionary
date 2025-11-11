@@ -14,7 +14,7 @@ from pathlib import Path
 from collections import defaultdict
 
 SRC = Path("dictionary/coding_terms.json")
-OUT_DIR = Path("generated/markdown")
+OUT_DIR = Path("auto_generated/markdown")
 
 # 分类名称映射
 CATEGORY_NAMES = {

@@ -14,8 +14,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 SRC = Path("dictionary/coding_terms.json")
-OUT = Path("generated/changelog.md")
-SNAP = Path("generated/.snapshot.json")
+OUT = Path("auto_generated/changelog.md")
+SNAP = Path("auto_generated/.snapshot.json")
 
 
 def run():

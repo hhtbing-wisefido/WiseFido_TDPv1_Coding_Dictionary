@@ -100,7 +100,9 @@ python scripts/validate_json.py
 ## 🔗 相关文件
 
 - `dictionary/coding_terms.json` - 源数据文件
-- `generated/.snapshot.json` - 快照文件（用于变更追踪）
+- ## 快照文件
+
+- `auto_generated/.snapshot.json` - 快照文件（用于变更追踪）
 - `scripts/validate_json.py` - 验证脚本（包含 ID 格式检查）
 - `scripts/generate_md.py` - Markdown 生成脚本
 - `scripts/changelog.py` - 变更日志生成脚本

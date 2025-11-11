@@ -1,6 +1,11 @@
 """
-项目公共配置模块
-自动配置 __pycache__ 统一生成到 temp 目录
+项目公共配置模块# 主要路径
+DICTIONARY_FILE = PROJECT_ROOT / "dictionary" / "coding_terms.json"
+SCHEMA_FILE = PROJECT_ROOT / "schema" / "coding_item.schema.json"
+GENERATED_MD_FILE = PROJECT_ROOT / "auto_generated" / "markdown" / "coding_terms.md"
+CHANGELOG_FILE = PROJECT_ROOT / "auto_generated" / "changelog.md"
+SNAPSHOT_FILE = PROJECT_ROOT / "auto_generated" / ".snapshot.json"
+TEMP_DIR = PROJECT_ROOT / "temp"_pycache__ 统一生成到 temp 目录
 """
 import sys
 from pathlib import Path
