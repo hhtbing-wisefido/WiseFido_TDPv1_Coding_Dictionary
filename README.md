@@ -341,6 +341,6 @@ git tag -l "*milestone*"
 - 词条总数: 34（SNOMED CT 44.1%、Internal 38.2%、TDP 17.6%）
 - 分类数: 6 大类
 - 测试通过率: 100%
-- 详细说明: 参见 `MILESTONE_v1.2.3.md`
+- 文档: 本 README 已包含所有关键信息
 
 ---
