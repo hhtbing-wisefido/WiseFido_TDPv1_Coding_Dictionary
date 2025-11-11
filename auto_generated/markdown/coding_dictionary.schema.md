@@ -48,7 +48,7 @@
 - `draft`
 
 ## 📚 相关文档
-- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范（含分类体系详解）
+- [Schema 数据结构与字段规范](../../spec/coding_dictionary.schema.spec.md) - 人类撰写的详细规范（含分类体系详解）
 - [README.md](../../README.md) - 项目主文档
 
 ---
@@ -56,4 +56,4 @@
 ## ⚠️ 注意事项
 1. 本文档由 Schema 自动生成，请勿手动编辑
 2. 如需修改，请编辑 `schema/coding_dictionary.schema.json`
-3. 详细的使用说明和示例请参考 [coding_dictionary.spec.md](../../spec/coding_dictionary.spec.md)
+3. 详细的使用说明和示例请参考 [coding_dictionary.schema.spec.md](../../spec/coding_dictionary.schema.spec.md)

@@ -202,7 +202,7 @@ def generate_schema_markdown(schema: dict) -> str:
 
     # 相关文档
     lines.append("## 📚 相关文档")
-    lines.append("- [数据结构与字段规范](../../spec/coding_dictionary.spec.md) - 人类撰写的详细规范（含分类体系详解）")
+    lines.append("- [Schema 数据结构与字段规范](../../spec/coding_dictionary.schema.spec.md) - 人类撰写的详细规范（含分类体系详解）")
     lines.append("- [README.md](../../README.md) - 项目主文档")
     lines.append("\n---\n")
 
@@ -210,7 +210,7 @@ def generate_schema_markdown(schema: dict) -> str:
     lines.append("## ⚠️ 注意事项")
     lines.append("1. 本文档由 Schema 自动生成，请勿手动编辑")
     lines.append(f"2. 如需修改，请编辑 `schema/coding_dictionary.schema.json`")
-    lines.append("3. 详细的使用说明和示例请参考 [coding_dictionary.spec.md](../../spec/coding_dictionary.spec.md)")
+    lines.append("3. 详细的使用说明和示例请参考 [coding_dictionary.schema.spec.md](../../spec/coding_dictionary.schema.spec.md)")
     return "\n".join(lines)
 
 
