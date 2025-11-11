@@ -207,7 +207,7 @@ A: `tag` 用于辅助分析和多维关联，不是核心医疗编码。例如"�
 
 ## 📚 相关文档
 
-- [ID 格式规范](./id_format_guide.md) - ID 字段格式规范
+- [数据结构与字段规范](./coding_dictionary.spec.md) - Schema 字段详细说明
 - [README.md](../README.md) - 项目主文档
 - [coding_dictionary.json](../coding_dictionary/coding_dictionary.json) - 主数据文件
 
