@@ -20,12 +20,22 @@ except ImportError:
     print("  ⚠️  缺少必需的 Python 依赖包")
     print("=" * 70)
     print("\n[错误] 未安装 jsonschema 模块")
-    print("\n[解决方案] 请在项目根目录执行以下命令安装所有依赖：")
-    print("\n  pip install -r requirements.txt")
-    print("\n或单独安装 jsonschema：")
-    print("\n  pip install jsonschema")
-    print("\n" + "=" * 70)
-    sys.exit(1)
+    print("\n[解决方案] 正在尝试自动安装...")
+    
+    import subprocess
+    try:
+        # 使用当前 Python 解释器安装依赖
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "jsonschema"])
+        print("\n[成功] jsonschema 已安装，请重新运行脚本")
+        print("\n" + "=" * 70)
+        sys.exit(0)
+    except subprocess.CalledProcessError:
+        print("\n[失败] 自动安装失败，请手动执行：")
+        print("\n  {} -m pip install -r requirements.txt".format(sys.executable))
+        print("\n或：")
+        print("\n  {} -m pip install jsonschema".format(sys.executable))
+        print("\n" + "=" * 70)
+        sys.exit(1)
 
 DEFAULT_SRC = Path("coding_dictionary/coding_dictionary.json")
 SCHEMA = Path("schema/coding_dictionary.schema.json")

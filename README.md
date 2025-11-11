@@ -87,11 +87,26 @@ WiseFido_TDPv1_Coding_Dictionary/
 
 请确保已安装 Python 3.8 及以上版本。
 
-**新用户请先运行：**
+**方式1：自动安装（推荐）**
+```bash
+python scripts/dic_tools.py
+```
+如果缺少依赖，脚本会自动尝试安装，安装成功后重新运行即可。
+
+**方式2：手动安装**
 ```bash
 pip install -r requirements.txt
 ```
-如遇依赖缺失或 ImportError，请务必先执行上述命令。
+
+**方式3：使用当前 Python 环境安装**
+```bash
+python -m pip install -r requirements.txt
+```
+
+**💡 跨环境兼容说明**：
+- 脚本会使用**当前运行的 Python 解释器**安装依赖
+- 支持系统 Python、conda、venv 等各种环境
+- 无需手动切换环境，直接运行即可
 
 ### 2️⃣ 交互式菜单
 
