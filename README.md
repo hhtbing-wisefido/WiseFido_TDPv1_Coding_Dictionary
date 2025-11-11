@@ -58,7 +58,8 @@ WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── auto_generated/                (G) 自动生成【禁止手改】
 │   ├── markdown/               
-│   │   └── coding_dictionary.md     
+│   │   ├── coding_dictionary.md           (主数据表格)
+│   │   └── coding_dictionary.schema.md    (Schema规范自动生成)
 │   ├── changelog.md            
 │   └── .snapshot.json          
 │
