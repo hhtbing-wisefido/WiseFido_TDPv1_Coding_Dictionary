@@ -892,8 +892,8 @@ def menu():
             print("=" * 60)
             run_md()
             print("\n[提示] 已自动生成两份 Markdown 文档：")
-            print("  - auto_generated/markdown/coding_dictionary.md      (数据表格)")
-            print("  - auto_generated/markdown/coding_dictionary.schema.md (Schema规范)")
+            print("  - auto_generated/coding_dictionary.md      (数据表格)")
+            print("  - auto_generated/coding_dictionary.schema.md (Schema规范)")
             print("[建议] 可用 VS Code 预览或直接打开上述文件进行查阅。")
         elif choice == "3":
             print("\n" + "=" * 60)

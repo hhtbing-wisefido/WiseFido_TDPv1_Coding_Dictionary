@@ -56,9 +56,8 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── add_coding_dict.py        (批量添加编码字典词条脚本)
 │
 ├── auto_generated/                (G) 自动生成【禁止手改】
-│   ├── markdown/               
-│   │   ├── coding_dictionary.md           (主数据表格)
-│   │   └── coding_dictionary.schema.md    (Schema规范自动生成)
+│   ├── coding_dictionary.md           (主数据表格)
+│   ├── coding_dictionary.schema.md    (Schema规范自动生成)
 │   ├── changelog.md            
 │   └── .snapshot.json          
 │
