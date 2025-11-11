@@ -16,7 +16,7 @@ from collections import defaultdict
 from pathlib import Path
 
 # 数据源与输出路径
-SRC = Path("coding_dictionary/coding_terms.json")
+SRC = Path("coding_dictionary/coding_dictionary.json")
 OUT_DIR = Path("auto_generated/markdown")
 
 # 分类名称映射
@@ -58,7 +58,7 @@ def run():
         "",
         f"**Total Items / 总词条数**: {len(items)}",
         "",
-        "**Auto-generated from**: `coding_dictionary/coding_terms.json`  ",
+        "**Auto-generated from**: `coding_dictionary/coding_dictionary.json`  ",
         "**⚠️ DO NOT EDIT MANUALLY / 请勿手动编辑**",
         "",
         "---",
@@ -124,7 +124,7 @@ def run():
         lines.extend(["", ""])
     
     # 写入文件
-    output_file = OUT_DIR / "coding_terms.md"
+    output_file = OUT_DIR / "coding_dictionary.md"
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("\n".join(lines))
     

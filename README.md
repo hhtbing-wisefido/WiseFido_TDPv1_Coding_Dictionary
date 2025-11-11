@@ -37,7 +37,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 ├── README.md                      (M) 项目总览与使用文档
 │
 ├── coding_dictionary/             (M) 唯一事实源 JSON
-│   └── coding_terms.json         (M) 主词条文件
+│   └── coding_dictionary.json    (M) 主词条文件
 │
 ├── schema/                        (M) 数据验证规范【机器读】
 │   └── coding_item.schema.json   (JSON Schema 自动验证规则)
@@ -61,7 +61,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── auto_generated/                (G) 自动生成【禁止手改】
 │   ├── markdown/               
-│   │   └── coding_terms.md     
+│   │   └── coding_dictionary.md     
 │   ├── changelog.md            
 │   └── .snapshot.json          
 │
@@ -70,7 +70,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── *.tmp.json, *.py, etc.    (临时文件、测试脚本、迁移工具等)
 │
 ├── auto_backup/                   (L) 自动备份【自动生成，不纳入版本控制】
-│   └── coding_terms_backup_*.json (dic_tools.py 自动生成的时间戳备份)
+│   └── coding_dictionary_backup_*.json (dic_tools.py 自动生成的时间戳备份)
 │
 ├── .github/workflows/             (M) CI/CD 自动化
 │   └── ci.yml                  
@@ -257,7 +257,7 @@ python scripts/dic_tools.py -t
 
 ```bash
 # 1. 编辑词条（手动维护）
-# 编辑 coding_dictionary/coding_terms.json
+# 编辑 coding_dictionary/coding_dictionary.json
 
 # 2-4. 一键执行完整流程（推荐）
 python scripts/dic_tools.py --all
@@ -429,7 +429,7 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 
 ### ✅ 必须遵守
 
-1. 所有修改在 `coding_dictionary/coding_terms.json` 进行
+1. 所有修改在 `coding_dictionary/coding_dictionary.json` 进行
 2. 提交前必须运行 `--validate`
 3. `code` + `system` 组合唯一
 4. 新增词条包含 `source_refs`
@@ -479,7 +479,7 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 git checkout -b feature/new-terms
 
 # 2. 编辑词条
-vim coding_dictionary/coding_terms.json
+vim coding_dictionary/coding_dictionary.json
 
 # 3. 验证并生成文档（推荐使用完整流程）
 python scripts/dic_tools.py --all

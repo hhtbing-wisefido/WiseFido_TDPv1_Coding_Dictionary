@@ -20,7 +20,7 @@ except ImportError:
     print("请运行: pip install -r requirements.txt")
     exit(1)
 
-DEFAULT_SRC = Path("coding_dictionary/coding_terms.json")
+DEFAULT_SRC = Path("coding_dictionary/coding_dictionary.json")
 SCHEMA = Path("schema/coding_item.schema.json")
 
 

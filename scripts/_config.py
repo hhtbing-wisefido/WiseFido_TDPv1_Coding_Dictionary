@@ -1,8 +1,8 @@
 """
 项目公共配置模块# 主要路径
-DICTIONARY_FILE = PROJECT_ROOT / "coding_dictionary" / "coding_terms.json"
+DICTIONARY_FILE = PROJECT_ROOT / "coding_dictionary" / "coding_dictionary.json"
 SCHEMA_FILE = PROJECT_ROOT / "schema" / "coding_item.schema.json"
-GENERATED_MD_FILE = PROJECT_ROOT / "auto_generated" / "markdown" / "coding_terms.md"
+GENERATED_MD_FILE = PROJECT_ROOT / "auto_generated" / "markdown" / "coding_dictionary.md"
 CHANGELOG_FILE = PROJECT_ROOT / "auto_generated" / "changelog.md"
 SNAPSHOT_FILE = PROJECT_ROOT / "auto_generated" / ".snapshot.json"
 TEMP_DIR = PROJECT_ROOT / "temp"_pycache__ 统一生成到 temp 目录
@@ -18,9 +18,9 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 
 # 主要文件路径
-DICTIONARY_FILE = PROJECT_ROOT / "coding_dictionary" / "coding_terms.json"
+DICTIONARY_FILE = PROJECT_ROOT / "coding_dictionary" / "coding_dictionary.json"
 SCHEMA_FILE = PROJECT_ROOT / "schema" / "coding_item.schema.json"
-GENERATED_MD_FILE = PROJECT_ROOT / "generated" / "markdown" / "coding_terms.md"
+GENERATED_MD_FILE = PROJECT_ROOT / "generated" / "markdown" / "coding_dictionary.md"
 CHANGELOG_FILE = PROJECT_ROOT / "generated" / "changelog.md"
 SNAPSHOT_FILE = PROJECT_ROOT / "generated" / ".snapshot.json"
 TEMP_DIR = PROJECT_ROOT / "temp"

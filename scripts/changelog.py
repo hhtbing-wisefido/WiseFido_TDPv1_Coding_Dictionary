@@ -16,7 +16,7 @@ from pathlib import Path
 from pathlib import Path
 
 # 数据源与输出路径
-SRC = Path("coding_dictionary/coding_terms.json")
+SRC = Path("coding_dictionary/coding_dictionary.json")
 OUT = Path("auto_generated/changelog.md")
 SNAP = Path("auto_generated/.snapshot.json")
 

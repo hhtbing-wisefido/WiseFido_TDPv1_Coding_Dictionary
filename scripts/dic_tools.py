@@ -471,7 +471,7 @@ def backup_data():
     
     # 生成备份文件名（带时间戳）
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_file = backup_dir / f"coding_terms_backup_{timestamp}.json"
+    backup_file = backup_dir / f"coding_dictionary_backup_{timestamp}.json"
     
     try:
         shutil.copy2(src, backup_file)

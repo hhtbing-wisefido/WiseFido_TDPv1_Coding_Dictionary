@@ -14,8 +14,8 @@ import json
 import sys
 from pathlib import Path
 
-FILE = Path("dictionary/coding_terms.json")
-TEMP_FILE = Path("temp/coding_terms_scaffold_new_tmp.json")
+FILE = Path("coding_dictionary/coding_dictionary.json")
+TEMP_FILE = Path("temp/coding_dictionary_scaffold_new_tmp.json")
 
 TEMPLATES = [
     ("motion_codes", "lying_down", "internal://motion_codes", "0005", "Lying Down", "躺下", "躺下动作。", "躺下动作。"),
@@ -108,7 +108,7 @@ def main():
         print(f"   新增词条数: {added}")
         print(f"   总词条数: {len(data)}")
         print("\n   请运行以下命令验证:")
-        print(f"   python scripts/validate.py temp/coding_terms_scaffold_new_tmp.json")
+        print(f"   python scripts/validate.py temp/coding_dictionary_scaffold_new_tmp.json")
         print("\n   验证通过后，运行以下命令应用到主文件:")
         print(f"   python scripts/add_coding_dict.py")
     else:
