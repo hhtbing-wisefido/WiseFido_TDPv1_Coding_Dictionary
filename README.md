@@ -2,28 +2,7 @@
 
 > 🎯 **可复用医疗编码字典库**｜JSON 唯一事实源｜自动生成 Markdown｜变更追踪｜FHIR/SNOMED CT 兼容
 
-[![Copyrigpython scripts/dic_tools.py --view snomed:129006008 # 查看详情
-python scripts/dic_tools.py --stats --menu-after  # 先执行再回菜单
-```
-
-> `--menu-after` 便于"先跑一项任务再继续人工操作"。
-
-#### 精简模式（短选项 `-`）
-
-```bash
-python scripts/dic_tools.py -v             # 校验
-python scripts/dic_tools.py -g             # 生成 Markdown
-python scripts/dic_tools.py -c             # 更新变更日志
-python scripts/dic_tools.py -a             # 完整流程
-python scripts/dic_tools.py -s             # 统计信息
-python scripts/dic_tools.py -t             # 测试套件
-```
-
-> **提示**：
-> - 精简模式仅支持常用功能，复杂操作需使用完整模式
-> - `--menu-after` 可与任何参数组合，先执行命令再进入交互菜单
-
----eFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
+[![Copyright: WiseFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ---
@@ -124,8 +103,6 @@ python scripts/dic_tools.py
 
 ### 3. 常用参数模式
 
-#### 完整模式（长选项 `--`）
-
 ```bash
 python scripts/dic_tools.py --validate      # 校验
 python scripts/dic_tools.py --generate-md   # 生成 Markdown
@@ -143,6 +120,20 @@ python scripts/dic_tools.py --stats --menu-after  # 先执行再回菜单
 ```
 
 > `--menu-after` 便于“先跑一项任务再继续人工操作”。
+
+#### 精简模式(短选项 `-`)
+```bash
+python scripts/dic_tools.py -v             # 校验
+python scripts/dic_tools.py -g             # 生成 Markdown
+python scripts/dic_tools.py -c             # 更新变更日志
+python scripts/dic_tools.py -a             # 完整流程
+python scripts/dic_tools.py -s             # 统计信息
+python scripts/dic_tools.py -t             # 测试套件
+```
+
+> **提示**:
+> - 精简模式仅支持常用功能，复杂操作需使用完整模式
+> - `--menu-after` 可与任何参数组合，先执行命令再进入交互菜单
 
 ---
 
@@ -243,9 +234,9 @@ git push
 
 ## 重要规则
 
-1. **唯一可编辑的数据源**：`coding_dictionary/coding_dictionary.json`（所有词条修改必须在此文件进行）
-2. **禁止手动修改** `auto_generated/` 目录下的任何文件（由脚本自动生成）
-3. **禁止手动修改** `changelog.md` 和 `.snapshot.json`（自动维护）
+1. **唯一可编辑的数据源**:`coding_dictionary/coding_dictionary.json`(所有词条修改必须在此文件进行)
+2. **禁止手动修改** `auto_generated/` 目录下的任何文件(由脚本自动生成)
+3. **禁止手动修改** `changelog.md` 和 `.snapshot.json`(自动维护)
 
 ### 临时目录 `temp/`
 
