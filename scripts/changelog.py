@@ -13,7 +13,10 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-SRC = Path("dictionary/coding_terms.json")
+from pathlib import Path
+
+# 数据源与输出路径
+SRC = Path("coding_dictionary/coding_terms.json")
 OUT = Path("auto_generated/changelog.md")
 SNAP = Path("auto_generated/.snapshot.json")
 

@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     paths:
-      - "dictionary/**"
+      - "coding_dictionary/**"
       - "scripts/**"
       - "schema/**"
 

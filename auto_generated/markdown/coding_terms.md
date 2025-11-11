@@ -2,7 +2,7 @@
 
 **Total Items / 总词条数**: 34
 
-**Auto-generated from**: `dictionary/coding_terms.json`  
+**Auto-generated from**: `coding_dictionary/coding_terms.json`  
 **⚠️ DO NOT EDIT MANUALLY / 请勿手动编辑**
 
 ---

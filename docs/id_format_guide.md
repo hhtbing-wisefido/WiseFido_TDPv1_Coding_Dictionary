@@ -43,7 +43,7 @@ ID 使用简洁格式，直接反映编码系统和编码值：
 
 ### 1. 数据源规范
 
-在 `dictionary/coding_terms.json` 中，ID 字段必须：
+在 `coding_dictionary/coding_terms.json` 中，ID 字段必须：
 
 - ✅ 使用标准格式：`{system_prefix}:{code}`
 - ✅ 与 `code` 和 `system` 字段保持一致
@@ -99,7 +99,7 @@ python scripts/validate_json.py
 
 ## 🔗 相关文件
 
-- `dictionary/coding_terms.json` - 源数据文件
+- `coding_dictionary/coding_terms.json` - 源数据文件
 - ## 快照文件
 
 - `auto_generated/.snapshot.json` - 快照文件（用于变更追踪）

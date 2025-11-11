@@ -42,7 +42,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   ├── fhir与snomed_ct代码.md
 │   └── fda-v0923.md              (OWL Monitor System 系统架构参考)   
 │
-├── dictionary/                    (M) 唯一事实源 JSON
+├── coding_dictionary/             (M) 唯一事实源 JSON
 │   └── coding_terms.json         (M) 主词条文件
 │
 ├── schema/                        (M) JSON Schema 定义
@@ -254,7 +254,7 @@ python scripts/dic_tools.py -t
 
 ```bash
 # 1. 编辑词条（手动维护）
-# 编辑 dictionary/coding_terms.json
+# 编辑 coding_dictionary/coding_terms.json
 
 # 2-4. 一键执行完整流程（推荐）
 python scripts/dic_tools.py --all
@@ -270,7 +270,7 @@ python scripts/dic_tools.py --generate-md
 python scripts/dic_tools.py --changelog
 
 # 5. 提交到 GitHub
-git add dictionary/ auto_generated/
+git add coding_dictionary/ auto_generated/
 git commit -m "feat: 添加新词条"
 git push
 ```
@@ -426,7 +426,7 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 
 ### ✅ 必须遵守
 
-1. 所有修改在 `dictionary/coding_terms.json` 进行
+1. 所有修改在 `coding_dictionary/coding_terms.json` 进行
 2. 提交前必须运行 `--validate`
 3. `code` + `system` 组合唯一
 4. 新增词条包含 `source_refs`
@@ -476,7 +476,7 @@ python scripts/validate_json.py temp/your_custom_coding_terms_tmp.json
 git checkout -b feature/new-terms
 
 # 2. 编辑词条
-vim dictionary/coding_terms.json
+vim coding_dictionary/coding_terms.json
 
 # 3. 验证并生成文档（推荐使用完整流程）
 python scripts/dic_tools.py --all
