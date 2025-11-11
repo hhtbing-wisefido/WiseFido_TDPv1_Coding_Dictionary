@@ -40,7 +40,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── coding_dictionary.json    (M) 主词条文件
 │
 ├── schema/                        (M) 数据验证规范【机器读】
-│   └── coding_item.schema.json   (JSON Schema 自动验证规则)
+│   └── coding_dictionary.schema.json   (JSON Schema 自动验证规则)
 │
 ├── docs/                          (M) 开发文档【人类读】
 │   ├── id_format_guide.md        (ID 格式规范说明)

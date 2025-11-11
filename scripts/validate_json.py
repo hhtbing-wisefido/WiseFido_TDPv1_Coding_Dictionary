@@ -21,7 +21,7 @@ except ImportError:
     exit(1)
 
 DEFAULT_SRC = Path("coding_dictionary/coding_dictionary.json")
-SCHEMA = Path("schema/coding_item.schema.json")
+SCHEMA = Path("schema/coding_dictionary.schema.json")
 
 
 def run(file_path=None):

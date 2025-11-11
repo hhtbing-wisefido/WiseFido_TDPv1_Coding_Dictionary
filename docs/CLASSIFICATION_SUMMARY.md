@@ -28,7 +28,7 @@
 
 ### 2. Schema 更新
 
-- ✅ 更新了 `schema/coding_item.schema.json`，仅支持新分类枚举值
+- ✅ 更新了 `schema/coding_dictionary.schema.json`，仅支持新分类枚举值
 - ✅ 移除了旧分类的支持
 
 ### 3. 脚本更新
