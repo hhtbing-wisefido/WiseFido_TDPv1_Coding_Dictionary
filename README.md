@@ -307,10 +307,6 @@ python scripts/dic_tools.py --clean
 - 运行 `python scripts/dic_tools.py --stats` 查看最新分类/状态/系统分布
 - README 不再固定展示静态“当前统计”，以免与真实数据漂移
 
-## 更正说明
-
-- 交互菜单中“撤回最近一次添加”为 **选项 9**（命令行 `--undo-last-add`）。早期文档写作 13，现已修正。
-
 ---
 
 最后更新日期: 2025-11-11
