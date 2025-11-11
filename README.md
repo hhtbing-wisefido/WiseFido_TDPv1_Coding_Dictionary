@@ -35,18 +35,21 @@ WiseFido_TDPv1_Coding_Dictionary 是基于 **TDPv1 协议**和 **FHIR/SNOMED CT*
 WiseFido_TDPv1_Coding_Dictionary/
 │
 ├── README.md                      (M) 项目总览与使用文档
-├── docs/                          (M) 开发规范文档
-│   └── id_format_guide.md        (ID 格式规范)
-├── 原始参考文件/                   (M) 业务参考文档（只读）
-│   ├── tdpv1-0916-fixed.md     
-│   ├── fhir与snomed_ct代码.md
-│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)   
 │
 ├── coding_dictionary/             (M) 唯一事实源 JSON
 │   └── coding_terms.json         (M) 主词条文件
 │
-├── schema/                        (M) JSON Schema 定义
-│   └── coding_item.schema.json   
+├── schema/                        (M) 数据验证规范【机器读】
+│   └── coding_item.schema.json   (JSON Schema 自动验证规则)
+│
+├── docs/                          (M) 开发文档【人类读】
+│   ├── id_format_guide.md        (ID 格式规范说明)
+│   └── CLASSIFICATION_SUMMARY.md (分类汇总文档)
+│
+├── 原始参考文件/                   (M) 业务参考文档（只读）
+│   ├── tdpv1-0916-fixed.md     
+│   ├── fhir与snomed_ct代码.md
+│   └── fda-v0923.md              (OWL Monitor System 系统架构参考)   
 │
 ├── scripts/                       (M) 一键式工具脚本
 │   ├── _config.py                (公共配置：统一 __pycache__ 到 temp 目录)
