@@ -1,9 +1,6 @@
 # WiseFido_TDPv1_Coding_Dictionary
 
-> 🎯 **可复├── scripts/                       (M) 一键式工具脚本
-│   ├── _config.py                (公共配置:统一 __pycache__ 到 temp 目录)
-│   ├── dic_tools.py              (主入口)
-│   ├── validate_json.py          (校验器)编码字典库** — JSON 作为唯一事实源 | 自动生成 Markdown | 变更追踪 | FHIR 兼容
+> 🎯 **可复用医疗编码字典库** — JSON 作为唯一事实源 | 自动生成 Markdown | 变更追踪 | FHIR 兼容
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
