@@ -12,6 +12,15 @@ WiseFido Coding Dictionary 主工具
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
 import _config  # noqa: F401
+from _config import (
+    DICTIONARY_FILE,
+    TEMP_DIR,
+    VALID_CATEGORIES,
+    VALID_STATUSES,
+    REQUIRED_FIELDS,
+    VERSION_PATTERN,
+    MAX_ERROR_DISPLAY
+)
 
 import argparse
 import json
@@ -28,21 +37,47 @@ from generate_md import run as run_md
 from changelog import run as run_changelog
 
 
-def show_stats():
-    """显示词条统计信息"""
-    src = Path("dictionary/coding_terms.json")
+# 错误处理辅助函数
+def safe_load_json(file_path):
+    """安全加载 JSON 文件，带完整错误处理"""
+    src = Path(file_path)
+    
     if not src.exists():
-        print(f"[ERR] 缺失文件: {src}")
-        return
+        print(f"\n[ERR] 文件不存在: {src}")
+        print(f"[提示] 请确保 {file_path} 文件存在")
+        return None
     
     try:
-        items = json.loads(src.read_text(encoding="utf-8"))
-    except Exception as e:
-        print(f"[ERR] 读取失败: {e}")
-        return
+        content = src.read_text(encoding="utf-8")
+        items = json.loads(content)
+        
+        if not isinstance(items, list):
+            print(f"\n[ERR] JSON 格式错误: 根节点必须是数组")
+            print(f"[提示] 当前根节点类型: {type(items).__name__}")
+            return None
+        
+        return items
     
-    if not isinstance(items, list):
-        print("[ERR] JSON 根节点必须是数组")
+    except json.JSONDecodeError as e:
+        print(f"\n[ERR] JSON 解析失败")
+        print(f"[详细] 第 {e.lineno} 行, 第 {e.colno} 列: {e.msg}")
+        print(f"[提示] 请使用 JSON 验证工具检查语法")
+        return None
+    
+    except UnicodeDecodeError as e:
+        print(f"\n[ERR] 文件编码错误: {e}")
+        print(f"[提示] 请确保文件使用 UTF-8 编码保存")
+        return None
+    
+    except Exception as e:
+        print(f"\n[ERR] 读取文件失败: {e}")
+        return None
+
+
+def show_stats():
+    """显示词条统计信息"""
+    items = safe_load_json(str(DICTIONARY_FILE))
+    if items is None:
         return
     
     # 统计分类
@@ -89,19 +124,8 @@ def run_tests():
     print("  测试套件")
     print("=" * 60 + "\n")
     
-    src = Path("dictionary/coding_terms.json")
-    if not src.exists():
-        print(f"[ERR] 缺失文件: {src}")
-        return
-    
-    try:
-        items = json.loads(src.read_text(encoding="utf-8"))
-    except Exception as e:
-        print(f"[ERR] 读取失败: {e}")
-        return
-    
-    if not isinstance(items, list):
-        print("[ERR] JSON 根节点必须是数组")
+    items = safe_load_json(str(DICTIONARY_FILE))
+    if items is None:
         return
     
     total_tests = 0
@@ -110,10 +134,9 @@ def run_tests():
     
     # 测试 1: 检查必填字段
     print("[测试 1/6] 检查必填字段...")
-    required_fields = ["id", "code", "system", "display", "display_zh", "category", "status", "version"]
     missing_fields = []
     for item in items:
-        for field in required_fields:
+        for field in REQUIRED_FIELDS:
             if field not in item or not item[field]:
                 missing_fields.append(f"词条 {item.get('id', '未知')} 缺少字段: {field}")
     
@@ -123,10 +146,10 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(missing_fields)} 个缺失字段")
-        for err in missing_fields[:5]:  # 只显示前5个
+        for err in missing_fields[:MAX_ERROR_DISPLAY]:
             print(f"     - {err}")
-        if len(missing_fields) > 5:
-            print(f"     ... 还有 {len(missing_fields) - 5} 个错误")
+        if len(missing_fields) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(missing_fields) - MAX_ERROR_DISPLAY} 个错误")
         failed_tests += 1
     
     # 测试 2: 检查 ID 格式
@@ -149,10 +172,10 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(invalid_ids)} 个格式错误的 ID")
-        for err in invalid_ids[:5]:
+        for err in invalid_ids[:MAX_ERROR_DISPLAY]:
             print(f"     - {err}")
-        if len(invalid_ids) > 5:
-            print(f"     ... 还有 {len(invalid_ids) - 5} 个错误")
+        if len(invalid_ids) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(invalid_ids) - MAX_ERROR_DISPLAY} 个错误")
         failed_tests += 1
     
     # 测试 3: 检查重复 ID
@@ -167,10 +190,10 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(duplicates)} 个重复 ID")
-        for dup_id in duplicates[:5]:
+        for dup_id in duplicates[:MAX_ERROR_DISPLAY]:
             print(f"     - {dup_id} (出现 {id_counts[dup_id]} 次)")
-        if len(duplicates) > 5:
-            print(f"     ... 还有 {len(duplicates) - 5} 个重复")
+        if len(duplicates) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(duplicates) - MAX_ERROR_DISPLAY} 个重复")
         failed_tests += 1
     
     # 测试 4: 检查 code + system 唯一性
@@ -185,26 +208,18 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(dup_pairs)} 个重复的 code+system 组合")
-        for code, system in dup_pairs[:5]:
+        for code, system in dup_pairs[:MAX_ERROR_DISPLAY]:
             print(f"     - code={code}, system={system} (出现 {pair_counts[(code, system)]} 次)")
-        if len(dup_pairs) > 5:
-            print(f"     ... 还有 {len(dup_pairs) - 5} 个重复")
+        if len(dup_pairs) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(dup_pairs) - MAX_ERROR_DISPLAY} 个重复")
         failed_tests += 1
     
     # 测试 5: 检查分类有效性
     print("\n[测试 5/6] 检查分类有效性...")
-    valid_categories = [
-        "posture_codes",
-        "motion_codes",
-        "physiological_codes",
-        "disorder_condition_codes",
-        "safety_alert_codes",
-        "tag"
-    ]
     invalid_categories = []
     for item in items:
         category = item.get("category", "")
-        if category not in valid_categories:
+        if category not in VALID_CATEGORIES:
             invalid_categories.append(f"词条 {item.get('id')} 使用了无效分类: {category}")
     
     total_tests += 1
@@ -213,17 +228,17 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(invalid_categories)} 个无效分类")
-        for err in invalid_categories[:5]:
+        for err in invalid_categories[:MAX_ERROR_DISPLAY]:
             print(f"     - {err}")
-        if len(invalid_categories) > 5:
-            print(f"     ... 还有 {len(invalid_categories) - 5} 个错误")
+        if len(invalid_categories) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(invalid_categories) - MAX_ERROR_DISPLAY} 个错误")
         failed_tests += 1
     
     # 测试 6: 检查版本号格式
     print("\n[测试 6/6] 检查版本号格式...")
     invalid_versions = []
     import re
-    version_pattern = re.compile(r'^\d+\.\d+\.\d+$')
+    version_pattern = re.compile(VERSION_PATTERN)
     for item in items:
         version = item.get("version", "")
         if not version_pattern.match(version):
@@ -235,10 +250,10 @@ def run_tests():
         passed_tests += 1
     else:
         print(f"  ❌ 失败: 发现 {len(invalid_versions)} 个格式错误的版本号")
-        for err in invalid_versions[:5]:
+        for err in invalid_versions[:MAX_ERROR_DISPLAY]:
             print(f"     - {err}")
-        if len(invalid_versions) > 5:
-            print(f"     ... 还有 {len(invalid_versions) - 5} 个错误")
+        if len(invalid_versions) > MAX_ERROR_DISPLAY:
+            print(f"     ... 还有 {len(invalid_versions) - MAX_ERROR_DISPLAY} 个错误")
         failed_tests += 1
     
     # 测试总结
@@ -259,13 +274,12 @@ def run_tests():
 
 def clean_temp():
     """清理临时文件"""
-    temp_dir = Path("temp")
-    if not temp_dir.exists():
+    if not TEMP_DIR.exists():
         print("\n[INFO] temp/ 目录不存在，无需清理\n")
         return
     
     # 统计文件
-    temp_files = list(temp_dir.glob("*"))
+    temp_files = list(TEMP_DIR.glob("*"))
     if not temp_files:
         print("\n[INFO] temp/ 目录为空，无需清理\n")
         return
@@ -299,14 +313,36 @@ def run_all():
     print("  执行完整流程")
     print("=" * 60 + "\n")
     
+    # 步骤 1: 校验 JSON
     print("[1/3] 校验 JSON...")
-    run_validate()
+    try:
+        run_validate()
+    except SystemExit:
+        print("\n[ERR] 校验失败，流程已中止")
+        print("[提示] 请修复错误后重新运行")
+        return
+    except Exception as e:
+        print(f"\n[ERR] 校验过程出错: {e}")
+        print("[提示] 流程已中止")
+        return
     
+    # 步骤 2: 生成 Markdown
     print("\n[2/3] 生成 Markdown...")
-    run_md()
+    try:
+        run_md()
+    except Exception as e:
+        print(f"\n[ERR] 生成 Markdown 失败: {e}")
+        print("[提示] 流程已中止")
+        return
     
+    # 步骤 3: 更新 CHANGELOG
     print("\n[3/3] 更新 CHANGELOG...")
-    run_changelog()
+    try:
+        run_changelog()
+    except Exception as e:
+        print(f"\n[ERR] 更新 CHANGELOG 失败: {e}")
+        print("[提示] 流程已中止")
+        return
     
     print("\n" + "=" * 60)
     print("  完整流程执行完成")
