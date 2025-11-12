@@ -1,38 +1,63 @@
-# Coding Dictionary 数据结构规范
+# Coding Dictionary 数据结构规范 (v2.0.0)
 
-> 本文档详细解释 `coding_dictionary.json` 的数据结构和字段定义，对应 `schema/coding_dictionary.schema.json`
+> 本文档详细解释 `coding_dictionary.json` 的数据结构和字段定义，对应 `schema/coding_dictionary.schema.json`  
+> **版本**: v2.0.0 | **更新日期**: 2025-11-12
 
 ---
 
 ## 📋 概述
 
-每个编码词条（Coding Item）是一个 JSON 对象，包含必填字段和可选字段。所有词条必须通过 JSON Schema 验证。
+v2.0.0 采用**极简设计**,仅保留 FHIR Coding 核心字段,遵循 **YAGNI 原则** (You Aren't Gonna Need It)。
 
-**Schema 文件**: `schema/coding_dictionary.schema.json`
+每个编码词条（Coding Item）包含 **4 个必填字段**,通过 `additionalProperties: true` 支持按需扩展。
+
+**Schema 文件**: `schema/coding_dictionary.schema.json`  
+**FHIR 标准**: [FHIR Coding DataType](https://www.hl7.org/fhir/datatypes.html#Coding)
 
 ---
 
-## 🔑 必填字段
+## 🎯 v2.0.0 重构说明
 
-### 1. `id` - 全局唯一标识符
+### 重构目标
+- ✅ **FHIR 标准对齐**: 严格遵循 FHIR Coding 数据类型规范
+- ✅ **YAGNI 原则**: 移除所有未使用的字段
+- ✅ **简化维护**: 减少字段数量 (11+ → 4),降低维护成本
+- ✅ **可扩展性**: 通过 `additionalProperties: true` 支持按需扩展
+
+### 字段变更统计
+- **v1.2.6**: 11+ 字段 (id, code, system, display, display_zh, category, status, version, description, synonyms, detection, source_refs, fhir)
+- **v2.0.0**: 4 核心字段 (system, code, display, display_zh)
+- **减少**: 64% 字段数量
+
+### 移除字段归档
+所有移除的字段数据已归档至 `archive/removed_fields_v1.2.6/`,包含 97 个 JSON 文件,可随时恢复。
+
+---
+
+## 🔑 必填字段 (4个)
+
+### 1. `system` - 编码系统 URI
 
 **类型**: `string`  
-**格式**: `{system_prefix}:{code}`  
-**正则**: `^[a-z0-9_./:+-]+$`
+**格式**: URI (支持 `http://`, `https://`, `internal://`, `tdp://`)
 
-**说明**: 词条的唯一标识符，由编码系统前缀和编码值组成。
+**说明**: 编码系统的标准 URI，标识编码来源。
 
-**示例**:
+**常用系统**:
 ```json
-"id": "snomed:129006008"
-"id": "internal:0002"
-"id": "tdp:emergency"
+"system": "http://snomed.info/sct"              // SNOMED CT
+"system": "http://loinc.org"                    // LOINC
+"system": "http://hl7.org/fhir/sid/icd-10"     // ICD-10
+"system": "internal://wisefido/coding"          // 内部编码系统
+"system": "tdp://wisefido/v1"                   // TDP v1
 ```
 
-**格式要求**:
-- 系统前缀使用小写字母（如 `snomed`、`internal`、`tdp`）
-- 使用冒号 `:` 分隔系统前缀和编码值
-- 全局唯一，不可重复
+**Schema 验证**:
+```json
+{
+  "pattern": "^(https?|internal|tdp)://.+"
+}
+```
 
 ---
 
@@ -51,24 +76,7 @@
 
 ---
 
-### 3. `system` - 编码系统 URI
-
-**类型**: `string`
-
-**说明**: 编码系统的标准 URI，标识编码来源。
-
-**常用系统**:
-```json
-"system": "http://snomed.info/sct"              // SNOMED CT
-"system": "http://loinc.org"                    // LOINC
-"system": "http://hl7.org/fhir/sid/icd-10"     // ICD-10
-"system": "http://wisefido.com/tdp/v1"         // TDP v1 (内部)
-"system": "http://wisefido.com/internal"       // 内部编码系统
-```
-
----
-
-### 4. `display` - 英文显示名称
+### 3. `display` - 英文显示名称
 
 **类型**: `string`
 
@@ -83,7 +91,7 @@
 
 ---
 
-### 5. `display_zh` - 中文显示名称
+### 4. `display_zh` - 中文显示名称
 
 **类型**: `string`
 
@@ -98,373 +106,71 @@
 
 ---
 
-### 6. `category` - 词条分类
+## 🔧 可扩展字段
 
-**类型**: `string`  
-**枚举值**: 6 个固定分类
-
-**说明**: 词条所属的功能分类，用于组织和检索。
-
-**分类枚举**:
-```json
-"category": "posture_codes"              // 姿态编码
-"category": "motion_codes"               // 运动编码
-"category": "physiological_codes"        // 生理指标编码
-"category": "disorder_condition_codes"   // 疾病状况编码
-"category": "safety_alert_codes"         // 安全警报编码
-"category": "tag"                        // 自定义标签
-```
-
-**详细说明**: 参见 [🗂️ 分类体系详解](#️-分类体系详解)
-
----
-
-### 7. `status` - 词条状态
-
-**类型**: `string`  
-**枚举值**: `active` | `deprecated` | `draft`
-
-**说明**: 词条的生命周期状态。
-
-**状态说明**:
-- **`active`**: 活跃状态，可正常使用
-- **`deprecated`**: 已弃用，不推荐使用（向后兼容）
-- **`draft`**: 草稿状态，尚未正式发布
+v2.0.0 通过 Schema 的 `additionalProperties: true` 支持按需扩展字段。
 
 **示例**:
 ```json
-"status": "active"
-```
-
----
-
-### 8. `version` - 语义版本号
-
-**类型**: `string`  
-**格式**: `MAJOR.MINOR.PATCH`  
-**正则**: `^[0-9]+\.[0-9]+\.[0-9]+$`
-
-**说明**: 词条的版本号，遵循语义化版本规范。
-
-**版本规则**:
-- **MAJOR**: 不兼容的重大变更
-- **MINOR**: 向后兼容的功能新增
-- **PATCH**: 向后兼容的问题修复
-
-**示例**:
-```json
-"version": "1.0.0"
-"version": "1.2.3"
-```
-
----
-
-## �️ 分类体系详解
-
-> 本节详细说明 WiseFido_TDPv1_Coding_Dictionary 的 6 大分类体系架构和使用规范
-
-### 📋 分类体系概览
-
-根据医疗编码标准和系统需求，本项目采用以下 6 大分类体系：
-
-| 分类代码 | 中文名称 | 英文名称 | 用途说明 |
-|---------|---------|---------|---------|
-| **posture_codes** | 姿态编码 | Posture Codes | 描述人体姿态（站、坐、卧等） |
-| **motion_codes** | 运动编码 | Motion Codes | 描述运动状态（步行、奔跑、静止等） |
-| **physiological_codes** | 生理指标编码 | Physiological Codes | 描述生理指标异常（心率、呼吸等） |
-| **disorder_condition_codes** | 疾病状况编码 | Disorder & Condition Codes | 描述疾病或健康状况 |
-| **safety_alert_codes** | 安全警报编码 | Safety & Alert Codes | 描述安全事件和警报等级 |
-| **tag** | 自定义标签 | Custom Tags | AI 分析的语义标签 |
-
----
-
-### 🎯 各分类详细说明
-
-#### 1. posture_codes - 姿态编码
-
-**定义**: 描述人体静态或相对静态的身体姿态。
-
-**适用场景**:
-- 身体位置和方向
-- 相对稳定的体位
-
-**典型词条**:
-- 站立 (Standing)
-- 坐姿 (Sitting)
-- 仰卧 (Lying Supine)
-- 俯卧 (Lying Prone)
-- 侧卧 (Lying on Side)
-
-**检测方式**: 主要由 60GHz 毫米波雷达检测
-
----
-
-#### 2. motion_codes - 运动编码
-
-**定义**: 描述人体动态运动状态和动作。
-
-**适用场景**:
-- 身体移动行为
-- 动作状态变化
-
-**典型词条**:
-- 步行 (Walking)
-- 奔跑 (Running)
-- 静止 (Stationary)
-- 跌倒 (Falls) - 注：跌倒同时也是安全事件
-
-**检测方式**: 60GHz 雷达、MEMS 地震传感器
-
----
-
-#### 3. physiological_codes - 生理指标编码
-
-**定义**: 描述可量化的生理参数异常状态。
-
-**适用场景**:
-- 心率、呼吸等生命体征异常
-- 可通过传感器直接测量的指标
-
-**典型词条**:
-- 心动过速 (Tachycardia)
-- 心动过缓 (Bradycardia)
-- 呼吸暂停 (Apnea)
-
-**检测方式**: 睡眠板 (Sleep Pad)、60GHz 雷达
-
----
-
-#### 4. disorder_condition_codes - 疾病状况编码
-
-**定义**: 描述疾病、症状或健康状况。
-
-**适用场景**:
-- 医学诊断相关
-- 健康状态描述
-
-**典型词条**:
-- 睡眠 (Sleep)
-- 睡眠障碍 (Sleep Disorder)
-- 慢性病状态
-
-**编码标准**: 优先使用 SNOMED CT 编码
-
----
-
-#### 5. safety_alert_codes - 安全警报编码
-
-**定义**: 描述安全相关的事件、警报和风险等级。
-
-**适用场景**:
-- 紧急事件
-- 危险等级标注
-- 系统警报
-
-**典型词条**:
-- 跌倒 (Falls) - 安全事件
-- 紧急 (Emergency)
-- 警告 (Warning)
-- 严重 (Critical)
-- 高风险 (High Risk)
-
-**特殊说明**: 跌倒既是运动事件，也是安全事件，归类为 `safety_alert_codes`
-
----
-
-#### 6. tag - 自定义标签
-
-**定义**: AI 分析使用的语义标签，用于辅助分析和关联。
-
-**适用场景**:
-- 多维度分析
-- 风险预测
-- 人群特征标注
-
-**典型词条**:
-- 跌倒风险 (Fall Risk)
-- 行动不便 (Mobility Impairment)
-- 老年人 (Elderly)
-- 独居 (Living Alone)
-
-**特点**: 灵活、可扩展，不受严格医疗编码标准约束
-
----
-
-### 📐 分类选择原则
-
-#### 决策流程
-
-```
-问题：这个词条描述的是什么？
-│
-├─ 身体姿态？ → posture_codes
-│
-├─ 运动状态？
-│   ├─ 是安全事件（如跌倒）？ → safety_alert_codes
-│   └─ 否 → motion_codes
-│
-├─ 生理指标异常？ → physiological_codes
-│
-├─ 疾病/健康状况？ → disorder_condition_codes
-│
-├─ 安全事件/警报等级？ → safety_alert_codes
-│
-└─ 辅助分析标签？ → tag
-```
-
-#### 常见疑问
-
-**Q: 跌倒应该归类为 motion_codes 还是 safety_alert_codes？**  
-A: `safety_alert_codes`。虽然跌倒是运动事件，但其核心语义是安全风险，应优先考虑安全属性。
-
-**Q: 心率过快是 physiological_codes 还是 disorder_condition_codes？**  
-A: `physiological_codes`。这是可直接测量的生理指标异常，而非疾病诊断。
-
-**Q: 如何区分 tag 和其他分类？**  
-A: `tag` 用于辅助分析和多维关联，不是核心医疗编码。例如"跌倒风险"是预测性标签，而"跌倒"是实际事件。
-
----
-
-### 📝 历史迁移说明
-
-本分类体系经过重构优化，旧版分类已全部迁移：
-- `posture` → `posture_codes`
-- `motion_state` → `motion_codes`
-- `health_condition` → `physiological_codes` 或 `disorder_condition_codes`
-- `danger_level` → `safety_alert_codes`
-
-所有词条已完成迁移，Schema 仅支持新分类体系。
-
----
-
-## �📝 可选字段
-
-### 9. `description` - 英文详细描述
-
-**类型**: `string`
-
-**说明**: 词条的详细英文描述，解释含义、用途、适用场景等。
-
-**示例**:
-```json
-"description": "Patient is in a standing posture, detected by 60GHz radar sensor."
-```
-
----
-
-### 10. `description_zh` - 中文详细描述
-
-**类型**: `string`
-
-**说明**: 词条的详细中文描述。
-
-**示例**:
-```json
-"description_zh": "患者处于站立姿态，由60GHz雷达传感器检测。"
-```
-
----
-
-### 11. `synonyms` - 英文同义词
-
-**类型**: `array<string>`
-
-**说明**: 英文同义词列表，用于搜索和匹配。
-
-**示例**:
-```json
-"synonyms": ["Standing position", "Upright posture", "Standing up"]
-```
-
----
-
-### 12. `synonyms_zh` - 中文同义词
-
-**类型**: `array<string>`
-
-**说明**: 中文同义词列表。
-
-**示例**:
-```json
-"synonyms_zh": ["站立姿势", "直立", "站立状态"]
-```
-
----
-
-### 13. `source_refs` - 来源追溯
-
-**类型**: `array<object>`
-
-**说明**: 词条的来源参考信息，用于可追溯性。
-
-**对象结构**:
-- `file` (必填): 来源文件名
-- `section` (可选): 来源章节
-
-**示例**:
-```json
-"source_refs": [
-  {
-    "file": "tdpv1-0916-fixed.md",
-    "section": "姿态检测"
+{
+  "system": "http://snomed.info/sct",
+  "code": "129006008",
+  "display": "Walking",
+  "display_zh": "步行",
+  
+  // 可按需添加自定义字段
+  "category": "motion_codes",
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "confidence": "high"
+    }
   },
-  {
-    "file": "fda-v0923.md"
-  }
-]
-```
-
----
-
-### 14. `detection` - 检测能力标注
-
-**类型**: `object`
-
-**说明**: 标注各传感器对该词条的检测能力。
-
-**支持的传感器**: `radar_60ghz` (60GHz 毫米波雷达)
-
-**子字段**:
-- `detectable`: 可检测性 (`direct` | `indirect` | `not_detectable`)
-- `method`: 检测方法
-- `confidence`: 检测置信度 (`low` | `medium` | `high`)
-- `frequency_range`: 频率范围
-- `velocity_threshold`: 速度阈值
-- `requires_ml`: 是否需要机器学习
-
-**示例**:
-```json
-"detection": {
-  "radar_60ghz": {
-    "detectable": "direct",
-    "method": "Doppler velocity analysis",
-    "confidence": "high",
-    "frequency_range": "60-64 GHz",
-    "velocity_threshold": "0.1 m/s",
-    "requires_ml": false
-  }
+  "custom_field": "任意自定义字段"
 }
 ```
 
+**说明**:
+- ✅ Schema 验证只检查 4 个核心字段
+- ✅ 其他字段可按需添加,不影响验证
+- ✅ 支持渐进式扩展,按需增加功能
+
 ---
 
-### 15. `fhir` - FHIR 资源映射
+## 🗑️ v1.2.6 移除的字段
 
-**类型**: `object`
+以下字段在 v2.0.0 中被移除,数据已归档至 `archive/removed_fields_v1.2.6/`:
 
-**说明**: 映射到 FHIR 标准资源，用于互操作性。
+### ❌ `id` - 全局唯一标识符
+**原格式**: `{system_prefix}:{code}` (例: `snomed:129006008`)  
+**v2.0.0 替代**: 使用 `system|code` 组合标识 (例: `http://snomed.info/sct|129006008`)
 
-**子字段**:
-- `resource_type`: FHIR 资源类型
-- `loinc_code`: LOINC 编码（用于观测值）
+### ❌ `category` - 词条分类
+**原枚举**: `posture_codes`, `motion_codes`, `physiological_codes`, `disorder_condition_codes`, `safety_alert_codes`, `tag`  
+**移除原因**: 未在实际业务中使用
 
-**示例**:
-```json
-"fhir": {
-  "resource_type": "Observation",
-  "loinc_code": "8867-4"
-}
-```
+### ❌ `status` - 词条状态
+**原枚举**: `active`, `deprecated`, `draft`  
+**移除原因**: 所有词条均为 active,无需此字段
+
+### ❌ `version` - 语义版本号
+**原格式**: `MAJOR.MINOR.PATCH` (例: `1.0.0`)  
+**移除原因**: 未启用版本管理机制
+
+### ❌ `description` / `description_zh` - 详细描述
+**移除原因**: 未在界面中使用
+
+### ❌ `synonyms` / `synonyms_zh` - 同义词
+**移除原因**: 未在搜索中使用
+
+### ❌ `source_refs` - 来源追溯
+**移除原因**: 未使用
+
+### ❌ `detection` - 传感器检测能力
+**移除原因**: 未在实际系统中使用
+
+### ❌ `fhir` - FHIR 资源映射
+**移除原因**: 未使用
 
 ---
 
@@ -472,7 +178,7 @@ A: `tag` 用于辅助分析和多维关联，不是核心医疗编码。例如"�
 
 ### Schema 验证
 
-所有词条必须通过 `schema/coding_dictionary.schema.json` 的验证：
+所有词条必须通过 `schema/coding_dictionary.schema.json` 的验证:
 
 ```bash
 python scripts/validate_json.py
@@ -480,78 +186,59 @@ python scripts/validate_json.py
 
 ### 关键验证点
 
-1. **必填字段完整性**: 8 个必填字段必须全部存在
-2. **ID 唯一性**: 同一 ID 不能重复
-3. **枚举值合法性**: `category` 和 `status` 必须是枚举值之一
-4. **版本号格式**: 必须符合语义化版本规范
-5. **字段类型正确**: 字符串、数组、对象类型必须匹配
-6. **无额外字段**: `additionalProperties: false`，禁止未定义字段
+1. **必填字段完整性**: 4 个必填字段必须全部存在
+2. **system|code 唯一性**: 同一 system+code 组合不能重复
+3. **字段类型正确**: 字符串类型必须匹配
+4. **URI 格式正确**: `system` 字段必须符合 URI 格式
 
 ---
 
-## � 完整示例
+## 📝 完整示例
 
-### 示例 1: SNOMED CT 词条
+### 最小化示例 (推荐)
 
 ```json
 {
-  "id": "snomed:10904000",
-  "code": "10904000",
   "system": "http://snomed.info/sct",
+  "code": "10904000",
   "display": "Standing",
-  "display_zh": "站立",
-  "category": "posture_codes",
-  "status": "active",
-  "version": "1.0.0",
-  "description": "Patient is in a standing posture.",
-  "description_zh": "患者处于站立姿态。",
-  "synonyms": ["Standing position", "Upright posture"],
-  "synonyms_zh": ["站立姿势", "直立姿态"],
-  "source_refs": [
-    {
-      "file": "tdpv1-0916-fixed.md",
-      "section": "姿态检测"
-    }
-  ],
-  "detection": {
-    "radar_60ghz": {
-      "detectable": "direct",
-      "method": "Static posture analysis",
-      "confidence": "high"
-    }
-  }
+  "display_zh": "站立"
 }
 ```
 
-### 示例 2: 内部编码词条
+### 扩展示例
 
 ```json
 {
-  "id": "internal:0002",
+  "system": "http://snomed.info/sct",
+  "code": "129006008",
+  "display": "Walking",
+  "display_zh": "步行",
+  "description": "Periodic gait pattern with low to moderate speed.",
+  "description_zh": "周期性步态，速度低至中等。",
+  "category": "motion_codes"
+}
+```
+
+### 内部编码示例
+
+```json
+{
+  "system": "internal://wisefido/coding",
   "code": "0002",
-  "system": "http://wisefido.com/internal",
   "display": "Lying Supine",
-  "display_zh": "仰卧",
-  "category": "posture_codes",
-  "status": "active",
-  "version": "1.0.0"
+  "display_zh": "仰卧"
 }
 ```
 
-### 示例 3: TDP 协议词条
+### TDP 协议示例
 
 ```json
 {
-  "id": "tdp:emergency",
+  "system": "tdp://wisefido/v1",
   "code": "emergency",
-  "system": "http://wisefido.com/tdp/v1",
   "display": "Emergency",
-  "display_zh": "紧急",
-  "category": "safety_alert_codes",
-  "status": "active",
-  "version": "1.0.0",
-  "description": "Highest priority alert level requiring immediate attention.",
-  "description_zh": "最高优先级警报，需要立即关注。"
+  "display_zh": "紧急"
 }
 ```
 
@@ -561,26 +248,25 @@ python scripts/validate_json.py
 
 ### 添加新词条
 
-使用交互式工具添加：
-```bash
-python scripts/dic_tools.py
-# 选择选项 8：交互式添加单个词条
-```
-
-或使用批量添加脚本：
+使用交互式工具添加:
 ```bash
 python scripts/add_coding_dict.py
 ```
 
+输入 4 个核心字段即可:
+1. `system` - 编码系统 URI
+2. `code` - 编码值
+3. `display` - 英文名称
+4. `display_zh` - 中文名称
+
 ### 验证数据
 
 ```bash
-# 完整验证（Schema + 逻辑）
+# 完整验证
 python scripts/validate_json.py
 
 # 或使用主工具
-python scripts/dic_tools.py
-# 选择选项 1：校验词条数据
+python scripts/dic_tools.py --validate
 ```
 
 ### 生成文档
@@ -590,8 +276,7 @@ python scripts/dic_tools.py
 python scripts/generate_md.py
 
 # 或使用主工具
-python scripts/dic_tools.py
-# 选择选项 2：生成 Markdown 文档
+python scripts/dic_tools.py --generate-md
 ```
 
 ---
@@ -600,11 +285,24 @@ python scripts/dic_tools.py
 
 - [coding_dictionary.schema.json](../schema/coding_dictionary.schema.json) - JSON Schema 验证规则
 - [README.md](../README.md) - 项目主文档
-- [自动生成的 Schema 规范文档](../auto_generated_docs/coding_dictionary.schema.md) - Schema 字段自动文档
+- [FHIR Coding DataType](https://www.hl7.org/fhir/datatypes.html#Coding) - FHIR 官方文档
+- [archive/removed_fields_v1.2.6/](../archive/removed_fields_v1.2.6/) - v1.2.6 移除字段归档
 
 ---
 
 ## 📝 变更历史
+
+### v2.0.0 - 2025-11-12
+- 🎯 **重大重构**: 精简为 4 核心字段
+- ✅ FHIR 标准对齐
+- ✅ YAGNI 原则应用
+- ✅ 支持按需扩展 (`additionalProperties: true`)
+- 📦 移除 11 个字段,数据归档至 `archive/removed_fields_v1.2.6/`
+
+### v1.2.6 - 2025-11-12
+- v2.0.0 重构前的最后版本
+- 11+ 字段完整结构
+- 归档至 `archive/removed_fields_v1.2.6/`
 
 ### v1.0.0 - 2024
 - 初始版本，定义核心字段结构
@@ -613,3 +311,18 @@ python scripts/dic_tools.py
 - 添加检测能力标注（60GHz 雷达）
 - 支持 FHIR 资源映射
 
+---
+
+## 💡 常见问题
+
+### Q1: 为什么移除了这么多字段?
+A: 遵循 YAGNI 原则 (You Aren't Gonna Need It)。经过分析,这些字段在实际业务中未被使用,保留它们增加了维护成本。所有数据已归档,需要时可恢复。
+
+### Q2: 如果未来需要这些字段怎么办?
+A: v2.0.0 支持 `additionalProperties: true`,可按需添加任何字段。从归档数据恢复也很简单。
+
+### Q3: v1.2.6 的数据会丢失吗?
+A: 不会。所有移除的字段数据已归档至 `archive/removed_fields_v1.2.6/`,并且可以通过 Git 标签 `v1.2.6-pre-refactor` 恢复完整项目。
+
+### Q4: 如何恢复到 v1.2.6?
+A: 运行 `git checkout v1.2.6-pre-refactor` 即可恢复到重构前的完整版本。

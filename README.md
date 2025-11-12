@@ -1,24 +1,94 @@
 ﻿# 📦 WiseFido_TDPv1_Coding_Dictionary
 
-> 🎯 **可复用医疗编码字典库**｜JSON 唯一事实源｜自动生成 Markdown｜变更追踪｜FHIR/SNOMED CT 兼容
+> 🎯 **FHIR 标准医疗编码字典库** | v2.0.0 精简版 | JSON Schema 验证 | 自动文档生成 | YAGNI 原则
 
-[![Copyright: WiseFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefido.com)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Copyright: WiseFido](https://img.shields.io/badge/Copyright-WiseFido-blue.svg)](https://www.wisefid---
+
+## 🧪 测试套件
+
+脚本内置 **数据质量校验**,验证必填字段、数据格式、system|code 唯一性等。
+
+运行:
+
+```bash
+python scripts/dic_tools.py --test
+```
+
+所有项通过后会输出"🎉 所有测试通过!"。
+
+---
+
+## 🎯 v2.0.0 设计原则
+
+### YAGNI 原则 (You Aren't Gonna Need It)
+
+v2.0.0 移除了所有**当前未使用**的字段:
+- ❌ `category` - 分类信息 (未在实际业务中使用)
+- ❌ `status` - 所有词条均为 active,无需此字段
+- ❌ `version` - 未启用版本管理机制
+- ❌ `detection` - 传感器检测能力 (未实际使用)
+- ❌ `synonyms` - 同义词 (未在搜索中使用)
+- ❌ `source_refs` - 来源追溯 (未使用)
+
+### FHIR 标准对齐
+
+严格遵循 [FHIR Coding](https://www.hl7.org/fhir/datatypes.html#Coding) 数据类型:
+
+```json
+{
+  "system": "uri",      // 编码系统标识
+  "code": "string",     // 编码值
+  "display": "string"   // 显示名称
+}
+```
+
+我们增加了 `display_zh` 以支持中文本地化。
+
+### 可扩展性保障
+
+通过 Schema 的 `additionalProperties: true` 支持按需扩展:
+
+```json
+{
+  "system": "http://snomed.info/sct",
+  "code": "129006008",
+  "display": "Walking",
+  "display_zh": "步行",
+  
+  // 未来可按需添加
+  "category": "motion_codes",
+  "confidence": 0.95,
+  "custom_field": "任意自定义字段"
+}
+```
+
+### 数据安全
+
+所有移除的字段数据已归档至 `archive/removed_fields_v1.2.6/`,可随时恢复:
+
+```bash
+# 查看归档文件
+ls archive/removed_fields_v1.2.6/
+
+# 恢复到 v1.2.6 (重构前)
+git checkout v1.2.6-pre-refactor
+```thon 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Version](https://img.shields.io/badge/version-v2.0.0-green.svg)](https://github.com/hhtbing-wisefido/WiseFido_TDPv1_Coding_Dictionary/releases/tag/v2.0.0)
 
 ---
 
 ## 💡 项目简介
 
-WiseFido_TDPv1_Coding_Dictionary 基于 **TDPv1 协议** 与 **FHIR/SNOMED CT** 标准构建，是 OWL Monitor System（多传感器老人健康监测系统）的统一术语库。
+WiseFido_TDPv1_Coding_Dictionary 是基于 **FHIR Coding 标准**构建的医疗编码字典库，用于 OWL Monitor System（多传感器老人健康监测系统）的统一术语管理。
 
-### ✨ 主要特性
+### ✨ v2.0.0 核心特性
 
-- 📡 **多传感器覆盖**：60 GHz 雷达、睡眠板、MEMS 地震传感器、SOS 手柄等能力统一建模
-- 🤖 **机器可信**：JSON 作为唯一事实源，配套 JSON Schema 与自动验证脚本
-- 📖 **人类可读**：一键生成中英文对照的 Markdown 文档和变更日志
-- 🔄 **变更追踪**：快照对比与自动 changelog，便于审计与回滚
-- 🏥 **医疗标准**：兼容 FHIR、SNOMED CT、LOINC，并支持内部编码
-- - ⚕️ **预警支撑**：可映射帕金森、卒中、心梗等预警规则
+- 🎯 **FHIR 标准兼容**：严格遵循 FHIR Coding 核心字段规范 (system, code, display)
+- 🔒 **极简数据模型**：仅保留 4 个核心字段，遵循 YAGNI 原则
+- 🤖 **JSON Schema 验证**：自动验证数据完整性和合法性
+- 📖 **自动文档生成**：一键生成 Markdown 文档和变更日志
+- 🔄 **可扩展架构**：支持通过 `additionalProperties` 按需扩展字段
+- 🏥 **多编码系统支持**：SNOMED CT、Internal、TDP 等编码系统
 
 ---
 
@@ -249,66 +319,63 @@ git push
 
 ---
 
-## 📋 数据字段
+## 📋 数据结构 (v2.0.0)
 
-### ✅ 必填字段
+### ✅ 核心字段 (必填)
 
-| 字段                         | 说明                        | 示例                       |
-| ---------------------------- | --------------------------- | -------------------------- |
-| `id`                       | 全局唯一（`prefix:code`） | `snomed:129006008`       |
-| `code`                     | 编码值                      | `129006008`              |
-| `system`                   | 编码系统 URI                | `http://snomed.info/sct` |
-| `display` / `display_zh` | 英文/中文名称               | `Walking / 步行`         |
-| `category`                 | 分类（见下）                | `motion_codes`           |
-| `status`                   | 状态                        | `active`                 |
-| `version`                  | 语义版本                    | `1.0.0`                  |
+> v2.0.0 采用极简设计，仅保留 FHIR Coding 核心字段
 
-### 🔖 可选字段
+| 字段 | 类型 | 说明 | 示例 |
+|------|------|------|------|
+| `system` | string | 编码系统 URI | `http://snomed.info/sct` |
+| `code` | string | 编码值 | `129006008` |
+| `display` | string | 英文显示名称 | `Walking` |
+| `display_zh` | string | 中文显示名称 | `步行` |
 
-| 字段                                 | 说明           |
-| ------------------------------------ | -------------- |
-| `description` / `description_zh` | 详细描述       |
-| `synonyms` / `synonyms_zh`       | 同义词         |
-| `source_refs`                      | 来源追溯       |
-| `detection`                        | 传感器检测能力 |
+### � 可扩展字段
 
-### 🏷️ 分类枚举
+通过 Schema 的 `additionalProperties: true` 支持按需扩展:
 
-`posture_codes`｜`motion_codes`｜`physiological_codes`｜`disorder_condition_codes`｜`safety_alert_codes`｜`tag`
+```json
+{
+  "system": "http://snomed.info/sct",
+  "code": "129006008",
+  "display": "Walking",
+  "display_zh": "步行",
+  "custom_field": "按需添加的字段"
+}
+```
+
+### 🏷️ 编码系统分布
+
+- **SNOMED CT** (58.2%): 国际标准医疗编码
+- **Internal** (34.2%): WiseFido 内部编码
+- **TDP** (7.6%): TDPv1 协议编码
 
 ---
 
 ## 📝 词条示例
 
+### 最小化示例
 ```json
 {
-  "id": "snomed:129006008",
-  "code": "129006008",
   "system": "http://snomed.info/sct",
+  "code": "129006008",
+  "display": "Walking",
+  "display_zh": "步行"
+}
+```
+
+### 扩展示例
+```json
+{
+  "system": "http://snomed.info/sct",
+  "code": "129006008",
   "display": "Walking",
   "display_zh": "步行",
-  "category": "motion_codes",
-  "status": "active",
-  "version": "1.0.0",
   "description": "Periodic gait pattern with low to moderate speed.",
   "description_zh": "周期性步态，速度低至中等。",
-  "synonyms": ["Ambulation", "Gait"],
-  "source_refs": [{
-    "file": "原始参考文件/fhir与snomed_ct代码.md",
-    "section": "三、实际可检测的运动状态总结"
-  }],
-  "detection": {
-    "radar_60ghz": {
-      "detectable": "direct",
-      "method": "速度 >10 cm/s 且 1–2 Hz 周期步态",
-      "confidence": "high"
-    },
-    "sleep_pad": {
-      "detectable": "indirect",
-      "method": "通过体动模式间接推断",
-      "confidence": "medium"
-    }
-  }
+  "category": "motion_codes"
 }
 ```
 
@@ -429,53 +496,122 @@ python scripts/dic_tools.py --clean
 
 ---
 
-最后更新日期: 2025-11-12
-最后更新说明: 优化目录结构,将过程记录文档移至temp,明确auto_generated_docs只放产品文档
-版本: v1.2.5
+最后更新日期: 2025-11-12  
+最后更新说明: v2.0.0 重构 - 精简为 4 核心字段,遵循 FHIR 标准和 YAGNI 原则  
+版本: v2.0.0  
 维护者: WiseFido Team
 
 ---
 
 ## 🏆 版本里程碑
 
-### 📌 v1.2.4-current (2025-11-12)
+### 📌 v2.0.0 (2025-11-12) - 当前版本 ✅
 
-**状态**: 当前版本 ✅ | **词条数**: 79
+**重大变更**: 数据结构重构，精简为 FHIR 核心字段
 
-本版本在 v1.2.3 基础上扩展了 **45 个新词条**(从 34 → 79),增长 132.4%,并应用了 Emoji-Enhanced Documentation 风格。
+#### 🎯 重构目标
+- **YAGNI 原则**: You Aren't Gonna Need It - 移除所有未使用的字段
+- **FHIR 标准对齐**: 严格遵循 FHIR Coding 数据类型规范
+- **简化维护**: 减少字段数量，降低维护成本
+- **可扩展性**: 通过 `additionalProperties: true` 支持按需扩展
+
+#### 📊 变更统计
+- ✅ **词条总数**: 79 (保持不变)
+- 📉 **字段数量**: 11+ 字段 → 4 核心字段 (减少 64%)
+- 🗂️ **文件大小**: ~50KB → ~8KB (减少 84%)
+- 📦 **归档文件**: 97 个 JSON 文件保存移除的字段数据
+
+#### 🔄 字段变更
+
+**保留字段** (4个):
+- ✅ `system` - 编码系统 URI
+- ✅ `code` - 编码值
+- ✅ `display` - 英文显示名称
+- ✅ `display_zh` - 中文显示名称
+
+**移除字段** (11个,已归档至 `archive/removed_fields_v1.2.6/`):
+- ❌ `id` - 使用 `system|code` 组合标识
+- ❌ `category` - 分类信息 (未使用)
+- ❌ `status` - 状态字段 (全部为 active)
+- ❌ `version` - 版本号 (未使用)
+- ❌ `description` / `description_zh` - 详细描述
+- ❌ `synonyms` / `synonyms_zh` - 同义词
+- ❌ `source_refs` - 来源追溯
+- ❌ `detection` - 传感器检测能力
+- ❌ `fhir` - FHIR 资源映射
+
+#### � 归档说明
+所有移除的字段数据已归档至:
+- **路径**: `archive/removed_fields_v1.2.6/`
+- **文件数**: 97 个 JSON 文件
+- **命名格式**: `{system}_{code}.json` (例: `http___snomed.info_sct_129006008.json`)
+- **内容**: 每个文件包含该词条的所有移除字段
+
+#### 🔧 脚本更新
+所有 6 个维护脚本已更新适配 v2.0.0:
+- ✅ `validate_json.py` - 验证 4 核心字段
+- ✅ `generate_md.py` - 生成简化文档
+- ✅ `changelog.py` - 使用 system|code 标识
+- ✅ `add_coding_dict.py` - 交互式 4 字段输入
+- ✅ `dic_tools.py` - 简化统计和搜索
+- ✅ `get_project_stats.py` - 仅统计编码系统分布
 
 #### 📊 当前统计
-- **总词条数**: 79
-- **分类分布**: 标签(24.1%) | 运动(21.5%) | 姿态(20.3%) | 生理(16.5%) | 安全(12.7%) | 疾病(5.1%)
-- **编码系统**: SNOMED CT(58.2%) | Internal(34.2%) | TDP(7.6%)
-- **雷达检测**: 直接(26.6%) | 间接(21.5%) | 未标注(51.9%)
-- **测试通过率**: 100% (6/6)
+- 📊 词条总数: 79 (SNOMED CT 58.2% | Internal 34.2% | TDP 7.6%)
+- 🧪 测试通过率: 100%
+
+#### 🔗 恢复到上一版本
+如需恢复到 v1.2.6 (重构前版本):
+```bash
+git checkout v1.2.6-pre-refactor
+```
+
+---
+
+### 📌 v1.2.6-pre-refactor (2025-11-12)
+
+**Git Tag**: `v1.2.6-pre-refactor` | **状态**: v2.0.0 重构前备份版本 ✅
+
+这是 v2.0.0 重构前的最后一个稳定版本,包含 79 个词条和完整的 11+ 字段结构。
+
+#### � 版本快照
+- 📊 词条总数: 79
+- 📂 字段数量: 11+ 字段 (含 id, category, status, version, description, synonyms, detection 等)
+- 🗂️ 文件大小: ~50KB
+- 🧪 测试通过率: 100%
+
+#### 🔄 恢复方法
+```bash
+# 查看此版本
+git checkout v1.2.6-pre-refactor
+
+# 基于此版本创建新分支
+git checkout -b feature/new-work v1.2.6-pre-refactor
+```
+
+#### 📦 本地备份
+- **路径**: `Project_backup/v1.2.6-pre-refactor_20251112_170815/`
+- **内容**: 完整项目文件备份
+
+---
+
+### 📌 v1.2.4 (2025-11-12)
+
+**状态**: 历史版本 | **词条数**: 79
+
+扩展了 45 个新词条 (从 34 → 79),增长 132.4%,并应用了 Emoji-Enhanced Documentation 风格。
 
 ---
 
 ### 📌 v1.2.3-milestone (2025-11-11)
 
-**Git Tag**: `v1.2.3-milestone` | **状态**: 稳定版本 ✅
+**Git Tag**: `v1.2.3-milestone` | **状态**: 首个稳定里程碑 ✅
 
-这是第一个稳定里程碑，包含 34 个编码词条和完整基础功能，作为后续大规模扩展的基准点。
-
-#### 🔄 恢复到此版本
-
-```bash
-# 方法 1: 使用标签（推荐）
-git checkout v1.2.3-milestone
-
-# 方法 2: 基于里程碑创建新分支
-git checkout -b feature/new-terms v1.2.3-milestone
-
-# 方法 3: 查看所有里程碑
-git tag -l "*milestone*"
-```
+第一个稳定里程碑，包含 34 个编码词条和完整基础功能。
 
 #### 📸 版本快照
-- 📊 词条总数: 34（SNOMED CT 44.1% | Internal 38.2% | TDP 17.6%）
+- 📊 词条总数: 34 (SNOMED CT 44.1% | Internal 38.2% | TDP 17.6%)
 - 📂 分类数: 6 大类
 - 🧪 测试通过率: 100%
-- 📝 文档: 本 README 已包含所有关键信息
 
 ---
