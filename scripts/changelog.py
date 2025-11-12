@@ -3,8 +3,8 @@
 #   pip install -r requirements.txt
 # ============================================================
 """
-CHANGELOG 生成器
-基于快照对比生成详细的变更总结报告
+CHANGELOG 生成器 (v2.0.0)
+基于快照对比生成变更总结报告（精简版）
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
 import _config  # noqa: F401
@@ -19,26 +19,12 @@ SRC = Path("coding_dictionary/coding_dictionary.json")
 OUT = Path("auto_generated_docs/changelog.md")
 SNAP = Path("auto_generated_docs/.snapshot.json")
 
-# 分类名称映射
-CATEGORY_NAMES = {
-    "posture_codes": "姿态编码 (Posture Codes)",
-    "motion_codes": "运动编码 (Motion Codes)",
-    "physiological_codes": "生理指标 (Physiological Codes)",
-    "disorder_condition_codes": "疾病状况 (Disorder & Condition Codes)",
-    "safety_alert_codes": "安全警报 (Safety & Alert Codes)",
-    "tag": "标签 (Tag)"
-}
-
 
 def get_statistics(items):
-    """获取统计信息"""
-    categories = Counter()
+    """获取统计信息 (v2.0.0 精简版)"""
     systems = Counter()
-    detection_stats = {"direct": 0, "indirect": 0, "not_detectable": 0, "未标注": 0}
     
     for item in items:
-        categories[item.get("category", "未知")] += 1
-        
         # 统计编码系统
         system = item.get("system", "未知")
         if "snomed" in system.lower():
@@ -49,28 +35,16 @@ def get_statistics(items):
             systems["TDP"] += 1
         else:
             systems["其他"] += 1
-        
-        # 统计检测能力
-        detection = item.get("detection", {}).get("radar_60ghz", {})
-        detectable = detection.get("detectable", "")
-        if detectable == "direct":
-            detection_stats["direct"] += 1
-        elif detectable == "indirect":
-            detection_stats["indirect"] += 1
-        elif detectable == "not_detectable":
-            detection_stats["not_detectable"] += 1
-        else:
-            detection_stats["未标注"] += 1
     
-    return categories, systems, detection_stats
+    return systems
 
 
 def generate_summary_report(items, added_items, modified_items, deprecated_items, prev_count):
-    """生成详细的总结报告"""
+    """生成详细的总结报告 (v2.0.0)"""
     current_count = len(items)
     
     lines = []
-    lines.append("# Coding Dictionary 变更总结报告")
+    lines.append("# Coding Dictionary 变更总结报告 (v2.0.0)")
     lines.append("")
     lines.append(f"**生成日期**: {datetime.now().strftime('%Y年%m月%d日')}")
     lines.append(f"**生成时间**: {datetime.now().strftime('%H:%M:%S')}")
@@ -92,16 +66,7 @@ def generate_summary_report(items, added_items, modified_items, deprecated_items
     lines.append("")
     
     # 获取统计信息
-    categories, systems, detection_stats = get_statistics(items)
-    
-    # 分类分布
-    lines.append("### 📂 分类分布")
-    lines.append("")
-    for cat, count in sorted(categories.items(), key=lambda x: -x[1]):
-        percentage = (count / current_count) * 100
-        cat_display = CATEGORY_NAMES.get(cat, cat)
-        lines.append(f"- **{cat_display}**: {count}个 ({percentage:.1f}%)")
-    lines.append("")
+    systems = get_statistics(items)
     
     # 编码系统分布
     lines.append("### 📋 编码系统分布")
@@ -116,21 +81,6 @@ def generate_summary_report(items, added_items, modified_items, deprecated_items
         system_display = system_display_map.get(system, system)
         lines.append(f"- **{system_display}**: {count}个 ({percentage:.1f}%)")
     lines.append("")
-    
-    # 雷达检测能力
-    lines.append("### 🔍 雷达检测能力")
-    lines.append("")
-    detection_display_map = {
-        "direct": "直接检测 (Direct)",
-        "indirect": "间接检测 (Indirect)",
-        "not_detectable": "无法检测 (Not Detectable)",
-        "未标注": "未标注 (Not Annotated)"
-    }
-    for key, count in detection_stats.items():
-        percentage = (count / current_count) * 100 if count > 0 else 0
-        detection_display = detection_display_map.get(key, key)
-        lines.append(f"- **{detection_display}**: {count}个 ({percentage:.1f}%)")
-    lines.append("")
     lines.append("---")
     lines.append("")
     
@@ -144,44 +94,28 @@ def generate_summary_report(items, added_items, modified_items, deprecated_items
         if added_items:
             lines.append(f"### ✨ 新增词条 ({len(added_items)}个)")
             lines.append("")
-            
-            # 按分类分组显示
-            added_by_category = {}
-            for item_id in added_items:
-                item = next((it for it in items if it['id'] == item_id), None)
+            for item_key in added_items:
+                item = next((it for it in items if f"{it['system']}|{it['code']}" == item_key), None)
                 if item:
-                    cat = item.get('category', '未知')
-                    if cat not in added_by_category:
-                        added_by_category[cat] = []
-                    added_by_category[cat].append(item)
-            
-            for cat in sorted(added_by_category.keys()):
-                cat_display = CATEGORY_NAMES.get(cat, cat)
-                lines.append(f"#### {cat_display} ({len(added_by_category[cat])}个)")
-                lines.append("")
-                for item in added_by_category[cat]:
                     display_name = f"{item.get('display', '?')} / {item.get('display_zh', '?')}"
-                    lines.append(f"- `{item['id']}` - {display_name}")
-                lines.append("")
+                    lines.append(f"- `{item_key}` - {display_name}")
+            lines.append("")
         
         if modified_items:
             lines.append(f"### 🔄 修改词条 ({len(modified_items)}个)")
             lines.append("")
-            for item_id in modified_items:
-                item = next((it for it in items if it['id'] == item_id), None)
+            for item_key in modified_items:
+                item = next((it for it in items if f"{it['system']}|{it['code']}" == item_key), None)
                 if item:
                     display_name = f"{item.get('display', '?')} / {item.get('display_zh', '?')}"
-                    lines.append(f"- `{item_id}` - {display_name}")
+                    lines.append(f"- `{item_key}` - {display_name}")
             lines.append("")
         
         if deprecated_items:
-            lines.append(f"### ⚠️ 已弃用词条 ({len(deprecated_items)}个)")
+            lines.append(f"### ⚠️ 已删除词条 ({len(deprecated_items)}个)")
             lines.append("")
-            for item_id in deprecated_items:
-                item = next((it for it in items if it['id'] == item_id), None)
-                if item:
-                    display_name = f"{item.get('display', '?')} / {item.get('display_zh', '?')}"
-                    lines.append(f"- `{item_id}` - {display_name}")
+            for item_key in deprecated_items:
+                lines.append(f"- `{item_key}`")
             lines.append("")
         
         lines.append("---")
@@ -190,14 +124,14 @@ def generate_summary_report(items, added_items, modified_items, deprecated_items
     # 历史统计
     lines.append("## 📈 历史统计")
     lines.append("")
-    lines.append("| 日期 | 总词条数 | 新增 | 修改 | 弃用 |")
+    lines.append("| 日期 | 总词条数 | 新增 | 修改 | 删除 |")
     lines.append("|------|----------|------|------|------|")
     
     return "\n".join(lines)
 
 
 def run():
-    """生成详细的 CHANGELOG 总结报告"""
+    """生成详细的 CHANGELOG 总结报告 (v2.0.0)"""
     if not SRC.exists():
         print(f"[ERR] 缺失文件: {SRC}")
         return
@@ -209,7 +143,8 @@ def run():
         print(f"[ERR] JSON 解析失败: {e}")
         return
     
-    current = {it["id"]: it for it in items}
+    # v2.0.0: 使用 system|code 作为唯一标识
+    current = {f"{it['system']}|{it['code']}": it for it in items}
     
     # 加载快照
     prev = {}
@@ -228,11 +163,17 @@ def run():
         if k not in prev:
             added.append(k)
         else:
-            if v != prev[k]:
-                if v.get("status") == "deprecated" and prev[k].get("status") != "deprecated":
-                    deprecated.append(k)
-                else:
-                    modified.append(k)
+            # v2.0.0: 只比较4个核心字段
+            if (v.get('system') != prev[k].get('system') or
+                v.get('code') != prev[k].get('code') or
+                v.get('display') != prev[k].get('display') or
+                v.get('display_zh') != prev[k].get('display_zh')):
+                modified.append(k)
+    
+    # 检查删除的词条
+    for k in prev:
+        if k not in current:
+            deprecated.append(k)
     
     # 生成完整的总结报告
     report = generate_summary_report(items, added, modified, deprecated, prev_count)
