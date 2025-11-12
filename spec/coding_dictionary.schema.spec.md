@@ -600,7 +600,7 @@ python scripts/dic_tools.py
 
 - [coding_dictionary.schema.json](../schema/coding_dictionary.schema.json) - JSON Schema 验证规则
 - [README.md](../README.md) - 项目主文档
-- [自动生成的 Schema 规范文档](../auto_generated/coding_dictionary.schema.md) - Schema 字段自动文档
+- [自动生成的 Schema 规范文档](../auto_generated_docs/coding_dictionary.schema.md) - Schema 字段自动文档
 
 ---
 

@@ -123,6 +123,38 @@ def show_stats():
         else:
             detection_stats["未标注"] += 1
     
+    # 中英文对照映射
+    CATEGORY_NAMES_ZH = {
+        "posture_codes": "姿态编码 (Posture Codes)",
+        "motion_codes": "运动编码 (Motion Codes)",
+        "physiological_codes": "生理指标 (Physiological Codes)",
+        "disorder_condition_codes": "疾病状况 (Disorder & Condition Codes)",
+        "safety_alert_codes": "安全警报 (Safety & Alert Codes)",
+        "tag": "标签 (Tag)"
+    }
+    
+    SYSTEM_NAMES_ZH = {
+        "http://snomed.info/sct": "SNOMED CT",
+        "internal://tag": "Internal Tag",
+        "internal://motion_state": "Internal Motion",
+        "internal://posture": "Internal Posture",
+        "internal://danger_level": "Internal Danger Level",
+        "tdp://danger_level": "TDP Danger Level"
+    }
+    
+    STATUS_NAMES_ZH = {
+        "active": "活动 (Active)",
+        "deprecated": "已弃用 (Deprecated)",
+        "draft": "草稿 (Draft)"
+    }
+    
+    DETECTION_NAMES_ZH = {
+        "direct": "直接检测 (Direct)",
+        "indirect": "间接检测 (Indirect)",
+        "not_detectable": "无法检测 (Not Detectable)",
+        "未标注": "未标注 (Not Annotated)"
+    }
+    
     print("\n" + "=" * 60)
     print("  📊 词条统计信息")
     print("=" * 60)
@@ -131,22 +163,32 @@ def show_stats():
     print("\n📂 分类分布:")
     for cat, count in sorted(categories.items(), key=lambda x: -x[1]):
         percentage = (count / len(items)) * 100
-        print(f"  {cat:30s}: {count:3d} ({percentage:5.1f}%)")
+        cat_display = CATEGORY_NAMES_ZH.get(cat, cat)
+        print(f"  {cat_display:45s}: {count:3d} ({percentage:5.1f}%)")
     
     print("\n📋 编码系统分布:")
+    SYSTEM_DISPLAY_ZH = {
+        "SNOMED CT": "SNOMED CT (国际医学术语)",
+        "Internal": "Internal (内部编码)",
+        "TDP": "TDP (协议编码)",
+        "其他": "其他 (Other)"
+    }
     for system, count in sorted(systems.items(), key=lambda x: -x[1]):
         percentage = (count / len(items)) * 100
-        print(f"  {system:30s}: {count:3d} ({percentage:5.1f}%)")
+        system_display = SYSTEM_DISPLAY_ZH.get(system, system)
+        print(f"  {system_display:45s}: {count:3d} ({percentage:5.1f}%)")
     
     print("\n📈 状态分布:")
     for status, count in sorted(statuses.items(), key=lambda x: -x[1]):
         percentage = (count / len(items)) * 100
-        print(f"  {status:30s}: {count:3d} ({percentage:5.1f}%)")
+        status_display = STATUS_NAMES_ZH.get(status, status)
+        print(f"  {status_display:45s}: {count:3d} ({percentage:5.1f}%)")
     
     print("\n🔍 雷达检测能力:")
     for key, count in detection_stats.items():
         percentage = (count / len(items)) * 100 if count > 0 else 0
-        print(f"  {key:30s}: {count:3d} ({percentage:5.1f}%)")
+        detection_display = DETECTION_NAMES_ZH.get(key, key)
+        print(f"  {detection_display:45s}: {count:3d} ({percentage:5.1f}%)")
     
     print("\n" + "=" * 60)
 
@@ -743,13 +785,13 @@ def add_coding_entry():
 
 
 def run_all():
-    # Run full workflow: validate -> generate Markdown -> update CHANGELOG
+    # Run full workflow: validate -> generate Markdown -> update CHANGELOG -> update rules docs
     print("\n" + "=" * 60)
     print("  执行完整流程")
     print("=" * 60 + "\n")
     
     # 步骤 1: 校验 JSON
-    print("[1/3] 校验 JSON...")
+    print("[1/4] 校验 JSON...")
     from time import sleep
     for _ in tqdm(range(30), desc="校验中", ncols=70):
         sleep(0.01)
@@ -764,7 +806,7 @@ def run_all():
         print("[提示] 流程已中止")
         return
     # 步骤 2: 生成 Markdown
-    print("\n[2/3] 生成 Markdown...")
+    print("\n[2/4] 生成 Markdown...")
     for _ in tqdm(range(30), desc="生成 Markdown", ncols=70):
         sleep(0.01)
     try:
@@ -774,7 +816,7 @@ def run_all():
         print("[提示] 流程已中止")
         return
     # 步骤 3: 更新 CHANGELOG
-    print("\n[3/3] 更新 CHANGELOG...")
+    print("\n[3/4] 更新 CHANGELOG...")
     for _ in tqdm(range(30), desc="更新 CHANGELOG", ncols=70):
         sleep(0.01)
     try:
@@ -783,6 +825,17 @@ def run_all():
         print(f"\n[ERR] 更新 CHANGELOG 失败: {e}")
         print("[提示] 流程已中止")
         return
+    # 步骤 4: 更新规则文档
+    print("\n[4/4] 🤖 自动更新规则文档...")
+    for _ in tqdm(range(20), desc="更新规则文档", ncols=70):
+        sleep(0.01)
+    try:
+        from generate_rules_doc import main as generate_rules
+        generate_rules()
+        print("✅ 规则文档已自动更新")
+    except Exception as e:
+        print(f"\n⚠️ 更新规则文档失败: {e}")
+        print("[提示] 这不影响主流程，可忽略或稍后手动更新")
     print("\n" + "=" * 60)
     print("  完整流程执行完成")
     print("=" * 60 + "\n")
@@ -897,6 +950,7 @@ def menu():
         print(" 12) 恢复数据              - 从备份恢复数据")
         print("\n【系统维护】")
         print(" 13) 清理临时文件          - 删除临时目录内容")
+        print(" 14) 🤖 更新规则文档       - 自动生成目录规则文档")
         print("  0) 退出系统              - 关闭管理工具")
         print("=" * 60)
         
@@ -916,8 +970,8 @@ def menu():
             print("=" * 60)
             run_md()
             print("\n[提示] 已自动生成两份 Markdown 文档：")
-            print("  - auto_generated/coding_dictionary.md      (数据表格)")
-            print("  - auto_generated/coding_dictionary.schema.md (Schema规范)")
+            print("  - auto_generated_docs/coding_dictionary.md      (数据表格)")
+            print("  - auto_generated_docs/coding_dictionary.schema.md (Schema规范)")
             print("[建议] 可用 VS Code 预览或直接打开上述文件进行查阅。")
         elif choice == "3":
             print("\n" + "=" * 60)
@@ -947,6 +1001,19 @@ def menu():
             restore_data()
         elif choice == "13":
             clean_temp()
+        elif choice == "14":
+            print("\n" + "=" * 60)
+            print("  执行：更新规则文档")
+            print("=" * 60)
+            try:
+                from generate_rules_doc import main as generate_rules
+                generate_rules()
+                print("\n✅ 规则文档已成功更新!")
+                print("\n[提示] 已自动完成：")
+                print("  - auto_generated_docs/FILE_ORGANIZATION_RULES.md      (完整规则文档)")
+                print("  - README.md 目录规则部分                              (自动更新)")
+            except Exception as e:
+                print(f"\n❌ 更新规则文档失败: {e}")
         else:
             print("\n[提示] ❌ 无效的选项，请重新输入")
         

@@ -20,9 +20,9 @@ PROJECT_ROOT = Path(__file__).parent.parent
 # 主要文件路径
 DICTIONARY_FILE = PROJECT_ROOT / "coding_dictionary" / "coding_dictionary.json"
 SCHEMA_FILE = PROJECT_ROOT / "schema" / "coding_dictionary.schema.json"
-GENERATED_MD_FILE = PROJECT_ROOT / "generated" / "markdown" / "coding_dictionary.md"
-CHANGELOG_FILE = PROJECT_ROOT / "generated" / "changelog.md"
-SNAPSHOT_FILE = PROJECT_ROOT / "generated" / ".snapshot.json"
+GENERATED_MD_FILE = PROJECT_ROOT / "auto_generated_docs" / "markdown" / "coding_dictionary.md"
+CHANGELOG_FILE = PROJECT_ROOT / "auto_generated_docs" / "changelog.md"
+SNAPSHOT_FILE = PROJECT_ROOT / "auto_generated_docs" / ".snapshot.json"
 TEMP_DIR = PROJECT_ROOT / "temp"
 
 # ============================================================

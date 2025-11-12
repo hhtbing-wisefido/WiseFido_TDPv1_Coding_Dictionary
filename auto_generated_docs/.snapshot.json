@@ -1,5 +1,5 @@
-[
-  {
+{
+  "snomed:129006008": {
     "id": "snomed:129006008",
     "code": "129006008",
     "system": "http://snomed.info/sct",
@@ -32,7 +32,7 @@
       }
     }
   },
-  {
+  "internal:0002": {
     "id": "internal:0002",
     "code": "0002",
     "system": "internal://motion_state",
@@ -51,7 +51,7 @@
       "快跑"
     ]
   },
-  {
+  "internal:0004": {
     "id": "internal:0004",
     "code": "0004",
     "system": "internal://motion_state",
@@ -63,7 +63,7 @@
     "description": "Stationary position without horizontal displacement.",
     "description_zh": "无水平位移的静止状态。"
   },
-  {
+  "snomed:263821009": {
     "id": "snomed:263821009",
     "code": "263821009",
     "system": "http://snomed.info/sct",
@@ -88,7 +88,7 @@
       }
     }
   },
-  {
+  "snomed:22325002": {
     "id": "snomed:22325002",
     "code": "22325002",
     "system": "http://snomed.info/sct",
@@ -114,7 +114,7 @@
       }
     }
   },
-  {
+  "snomed:228439008": {
     "id": "snomed:228439008",
     "code": "228439008",
     "system": "http://snomed.info/sct",
@@ -139,7 +139,7 @@
       }
     }
   },
-  {
+  "snomed:217082002": {
     "id": "snomed:217082002",
     "code": "217082002",
     "system": "http://snomed.info/sct",
@@ -172,7 +172,7 @@
       }
     }
   },
-  {
+  "snomed:10904000": {
     "id": "snomed:10904000",
     "code": "10904000",
     "system": "http://snomed.info/sct",
@@ -203,7 +203,7 @@
       }
     }
   },
-  {
+  "snomed:33586001": {
     "id": "snomed:33586001",
     "code": "33586001",
     "system": "http://snomed.info/sct",
@@ -228,7 +228,7 @@
       }
     }
   },
-  {
+  "snomed:40199007": {
     "id": "snomed:40199007",
     "code": "40199007",
     "system": "http://snomed.info/sct",
@@ -260,7 +260,7 @@
       }
     }
   },
-  {
+  "snomed:1240000": {
     "id": "snomed:1240000",
     "code": "1240000",
     "system": "http://snomed.info/sct",
@@ -291,7 +291,7 @@
       }
     }
   },
-  {
+  "snomed:102538003": {
     "id": "snomed:102538003",
     "code": "102538003",
     "system": "http://snomed.info/sct",
@@ -322,7 +322,7 @@
       }
     }
   },
-  {
+  "snomed:102536004": {
     "id": "snomed:102536004",
     "code": "102536004",
     "system": "http://snomed.info/sct",
@@ -347,7 +347,7 @@
       }
     }
   },
-  {
+  "internal:0007": {
     "id": "internal:0007",
     "code": "0007",
     "system": "internal://posture",
@@ -366,7 +366,7 @@
       "蹲下"
     ]
   },
-  {
+  "snomed:3424008": {
     "id": "snomed:3424008",
     "code": "3424008",
     "system": "http://snomed.info/sct",
@@ -392,7 +392,7 @@
       }
     }
   },
-  {
+  "snomed:48867003": {
     "id": "snomed:48867003",
     "code": "48867003",
     "system": "http://snomed.info/sct",
@@ -418,7 +418,7 @@
       }
     }
   },
-  {
+  "snomed:1023001": {
     "id": "snomed:1023001",
     "code": "1023001",
     "system": "http://snomed.info/sct",
@@ -450,7 +450,7 @@
       }
     }
   },
-  {
+  "snomed:258158006": {
     "id": "snomed:258158006",
     "code": "258158006",
     "system": "http://snomed.info/sct",
@@ -483,7 +483,7 @@
       }
     }
   },
-  {
+  "tdp:tdp://danger_level/emergency": {
     "id": "tdp:tdp://danger_level/emergency",
     "code": "tdp://danger_level/emergency",
     "system": "tdp://danger_level",
@@ -509,7 +509,7 @@
       }
     ]
   },
-  {
+  "tdp:tdp://danger_level/alert": {
     "id": "tdp:tdp://danger_level/alert",
     "code": "tdp://danger_level/alert",
     "system": "tdp://danger_level",
@@ -534,7 +534,7 @@
       }
     ]
   },
-  {
+  "tdp:tdp://danger_level/critical": {
     "id": "tdp:tdp://danger_level/critical",
     "code": "tdp://danger_level/critical",
     "system": "tdp://danger_level",
@@ -558,7 +558,7 @@
       }
     ]
   },
-  {
+  "tdp:tdp://danger_level/warning": {
     "id": "tdp:tdp://danger_level/warning",
     "code": "tdp://danger_level/warning",
     "system": "tdp://danger_level",
@@ -583,7 +583,7 @@
       }
     ]
   },
-  {
+  "tdp:tdp://danger_level/normal": {
     "id": "tdp:tdp://danger_level/normal",
     "code": "tdp://danger_level/normal",
     "system": "tdp://danger_level",
@@ -609,7 +609,7 @@
       }
     ]
   },
-  {
+  "tdp:tdp://danger_level/unknown": {
     "id": "tdp:tdp://danger_level/unknown",
     "code": "tdp://danger_level/unknown",
     "system": "tdp://danger_level",
@@ -633,7 +633,7 @@
       }
     ]
   },
-  {
+  "internal:fall_risk": {
     "id": "internal:fall_risk",
     "code": "fall_risk",
     "system": "internal://tag",
@@ -658,7 +658,7 @@
       }
     ]
   },
-  {
+  "internal:mobility_impaired": {
     "id": "internal:mobility_impaired",
     "code": "mobility_impaired",
     "system": "internal://tag",
@@ -683,7 +683,7 @@
       }
     ]
   },
-  {
+  "internal:elderly": {
     "id": "internal:elderly",
     "code": "elderly",
     "system": "internal://tag",
@@ -709,7 +709,7 @@
       }
     ]
   },
-  {
+  "internal:0005": {
     "id": "internal:0005",
     "code": "0005",
     "system": "internal://motion_state",
@@ -721,7 +721,7 @@
     "description": "躺下动作。",
     "description_zh": "躺下动作。"
   },
-  {
+  "internal:0006": {
     "id": "internal:0006",
     "code": "0006",
     "system": "internal://motion_state",
@@ -733,7 +733,7 @@
     "description": "坐下动作。",
     "description_zh": "坐下动作。"
   },
-  {
+  "internal:0011": {
     "id": "internal:0011",
     "code": "0011",
     "system": "internal://posture",
@@ -745,7 +745,7 @@
     "description": "俯卧姿态。",
     "description_zh": "俯卧姿态。"
   },
-  {
+  "internal:dl3": {
     "id": "internal:dl3",
     "code": "dl3",
     "system": "internal://danger_level",
@@ -757,7 +757,7 @@
     "description": "高风险等级。",
     "description_zh": "高风险等级。"
   },
-  {
+  "internal:dl4": {
     "id": "internal:dl4",
     "code": "dl4",
     "system": "internal://danger_level",
@@ -769,7 +769,7 @@
     "description": "严重风险等级。",
     "description_zh": "严重风险等级。"
   },
-  {
+  "internal:tag_001": {
     "id": "internal:tag_001",
     "code": "tag_001",
     "system": "internal://tag",
@@ -781,7 +781,7 @@
     "description": "新增标签示例。",
     "description_zh": "新增标签示例。"
   },
-  {
+  "internal:tag_002": {
     "id": "internal:tag_002",
     "code": "tag_002",
     "system": "internal://tag",
@@ -793,7 +793,7 @@
     "description": "新增标签示例。",
     "description_zh": "新增标签示例。"
   },
-  {
+  "snomed:383370001": {
     "id": "snomed:383370001",
     "code": "383370001",
     "system": "http://snomed.info/sct",
@@ -826,7 +826,7 @@
       }
     }
   },
-  {
+  "snomed:402120000": {
     "id": "snomed:402120000",
     "code": "402120000",
     "system": "http://snomed.info/sct",
@@ -859,7 +859,7 @@
       }
     }
   },
-  {
+  "snomed:109030009": {
     "id": "snomed:109030009",
     "code": "109030009",
     "system": "http://snomed.info/sct",
@@ -892,7 +892,7 @@
       }
     }
   },
-  {
+  "snomed:26527006": {
     "id": "snomed:26527006",
     "code": "26527006",
     "system": "http://snomed.info/sct",
@@ -925,7 +925,7 @@
       }
     }
   },
-  {
+  "snomed:271587009": {
     "id": "snomed:271587009",
     "code": "271587009",
     "system": "http://snomed.info/sct",
@@ -958,7 +958,7 @@
       }
     }
   },
-  {
+  "snomed:414585002": {
     "id": "snomed:414585002",
     "code": "414585002",
     "system": "http://snomed.info/sct",
@@ -991,7 +991,7 @@
       }
     }
   },
-  {
+  "snomed:415568008": {
     "id": "snomed:415568008",
     "code": "415568008",
     "system": "http://snomed.info/sct",
@@ -1024,7 +1024,7 @@
       }
     }
   },
-  {
+  "snomed:414549008": {
     "id": "snomed:414549008",
     "code": "414549008",
     "system": "http://snomed.info/sct",
@@ -1057,7 +1057,7 @@
       }
     }
   },
-  {
+  "snomed:300845008": {
     "id": "snomed:300845008",
     "code": "300845008",
     "system": "http://snomed.info/sct",
@@ -1089,7 +1089,7 @@
       }
     }
   },
-  {
+  "snomed:249911004": {
     "id": "snomed:249911004",
     "code": "249911004",
     "system": "http://snomed.info/sct",
@@ -1122,7 +1122,7 @@
       }
     }
   },
-  {
+  "snomed:16973004": {
     "id": "snomed:16973004",
     "code": "16973004",
     "system": "http://snomed.info/sct",
@@ -1156,7 +1156,7 @@
       }
     }
   },
-  {
+  "snomed:397776000": {
     "id": "snomed:397776000",
     "code": "397776000",
     "system": "http://snomed.info/sct",
@@ -1190,7 +1190,7 @@
       }
     }
   },
-  {
+  "snomed:22160007": {
     "id": "snomed:22160007",
     "code": "22160007",
     "system": "http://snomed.info/sct",
@@ -1223,7 +1223,7 @@
       }
     }
   },
-  {
+  "snomed:1055001": {
     "id": "snomed:1055001",
     "code": "1055001",
     "system": "http://snomed.info/sct",
@@ -1256,7 +1256,7 @@
       }
     }
   },
-  {
+  "snomed:26079004": {
     "id": "snomed:26079004",
     "code": "26079004",
     "system": "http://snomed.info/sct",
@@ -1290,7 +1290,7 @@
       }
     }
   },
-  {
+  "snomed:314207007": {
     "id": "snomed:314207007",
     "code": "314207007",
     "system": "http://snomed.info/sct",
@@ -1323,7 +1323,7 @@
       }
     }
   },
-  {
+  "snomed:102557002": {
     "id": "snomed:102557002",
     "code": "102557002",
     "system": "http://snomed.info/sct",
@@ -1355,7 +1355,7 @@
       }
     }
   },
-  {
+  "snomed:271823003": {
     "id": "snomed:271823003",
     "code": "271823003",
     "system": "http://snomed.info/sct",
@@ -1387,7 +1387,7 @@
       }
     }
   },
-  {
+  "snomed:30128008": {
     "id": "snomed:30128008",
     "code": "30128008",
     "system": "http://snomed.info/sct",
@@ -1419,7 +1419,7 @@
       }
     }
   },
-  {
+  "snomed:248546003": {
     "id": "snomed:248546003",
     "code": "248546003",
     "system": "http://snomed.info/sct",
@@ -1450,7 +1450,7 @@
       }
     }
   },
-  {
+  "snomed:49817004": {
     "id": "snomed:49817004",
     "code": "49817004",
     "system": "http://snomed.info/sct",
@@ -1484,7 +1484,7 @@
       }
     }
   },
-  {
+  "snomed:271636001": {
     "id": "snomed:271636001",
     "code": "271636001",
     "system": "http://snomed.info/sct",
@@ -1516,7 +1516,7 @@
       }
     }
   },
-  {
+  "snomed:342400002": {
     "id": "snomed:342400002",
     "code": "342400002",
     "system": "http://snomed.info/sct",
@@ -1548,7 +1548,7 @@
       }
     }
   },
-  {
+  "snomed:49049000": {
     "id": "snomed:49049000",
     "code": "49049000",
     "system": "http://snomed.info/sct",
@@ -1574,7 +1574,7 @@
       }
     ]
   },
-  {
+  "snomed:230690007": {
     "id": "snomed:230690007",
     "code": "230690007",
     "system": "http://snomed.info/sct",
@@ -1602,7 +1602,7 @@
       }
     ]
   },
-  {
+  "snomed:22298006": {
     "id": "snomed:22298006",
     "code": "22298006",
     "system": "http://snomed.info/sct",
@@ -1630,7 +1630,7 @@
       }
     ]
   },
-  {
+  "snomed:29857009": {
     "id": "snomed:29857009",
     "code": "29857009",
     "system": "http://snomed.info/sct",
@@ -1656,7 +1656,7 @@
       }
     ]
   },
-  {
+  "snomed:129839007": {
     "id": "snomed:129839007",
     "code": "129839007",
     "system": "http://snomed.info/sct",
@@ -1682,7 +1682,7 @@
       }
     ]
   },
-  {
+  "snomed:225602000": {
     "id": "snomed:225602000",
     "code": "225602000",
     "system": "http://snomed.info/sct",
@@ -1707,7 +1707,7 @@
       }
     ]
   },
-  {
+  "snomed:17535004": {
     "id": "snomed:17535004",
     "code": "17535004",
     "system": "http://snomed.info/sct",
@@ -1733,7 +1733,7 @@
       }
     ]
   },
-  {
+  "snomed:43029002": {
     "id": "snomed:43029002",
     "code": "43029002",
     "system": "http://snomed.info/sct",
@@ -1758,7 +1758,7 @@
       }
     ]
   },
-  {
+  "internal:apnea_confirmed": {
     "id": "internal:apnea_confirmed",
     "code": "Apnea.Confirmed",
     "system": "internal://tag",
@@ -1783,7 +1783,7 @@
       }
     ]
   },
-  {
+  "internal:apnea_suspected": {
     "id": "internal:apnea_suspected",
     "code": "Apnea.Suspected",
     "system": "internal://tag",
@@ -1808,7 +1808,7 @@
       }
     ]
   },
-  {
+  "internal:cardiac_pause_confirmed": {
     "id": "internal:cardiac_pause_confirmed",
     "code": "CardiacPause.Confirmed",
     "system": "internal://tag",
@@ -1833,7 +1833,7 @@
       }
     ]
   },
-  {
+  "internal:cardiac_pause_suspected": {
     "id": "internal:cardiac_pause_suspected",
     "code": "CardiacPause.Suspected",
     "system": "internal://tag",
@@ -1858,7 +1858,7 @@
       }
     ]
   },
-  {
+  "internal:convulsion": {
     "id": "internal:convulsion",
     "code": "Convulsion",
     "system": "internal://tag",
@@ -1884,7 +1884,7 @@
       }
     ]
   },
-  {
+  "internal:convulsion_suspected": {
     "id": "internal:convulsion_suspected",
     "code": "Convulsion.Suspected",
     "system": "internal://tag",
@@ -1909,7 +1909,7 @@
       }
     ]
   },
-  {
+  "internal:fall_suspected": {
     "id": "internal:fall_suspected",
     "code": "Fall.Suspected",
     "system": "internal://tag",
@@ -1934,7 +1934,7 @@
       }
     ]
   },
-  {
+  "internal:on_floor": {
     "id": "internal:on_floor",
     "code": "OnFloor",
     "system": "internal://tag",
@@ -1960,7 +1960,7 @@
       }
     ]
   },
-  {
+  "internal:prolonged_stay": {
     "id": "internal:prolonged_stay",
     "code": "ProlongedStay",
     "system": "internal://tag",
@@ -1986,7 +1986,7 @@
       }
     ]
   },
-  {
+  "internal:no_turning": {
     "id": "internal:no_turning",
     "code": "NoTurning",
     "system": "internal://tag",
@@ -2011,7 +2011,7 @@
       }
     ]
   },
-  {
+  "internal:lying_in_bed": {
     "id": "internal:lying_in_bed",
     "code": "LyingInBed",
     "system": "internal://tag",
@@ -2037,7 +2037,7 @@
       }
     ]
   },
-  {
+  "internal:sitting_in_bed": {
     "id": "internal:sitting_in_bed",
     "code": "SittingInBed",
     "system": "internal://tag",
@@ -2062,7 +2062,7 @@
       }
     ]
   },
-  {
+  "internal:into_bed": {
     "id": "internal:into_bed",
     "code": "IntoBed",
     "system": "internal://tag",
@@ -2087,7 +2087,7 @@
       }
     ]
   },
-  {
+  "internal:out_of_bed": {
     "id": "internal:out_of_bed",
     "code": "OutOfBed",
     "system": "internal://tag",
@@ -2112,4 +2112,4 @@
       }
     ]
   }
-]
+}

@@ -20,11 +20,11 @@ import sys
 
 
 SCHEMA_FILE = _config.SCHEMA_FILE
-SCHEMA_MD_FILE = Path("auto_generated/coding_dictionary.schema.md")
+SCHEMA_MD_FILE = Path("auto_generated_docs/coding_dictionary.schema.md")
 
 # 数据源与输出路径
 SRC = Path("coding_dictionary/coding_dictionary.json")
-OUT_DIR = Path("auto_generated")
+OUT_DIR = Path("auto_generated_docs")
 
 # 分类名称映射
 CATEGORY_NAMES = {
