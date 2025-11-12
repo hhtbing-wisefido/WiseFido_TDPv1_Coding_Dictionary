@@ -1,0 +1,15 @@
+{
+  "id": "internal:0007",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Squatting or crouched position.",
+  "description_zh": "蹲下或蜷缩的姿势。",
+  "synonyms": [
+    "Squatting"
+  ],
+  "synonyms_zh": [
+    "蹲姿",
+    "蹲下"
+  ]
+}

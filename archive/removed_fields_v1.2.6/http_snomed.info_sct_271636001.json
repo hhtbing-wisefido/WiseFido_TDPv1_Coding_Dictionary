@@ -1,0 +1,28 @@
+{
+  "id": "snomed:271636001",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Clinical finding of abnormally fast heart rate.",
+  "description_zh": "心动过速的临床发现。",
+  "synonyms": [
+    "Fast heart rate finding"
+  ],
+  "synonyms_zh": [
+    "心率过快发现"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "1.4 心率相关（Heart Rate，雷达检测心跳位移）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "静止后运动心率>100 bpm，结合胸痛用于心梗预警",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

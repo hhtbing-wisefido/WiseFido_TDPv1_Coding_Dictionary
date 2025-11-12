@@ -1,0 +1,21 @@
+{
+  "id": "internal:no_turning",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "No body position change detected during sleep.",
+  "description_zh": "睡眠期间未检测到身体位置变化。",
+  "synonyms": [
+    "No position change"
+  ],
+  "synonyms_zh": [
+    "未变换体位",
+    "长时间同一姿势"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 行为类"
+    }
+  ]
+}

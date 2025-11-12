@@ -1,0 +1,21 @@
+{
+  "id": "tdp:tdp://danger_level/warning",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Abnormal situation requiring monitoring.",
+  "description_zh": "异常情况，需要监测。",
+  "synonyms": [
+    "Caution"
+  ],
+  "synonyms_zh": [
+    "注意",
+    "橙色预警"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ]
+}

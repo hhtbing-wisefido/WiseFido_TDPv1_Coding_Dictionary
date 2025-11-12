@@ -1,0 +1,22 @@
+{
+  "id": "tdp:tdp://danger_level/emergency",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Immediate life-threatening situation requiring urgent intervention.",
+  "description_zh": "立即威胁生命的情况，需要紧急干预。",
+  "synonyms": [
+    "Critical Emergency",
+    "Code Red"
+  ],
+  "synonyms_zh": [
+    "危急",
+    "红色预警"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ]
+}

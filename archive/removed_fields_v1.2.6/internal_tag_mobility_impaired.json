@@ -1,0 +1,21 @@
+{
+  "id": "internal:mobility_impaired",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Reduced or limited movement capability.",
+  "description_zh": "运动能力减弱或受限。",
+  "synonyms": [
+    "Limited Mobility"
+  ],
+  "synonyms_zh": [
+    "活动受限",
+    "移动困难"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "Tag定义"
+    }
+  ]
+}

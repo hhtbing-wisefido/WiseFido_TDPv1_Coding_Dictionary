@@ -1,0 +1,8 @@
+{
+  "id": "internal:dl3",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "高风险等级。",
+  "description_zh": "高风险等级。"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "internal:apnea_suspected",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Suspected apnea event (>=10S).",
+  "description_zh": "疑似呼吸暂停 (>=10S)。",
+  "synonyms": [
+    "Possible apnea"
+  ],
+  "synonyms_zh": [
+    "可能呼吸暂停",
+    "疑似屏气"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

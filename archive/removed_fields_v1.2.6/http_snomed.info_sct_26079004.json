@@ -1,0 +1,30 @@
+{
+  "id": "snomed:26079004",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Involuntary rhythmic muscle contraction, common in Parkinson's and stroke.",
+  "description_zh": "不自主的节律性肌肉收缩，常见于帕金森和中风。",
+  "synonyms": [
+    "Shaking",
+    "Trembling"
+  ],
+  "synonyms_zh": [
+    "颤抖",
+    "震颤"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "1.1 颤抖相关（Tremor，雷达检测微振动）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "起身时微多普勒>4Hz检测，频率分析",
+      "confidence": "high",
+      "frequency_range": "4-6 Hz"
+    }
+  }
+}

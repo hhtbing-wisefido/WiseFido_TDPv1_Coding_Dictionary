@@ -1,0 +1,20 @@
+{
+  "id": "tdp:tdp://danger_level/critical",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Severe abnormality requiring immediate evaluation.",
+  "description_zh": "严重异常，需要立即评估。",
+  "synonyms": [
+    "Severe"
+  ],
+  "synonyms_zh": [
+    "严重"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ]
+}

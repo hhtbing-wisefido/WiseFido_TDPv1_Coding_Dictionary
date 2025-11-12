@@ -1,0 +1,29 @@
+{
+  "id": "snomed:249911004",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Gait with small steps and dragging feet, typical of Parkinson's disease.",
+  "description_zh": "小步幅、拖步特征，帕金森病典型步态。",
+  "synonyms": [
+    "Dragging gait"
+  ],
+  "synonyms_zh": [
+    "拖步",
+    "拖行步态"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "雷达检测小步幅（<30 cm）、低步频（<1 Hz）和拖步特征（微多普勒频谱连续性）",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

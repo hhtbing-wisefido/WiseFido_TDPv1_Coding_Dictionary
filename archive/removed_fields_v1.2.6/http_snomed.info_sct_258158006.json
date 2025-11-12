@@ -1,0 +1,29 @@
+{
+  "id": "snomed:258158006",
+  "category": "disorder_condition_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Natural periodic state of rest.",
+  "description_zh": "自然周期性休息状态。",
+  "synonyms": [
+    "Sleeping"
+  ],
+  "synonyms_zh": [
+    "睡觉",
+    "休息"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "四、健康状况（HealthCondition Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "躺卧姿态 + 呼吸规律 + 微动减少（需持续观测）",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

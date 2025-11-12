@@ -1,0 +1,21 @@
+{
+  "id": "internal:cardiac_pause_confirmed",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Confirmed cardiac pause (>=3S).",
+  "description_zh": "确诊心率暂停 (>=3S)。",
+  "synonyms": [
+    "Confirmed heart pause"
+  ],
+  "synonyms_zh": [
+    "确诊心跳暂停",
+    "心脏停搏确认"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

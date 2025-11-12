@@ -1,0 +1,29 @@
+{
+  "id": "snomed:415568008",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "General movement without specific gait pattern.",
+  "description_zh": "移动中，无特定步态模式。",
+  "synonyms": [
+    "In motion",
+    "Moving around"
+  ],
+  "synonyms_zh": [
+    "运动中",
+    "活动中"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "雷达检测任意非零速度（vel_x/y/z ≠ 0）",
+      "confidence": "high"
+    }
+  }
+}

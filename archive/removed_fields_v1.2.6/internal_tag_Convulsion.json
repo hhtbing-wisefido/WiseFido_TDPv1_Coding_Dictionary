@@ -1,0 +1,22 @@
+{
+  "id": "internal:convulsion",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Involuntary muscle contraction and spasm.",
+  "description_zh": "不自主的肌肉收缩和痉挛。",
+  "synonyms": [
+    "Seizure activity",
+    "Spasm"
+  ],
+  "synonyms_zh": [
+    "痉挛",
+    "抽风"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

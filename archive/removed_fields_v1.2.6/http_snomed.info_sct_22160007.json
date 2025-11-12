@@ -1,0 +1,29 @@
+{
+  "id": "snomed:22160007",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Fast, short steps with forward-leaning posture, seen in Parkinson's.",
+  "description_zh": "快速小步伴前倾姿势，见于帕金森病。",
+  "synonyms": [
+    "Hurried gait"
+  ],
+  "synonyms_zh": [
+    "急促步态",
+    "前冲步态"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "雷达检测快速小步（步频>2 Hz，步幅<20 cm）",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

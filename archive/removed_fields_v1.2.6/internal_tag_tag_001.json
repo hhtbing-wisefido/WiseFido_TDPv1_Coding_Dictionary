@@ -1,0 +1,8 @@
+{
+  "id": "internal:tag_001",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "新增标签示例。",
+  "description_zh": "新增标签示例。"
+}

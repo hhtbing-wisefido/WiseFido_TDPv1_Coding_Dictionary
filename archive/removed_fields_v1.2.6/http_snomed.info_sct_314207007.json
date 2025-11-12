@@ -1,0 +1,29 @@
+{
+  "id": "snomed:314207007",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Tremor occurring when muscles are at rest, classic sign of Parkinson's disease.",
+  "description_zh": "静止时发生的震颤，帕金森病的经典征象。",
+  "synonyms": [
+    "Parkinsonian tremor"
+  ],
+  "synonyms_zh": [
+    "帕金森震颤",
+    "静止震颤"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "1.1 颤抖相关（Tremor，雷达检测微振动）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "静止5分钟后检测到微颤，结合心率用于中风风险评估",
+      "confidence": "high",
+      "frequency_range": "4-6 Hz"
+    }
+  }
+}

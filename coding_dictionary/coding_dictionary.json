@@ -1,2115 +1,476 @@
 [
   {
-    "id": "snomed:129006008",
+    "system": "http://snomed.info/sct",
     "code": "129006008",
-    "system": "http://snomed.info/sct",
     "display": "Walking",
-    "display_zh": "步行",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Periodic gait pattern with low to moderate speed.",
-    "description_zh": "周期性步态，速度低到中等。",
-    "synonyms": [
-      "Ambulation",
-      "Gait"
-    ],
-    "synonyms_zh": [
-      "行走",
-      "走路"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、实际可检测的运动状态总结"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "步行"
   },
   {
-    "id": "internal:0002",
+    "system": "internal://motion_state",
     "code": "0002",
-    "system": "internal://motion_state",
     "display": "Running",
-    "display_zh": "奔跑",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Fast movement with increased step frequency.",
-    "description_zh": "速度较快,步频提升。",
-    "synonyms": [
-      "Jogging"
-    ],
-    "synonyms_zh": [
-      "跑步",
-      "快跑"
-    ]
+    "display_zh": "奔跑"
   },
   {
-    "id": "internal:0004",
+    "system": "internal://motion_state",
     "code": "0004",
-    "system": "internal://motion_state",
     "display": "Standing Still",
-    "display_zh": "静止站立",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Stationary position without horizontal displacement.",
-    "description_zh": "无水平位移的静止状态。"
+    "display_zh": "静止站立"
   },
   {
-    "id": "snomed:263821009",
+    "system": "http://snomed.info/sct",
     "code": "263821009",
-    "system": "http://snomed.info/sct",
     "display": "Static",
-    "display_zh": "静止",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "No significant displacement or movement.",
-    "description_zh": "无明显位移或运动。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "速度接近零（vel_x/y/z < 1 cm/s）且持续>5秒",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "静止"
   },
   {
-    "id": "snomed:22325002",
+    "system": "http://snomed.info/sct",
     "code": "22325002",
-    "system": "http://snomed.info/sct",
     "display": "Abnormal Gait",
-    "display_zh": "异常步态",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Irregular or pathological walking pattern.",
-    "description_zh": "不规则或病理性行走模式。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、实际可检测的运动状态总结"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "步态周期不规律、速度波动异常（需ML模型辅助判断）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "异常步态"
   },
   {
-    "id": "snomed:228439008",
+    "system": "http://snomed.info/sct",
     "code": "228439008",
-    "system": "http://snomed.info/sct",
     "display": "Slow Walking",
-    "display_zh": "缓慢行走",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Walking at reduced speed.",
-    "description_zh": "以较慢速度行走。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、实际可检测的运动状态总结"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "速度检测（5 cm/s < vel < 10 cm/s）+ 周期性步态",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "缓慢行走"
   },
   {
-    "id": "snomed:217082002",
+    "system": "http://snomed.info/sct",
     "code": "217082002",
-    "system": "http://snomed.info/sct",
     "display": "Falls",
-    "display_zh": "跌倒",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Unintentional descent to lower level.",
-    "description_zh": "非自主性地下降到较低水平。",
-    "synonyms": [
-      "Falling",
-      "Fall Event"
-    ],
-    "synonyms_zh": [
-      "摔倒",
-      "跌落事件"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "加速度突变（>2g）+ 姿态快速变化（站立→躺卧<1秒）",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "跌倒"
   },
   {
-    "id": "snomed:10904000",
+    "system": "http://snomed.info/sct",
     "code": "10904000",
-    "system": "http://snomed.info/sct",
     "display": "Standing",
-    "display_zh": "站立",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Upright body position on feet.",
-    "description_zh": "双脚支撑的直立身体姿势。",
-    "synonyms": [
-      "Upright Position"
-    ],
-    "synonyms_zh": [
-      "直立姿势"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度>1.2m + 速度<5 cm/s",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "站立"
   },
   {
-    "id": "snomed:33586001",
+    "system": "http://snomed.info/sct",
     "code": "33586001",
-    "system": "http://snomed.info/sct",
     "display": "Sitting",
-    "display_zh": "坐姿",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Seated position with support.",
-    "description_zh": "有支撑的坐着姿势。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度 0.6-1.0m + 静止或微动",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "坐姿"
   },
   {
-    "id": "snomed:40199007",
+    "system": "http://snomed.info/sct",
     "code": "40199007",
-    "system": "http://snomed.info/sct",
     "display": "Lying Supine",
-    "display_zh": "仰卧",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Lying on back with face upward.",
-    "description_zh": "背部着地，面部朝上的躺卧姿势。",
-    "synonyms": [
-      "Supine Position"
-    ],
-    "synonyms_zh": [
-      "仰躺",
-      "平卧"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度<0.5m + 水平姿态 + 呼吸信号明显",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "仰卧"
   },
   {
-    "id": "snomed:1240000",
+    "system": "http://snomed.info/sct",
     "code": "1240000",
-    "system": "http://snomed.info/sct",
     "display": "Lying Prone",
-    "display_zh": "俯卧",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Lying face down.",
-    "description_zh": "面部朝下的躺卧姿势。",
-    "synonyms": [
-      "Prone Position"
-    ],
-    "synonyms_zh": [
-      "趴卧"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "躯干质心低 + 呼吸信号微弱（胸部受压）",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "俯卧"
   },
   {
-    "id": "snomed:102538003",
+    "system": "http://snomed.info/sct",
     "code": "102538003",
-    "system": "http://snomed.info/sct",
     "display": "Lying Lateral",
-    "display_zh": "侧卧",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Lying on side.",
-    "description_zh": "侧身躺卧的姿势。",
-    "synonyms": [
-      "Side-Lying"
-    ],
-    "synonyms_zh": [
-      "侧躺"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心低 + 侧向姿态 + 呼吸信号",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "侧卧"
   },
   {
-    "id": "snomed:102536004",
+    "system": "http://snomed.info/sct",
     "code": "102536004",
-    "system": "http://snomed.info/sct",
     "display": "Recumbent",
-    "display_zh": "斜倚",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Reclining or leaning back position.",
-    "description_zh": "斜靠或后仰的姿势。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "一、体位（Posture Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "躯干角度30-60度 + 质心中等高度",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "斜倚"
   },
   {
-    "id": "internal:0007",
+    "system": "internal://posture",
     "code": "0007",
-    "system": "internal://posture",
     "display": "Crouching",
-    "display_zh": "蹲伏",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Squatting or crouched position.",
-    "description_zh": "蹲下或蜷缩的姿势。",
-    "synonyms": [
-      "Squatting"
-    ],
-    "synonyms_zh": [
-      "蹲姿",
-      "蹲下"
-    ]
+    "display_zh": "蹲伏"
   },
   {
-    "id": "snomed:3424008",
+    "system": "http://snomed.info/sct",
     "code": "3424008",
-    "system": "http://snomed.info/sct",
     "display": "Tachycardia",
-    "display_zh": "心动过速",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Abnormally fast heart rate (>100 bpm).",
-    "description_zh": "心率异常过快（>100次/分钟）。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "四、健康状况（HealthCondition Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "心跳频率检测（需高精度算法）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "心动过速"
   },
   {
-    "id": "snomed:48867003",
+    "system": "http://snomed.info/sct",
     "code": "48867003",
-    "system": "http://snomed.info/sct",
     "display": "Bradycardia",
-    "display_zh": "心动过缓",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Abnormally slow heart rate (<60 bpm).",
-    "description_zh": "心率异常过慢（<60次/分钟）。",
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "四、健康状况（HealthCondition Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "心跳频率检测（需静止状态+长时间观测）",
-        "confidence": "low",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "心动过缓"
   },
   {
-    "id": "snomed:1023001",
+    "system": "http://snomed.info/sct",
     "code": "1023001",
-    "system": "http://snomed.info/sct",
     "display": "Apnea",
-    "display_zh": "呼吸暂停",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Temporary cessation of breathing.",
-    "description_zh": "暂时性呼吸停止。",
-    "synonyms": [
-      "Breath Holding"
-    ],
-    "synonyms_zh": [
-      "屏气",
-      "窒息"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "四、健康状况（HealthCondition Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "呼吸波形消失>10秒",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "呼吸暂停"
   },
   {
-    "id": "snomed:258158006",
+    "system": "http://snomed.info/sct",
     "code": "258158006",
-    "system": "http://snomed.info/sct",
     "display": "Sleep",
-    "display_zh": "睡眠",
-    "category": "disorder_condition_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Natural periodic state of rest.",
-    "description_zh": "自然周期性休息状态。",
-    "synonyms": [
-      "Sleeping"
-    ],
-    "synonyms_zh": [
-      "睡觉",
-      "休息"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "四、健康状况（HealthCondition Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "躺卧姿态 + 呼吸规律 + 微动减少（需持续观测）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "睡眠"
   },
   {
-    "id": "tdp:tdp://danger_level/emergency",
+    "system": "tdp://danger_level",
     "code": "tdp://danger_level/emergency",
-    "system": "tdp://danger_level",
     "display": "Emergency",
-    "display_zh": "紧急",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Immediate life-threatening situation requiring urgent intervention.",
-    "description_zh": "立即威胁生命的情况，需要紧急干预。",
-    "synonyms": [
-      "Critical Emergency",
-      "Code Red"
-    ],
-    "synonyms_zh": [
-      "危急",
-      "红色预警"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "紧急"
   },
   {
-    "id": "tdp:tdp://danger_level/alert",
+    "system": "tdp://danger_level",
     "code": "tdp://danger_level/alert",
-    "system": "tdp://danger_level",
     "display": "Alert",
-    "display_zh": "警报",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Serious situation requiring prompt attention.",
-    "description_zh": "严重情况，需要及时关注。",
-    "synonyms": [
-      "High Alert"
-    ],
-    "synonyms_zh": [
-      "高度警戒",
-      "黄色预警"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "警报"
   },
   {
-    "id": "tdp:tdp://danger_level/critical",
+    "system": "tdp://danger_level",
     "code": "tdp://danger_level/critical",
-    "system": "tdp://danger_level",
     "display": "Critical",
-    "display_zh": "危急",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Severe abnormality requiring immediate evaluation.",
-    "description_zh": "严重异常，需要立即评估。",
-    "synonyms": [
-      "Severe"
-    ],
-    "synonyms_zh": [
-      "严重"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "危急"
   },
   {
-    "id": "tdp:tdp://danger_level/warning",
+    "system": "tdp://danger_level",
     "code": "tdp://danger_level/warning",
-    "system": "tdp://danger_level",
     "display": "Warning",
-    "display_zh": "警告",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Abnormal situation requiring monitoring.",
-    "description_zh": "异常情况，需要监测。",
-    "synonyms": [
-      "Caution"
-    ],
-    "synonyms_zh": [
-      "注意",
-      "橙色预警"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "警告"
   },
   {
-    "id": "tdp:tdp://danger_level/normal",
+    "system": "tdp://danger_level",
     "code": "tdp://danger_level/normal",
-    "system": "tdp://danger_level",
     "display": "Normal",
-    "display_zh": "正常",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Within expected parameters, no concern.",
-    "description_zh": "在预期范围内，无需担心。",
-    "synonyms": [
-      "Safe",
-      "Stable"
-    ],
-    "synonyms_zh": [
-      "安全",
-      "稳定"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "正常"
   },
   {
-    "id": "tdp:tdp://danger_level/unknown",
-    "code": "tdp://danger_level/unknown",
     "system": "tdp://danger_level",
+    "code": "tdp://danger_level/unknown",
     "display": "Unknown",
-    "display_zh": "未知",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Insufficient data to determine danger level.",
-    "description_zh": "数据不足，无法确定危险等级。",
-    "synonyms": [
-      "Indeterminate"
-    ],
-    "synonyms_zh": [
-      "不确定"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "DangerLevel定义"
-      }
-    ]
+    "display_zh": "未知"
   },
   {
-    "id": "internal:fall_risk",
+    "system": "internal://tag",
     "code": "fall_risk",
-    "system": "internal://tag",
     "display": "Fall Risk",
-    "display_zh": "跌倒风险",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Indicator for potential fall hazard.",
-    "description_zh": "潜在跌倒危险的指示器。",
-    "synonyms": [
-      "High Fall Risk"
-    ],
-    "synonyms_zh": [
-      "高跌倒风险",
-      "易摔倒"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "Tag定义"
-      }
-    ]
+    "display_zh": "跌倒风险"
   },
   {
-    "id": "internal:mobility_impaired",
+    "system": "internal://tag",
     "code": "mobility_impaired",
-    "system": "internal://tag",
     "display": "Mobility Impaired",
-    "display_zh": "行动受限",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Reduced or limited movement capability.",
-    "description_zh": "运动能力减弱或受限。",
-    "synonyms": [
-      "Limited Mobility"
-    ],
-    "synonyms_zh": [
-      "活动受限",
-      "移动困难"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "Tag定义"
-      }
-    ]
+    "display_zh": "行动受限"
   },
   {
-    "id": "internal:elderly",
+    "system": "internal://tag",
     "code": "elderly",
-    "system": "internal://tag",
     "display": "Elderly",
-    "display_zh": "老年人",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Aged population requiring special attention.",
-    "description_zh": "需要特别关注的老年人群。",
-    "synonyms": [
-      "Senior Citizen",
-      "Aged"
-    ],
-    "synonyms_zh": [
-      "老人",
-      "长者"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "Tag定义"
-      }
-    ]
+    "display_zh": "老年人"
   },
   {
-    "id": "internal:0005",
+    "system": "internal://motion_state",
     "code": "0005",
-    "system": "internal://motion_state",
     "display": "Lying Down",
-    "display_zh": "躺下",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "躺下动作。",
-    "description_zh": "躺下动作。"
+    "display_zh": "躺下"
   },
   {
-    "id": "internal:0006",
-    "code": "0006",
     "system": "internal://motion_state",
+    "code": "0006",
     "display": "Sitting Down",
-    "display_zh": "坐下",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "坐下动作。",
-    "description_zh": "坐下动作。"
+    "display_zh": "坐下"
   },
   {
-    "id": "internal:0011",
-    "code": "0011",
     "system": "internal://posture",
+    "code": "0011",
     "display": "Lying Prone",
-    "display_zh": "俯卧",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "俯卧姿态。",
-    "description_zh": "俯卧姿态。"
+    "display_zh": "俯卧"
   },
   {
-    "id": "internal:dl3",
+    "system": "internal://danger_level",
     "code": "dl3",
-    "system": "internal://danger_level",
     "display": "High Risk",
-    "display_zh": "高风险",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "高风险等级。",
-    "description_zh": "高风险等级。"
+    "display_zh": "高风险"
   },
   {
-    "id": "internal:dl4",
-    "code": "dl4",
     "system": "internal://danger_level",
+    "code": "dl4",
     "display": "Critical",
-    "display_zh": "严重风险",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "严重风险等级。",
-    "description_zh": "严重风险等级。"
+    "display_zh": "严重风险"
   },
   {
-    "id": "internal:tag_001",
+    "system": "internal://tag",
     "code": "tag_001",
-    "system": "internal://tag",
     "display": "New Tag 1",
-    "display_zh": "新标签1",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "新增标签示例。",
-    "description_zh": "新增标签示例。"
+    "display_zh": "新标签1"
   },
   {
-    "id": "internal:tag_002",
+    "system": "internal://tag",
     "code": "tag_002",
-    "system": "internal://tag",
     "display": "New Tag 2",
-    "display_zh": "新标签2",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "新增标签示例。",
-    "description_zh": "新增标签示例。"
+    "display_zh": "新标签2"
   },
   {
-    "id": "snomed:383370001",
+    "system": "http://snomed.info/sct",
     "code": "383370001",
-    "system": "http://snomed.info/sct",
     "display": "Standing Position",
-    "display_zh": "站立姿势",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "General standing posture, suitable for most scenarios such as standing monitoring or posture evaluation.",
-    "description_zh": "通用站立姿势，适用于大多数场景，如站立监测或姿势评估。",
-    "synonyms": [
-      "Standing",
-      "Upright"
-    ],
-    "synonyms_zh": [
-      "站立",
-      "直立"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "SNOMED CT 常用姿势标准术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度>1.2m + 速度<5 cm/s",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "站立姿势"
   },
   {
-    "id": "snomed:402120000",
+    "system": "http://snomed.info/sct",
     "code": "402120000",
-    "system": "http://snomed.info/sct",
     "display": "Sitting Position",
-    "display_zh": "坐姿",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "General sitting posture, suitable for describing patient in seated state.",
-    "description_zh": "通用坐姿，适用于描述患者处于坐位状态。",
-    "synonyms": [
-      "Seated",
-      "Sitting"
-    ],
-    "synonyms_zh": [
-      "坐着",
-      "坐位"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "SNOMED CT 常用姿势标准术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度 0.6-1.0m + 静止或微动",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "坐姿"
   },
   {
-    "id": "snomed:109030009",
+    "system": "http://snomed.info/sct",
     "code": "109030009",
-    "system": "http://snomed.info/sct",
     "display": "Lying Position",
-    "display_zh": "躺卧姿势",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "General lying position, suitable for describing lying flat or on side.",
-    "description_zh": "通用躺卧姿势，适用于描述平躺或侧卧等状态。",
-    "synonyms": [
-      "Lying",
-      "Recumbent"
-    ],
-    "synonyms_zh": [
-      "躺卧",
-      "卧位"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "SNOMED CT 常用姿势标准术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心高度<0.5m + 呼吸信号可检测",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "躺卧姿势"
   },
   {
-    "id": "snomed:26527006",
+    "system": "http://snomed.info/sct",
     "code": "26527006",
-    "system": "http://snomed.info/sct",
     "display": "Supine Position",
-    "display_zh": "仰卧位",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Supine lying position for routine examination and rest state monitoring.",
-    "description_zh": "仰卧姿势，常规检查、休息状态监测。",
-    "synonyms": [
-      "Supine",
-      "Lying on back"
-    ],
-    "synonyms_zh": [
-      "仰卧",
-      "平卧"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "补充常用姿势术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "躯干质心<0.5m + 水平姿态 + 呼吸信号明显",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "仰卧位"
   },
   {
-    "id": "snomed:271587009",
+    "system": "http://snomed.info/sct",
     "code": "271587009",
-    "system": "http://snomed.info/sct",
     "display": "Prone Position",
-    "display_zh": "俯卧位",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Prone position for surgical positioning and respiratory therapy.",
-    "description_zh": "俯卧姿势，手术体位、呼吸治疗。",
-    "synonyms": [
-      "Prone",
-      "Lying face down"
-    ],
-    "synonyms_zh": [
-      "俯卧",
-      "趴卧"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "补充常用姿势术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "躯干质心低 + 呼吸信号微弱（胸部受压）",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "俯卧位"
   },
   {
-    "id": "snomed:414585002",
+    "system": "http://snomed.info/sct",
     "code": "414585002",
-    "system": "http://snomed.info/sct",
     "display": "Semi-Fowler's Position",
-    "display_zh": "半卧位",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Semi-recumbent position with head elevated 30-45 degrees.",
-    "description_zh": "半卧位（床头抬高30-45度），用于呼吸困难患者、术后护理。",
-    "synonyms": [
-      "Semi-recumbent",
-      "Semi-sitting"
-    ],
-    "synonyms_zh": [
-      "半坐卧位",
-      "半躺"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "补充常用姿势术语"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "躯干角度30-45度 + 质心中等高度",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "半卧位"
   },
   {
-    "id": "snomed:415568008",
+    "system": "http://snomed.info/sct",
     "code": "415568008",
-    "system": "http://snomed.info/sct",
     "display": "Moving",
-    "display_zh": "移动中",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "General movement without specific gait pattern.",
-    "description_zh": "移动中，无特定步态模式。",
-    "synonyms": [
-      "In motion",
-      "Moving around"
-    ],
-    "synonyms_zh": [
-      "运动中",
-      "活动中"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "雷达检测任意非零速度（vel_x/y/z ≠ 0）",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "移动中"
   },
   {
-    "id": "snomed:414549008",
+    "system": "http://snomed.info/sct",
     "code": "414549008",
-    "system": "http://snomed.info/sct",
     "display": "Standing Up",
-    "display_zh": "起立中",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Movement from sitting or lying to standing position.",
-    "description_zh": "从坐姿或躺卧到站立的动作过程。",
-    "synonyms": [
-      "Rising",
-      "Getting up"
-    ],
-    "synonyms_zh": [
-      "起身",
-      "站起"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "雷达检测垂直位移（pos_z 增加>30 cm）和速度变化",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "起立中"
   },
   {
-    "id": "snomed:300845008",
+    "system": "http://snomed.info/sct",
     "code": "300845008",
-    "system": "http://snomed.info/sct",
     "display": "Sitting Down",
-    "display_zh": "坐下中",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Movement from standing to sitting position.",
-    "description_zh": "从站立到坐姿的动作过程。",
-    "synonyms": [
-      "Taking a seat"
-    ],
-    "synonyms_zh": [
-      "坐下",
-      "落座"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "雷达检测垂直位移（pos_z 减少>30 cm）和速度变化",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "坐下中"
   },
   {
-    "id": "snomed:249911004",
+    "system": "http://snomed.info/sct",
     "code": "249911004",
-    "system": "http://snomed.info/sct",
     "display": "Shuffling Gait",
-    "display_zh": "拖曳步态",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Gait with small steps and dragging feet, typical of Parkinson's disease.",
-    "description_zh": "小步幅、拖步特征，帕金森病典型步态。",
-    "synonyms": [
-      "Dragging gait"
-    ],
-    "synonyms_zh": [
-      "拖步",
-      "拖行步态"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "雷达检测小步幅（<30 cm）、低步频（<1 Hz）和拖步特征（微多普勒频谱连续性）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "拖曳步态"
   },
   {
-    "id": "snomed:16973004",
+    "system": "http://snomed.info/sct",
     "code": "16973004",
-    "system": "http://snomed.info/sct",
     "display": "Ataxic Gait",
-    "display_zh": "共济失调步态",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Uncoordinated gait with irregular trajectory, related to stroke.",
-    "description_zh": "协调性差的运动，步态轨迹不规则，常见于中风患者。",
-    "synonyms": [
-      "Uncoordinated gait",
-      "Ataxia"
-    ],
-    "synonyms_zh": [
-      "失调步态",
-      "共济失调"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "雷达检测步态轨迹不规则（pos_x/y 随机波动）和平衡失调",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "共济失调步态"
   },
   {
-    "id": "snomed:397776000",
+    "system": "http://snomed.info/sct",
     "code": "397776000",
-    "system": "http://snomed.info/sct",
     "display": "Freezing of Gait",
-    "display_zh": "步态冻结",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Sudden inability to initiate or continue walking, typical of advanced Parkinson's.",
-    "description_zh": "步态冻结，突然无法启动或继续行走，帕金森病严重症状。",
-    "synonyms": [
-      "Gait freezing",
-      "Motor blocks"
-    ],
-    "synonyms_zh": [
-      "冻结步态",
-      "运动阻滞"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "雷达检测运动突然中断（速度从>10 cm/s降至0，持续<2秒）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "步态冻结"
   },
   {
-    "id": "snomed:22160007",
+    "system": "http://snomed.info/sct",
     "code": "22160007",
-    "system": "http://snomed.info/sct",
     "display": "Festinating Gait",
-    "display_zh": "慌张步态",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Fast, short steps with forward-leaning posture, seen in Parkinson's.",
-    "description_zh": "快速小步伴前倾姿势，见于帕金森病。",
-    "synonyms": [
-      "Hurried gait"
-    ],
-    "synonyms_zh": [
-      "急促步态",
-      "前冲步态"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "二、运动状态（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "雷达检测快速小步（步频>2 Hz，步幅<20 cm）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "慌张步态"
   },
   {
-    "id": "snomed:1055001",
+    "system": "http://snomed.info/sct",
     "code": "1055001",
-    "system": "http://snomed.info/sct",
     "display": "Bradykinesia",
-    "display_zh": "运动迟缓",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Slowness of movement, a cardinal feature of Parkinson's disease.",
-    "description_zh": "运动迟缓，帕金森病的主要特征之一。",
-    "synonyms": [
-      "Slow movement"
-    ],
-    "synonyms_zh": [
-      "动作迟缓",
-      "运动减慢"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "2.3 特定运动模式（MotionState Category）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "雷达检测运动速度显著降低（vel_x/y/z < 5 cm/s）和动作启动延迟（>2秒）",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "运动迟缓"
   },
   {
-    "id": "snomed:26079004",
+    "system": "http://snomed.info/sct",
     "code": "26079004",
-    "system": "http://snomed.info/sct",
     "display": "Tremor",
-    "display_zh": "震颤",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Involuntary rhythmic muscle contraction, common in Parkinson's and stroke.",
-    "description_zh": "不自主的节律性肌肉收缩，常见于帕金森和中风。",
-    "synonyms": [
-      "Shaking",
-      "Trembling"
-    ],
-    "synonyms_zh": [
-      "颤抖",
-      "震颤"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.1 颤抖相关（Tremor，雷达检测微振动）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "起身时微多普勒>4Hz检测，频率分析",
-        "confidence": "high",
-        "frequency_range": "4-6 Hz"
-      }
-    }
+    "display_zh": "震颤"
   },
   {
-    "id": "snomed:314207007",
+    "system": "http://snomed.info/sct",
     "code": "314207007",
-    "system": "http://snomed.info/sct",
     "display": "Resting Tremor",
-    "display_zh": "静止性震颤",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Tremor occurring when muscles are at rest, classic sign of Parkinson's disease.",
-    "description_zh": "静止时发生的震颤，帕金森病的经典征象。",
-    "synonyms": [
-      "Parkinsonian tremor"
-    ],
-    "synonyms_zh": [
-      "帕金森震颤",
-      "静止震颤"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.1 颤抖相关（Tremor，雷达检测微振动）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "静止5分钟后检测到微颤，结合心率用于中风风险评估",
-        "confidence": "high",
-        "frequency_range": "4-6 Hz"
-      }
-    }
+    "display_zh": "静止性震颤"
   },
   {
-    "id": "snomed:102557002",
+    "system": "http://snomed.info/sct",
     "code": "102557002",
-    "system": "http://snomed.info/sct",
     "display": "Difficulty Walking",
-    "display_zh": "行走困难",
-    "category": "motion_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Impaired ability to walk, may indicate neurological or musculoskeletal issues.",
-    "description_zh": "行走能力受损，可能提示神经或肌肉骨骼问题。",
-    "synonyms": [
-      "Walking impairment"
-    ],
-    "synonyms_zh": [
-      "步行障碍",
-      "行动不便"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "步行时步态不对称相关：预警核心"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "不对称导致的步态不稳（间接推测），速度减慢（<10 cm/s）",
-        "confidence": "low"
-      }
-    }
+    "display_zh": "行走困难"
   },
   {
-    "id": "snomed:271823003",
+    "system": "http://snomed.info/sct",
     "code": "271823003",
-    "system": "http://snomed.info/sct",
     "display": "Abnormal Breathing",
-    "display_zh": "异常呼吸",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Irregular or abnormal respiratory pattern.",
-    "description_zh": "不规则或异常的呼吸模式。",
-    "synonyms": [
-      "Irregular breathing"
-    ],
-    "synonyms_zh": [
-      "呼吸不规则",
-      "呼吸异常"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.3 呼吸相关（Breathing，雷达检测胸腔位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "静止5分钟后运动时呼吸率>20次/分或不规则",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "异常呼吸"
   },
   {
-    "id": "snomed:30128008",
+    "system": "http://snomed.info/sct",
     "code": "30128008",
-    "system": "http://snomed.info/sct",
     "display": "Tachypnea",
-    "display_zh": "呼吸过速",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Abnormally rapid breathing (>20 breaths/min).",
-    "description_zh": "呼吸异常过快（>20次/分钟）。",
-    "synonyms": [
-      "Rapid breathing"
-    ],
-    "synonyms_zh": [
-      "呼吸急促",
-      "气促"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.3 呼吸相关（Breathing，雷达检测胸腔位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "呼吸频率检测>20次/分钟，结合心率用于心梗早期警报",
-        "confidence": "high"
-      }
-    }
+    "display_zh": "呼吸过速"
   },
   {
-    "id": "snomed:248546003",
+    "system": "http://snomed.info/sct",
     "code": "248546003",
-    "system": "http://snomed.info/sct",
     "display": "Bradypnea",
-    "display_zh": "呼吸过缓",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Abnormally slow breathing (<12 breaths/min).",
-    "description_zh": "呼吸异常过慢（<12次/分钟）。",
-    "synonyms": [
-      "Slow breathing"
-    ],
-    "synonyms_zh": [
-      "呼吸缓慢"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.3 呼吸相关（Breathing，雷达检测胸腔位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "direct",
-        "method": "静止期呼吸率<12次/分，提示中风相关呼吸抑制",
-        "confidence": "medium"
-      }
-    }
+    "display_zh": "呼吸过缓"
   },
   {
-    "id": "snomed:49817004",
+    "system": "http://snomed.info/sct",
     "code": "49817004",
-    "system": "http://snomed.info/sct",
     "display": "Irregular Heart Rate",
-    "display_zh": "心率不规则",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Irregular cardiac rhythm, may indicate arrhythmia.",
-    "description_zh": "心律不规则，可能提示心律失常。",
-    "synonyms": [
-      "Arrhythmia",
-      "Irregular pulse"
-    ],
-    "synonyms_zh": [
-      "心律不齐",
-      "心律失常"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.4 心率相关（Heart Rate，雷达检测心跳位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "运动转换时心率波动>20%，预警心梗或心律失常",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "心率不规则"
   },
   {
-    "id": "snomed:271636001",
+    "system": "http://snomed.info/sct",
     "code": "271636001",
-    "system": "http://snomed.info/sct",
     "display": "Tachycardia Finding",
-    "display_zh": "心动过速发现",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Clinical finding of abnormally fast heart rate.",
-    "description_zh": "心动过速的临床发现。",
-    "synonyms": [
-      "Fast heart rate finding"
-    ],
-    "synonyms_zh": [
-      "心率过快发现"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.4 心率相关（Heart Rate，雷达检测心跳位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "静止后运动心率>100 bpm，结合胸痛用于心梗预警",
-        "confidence": "medium",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "心动过速发现"
   },
   {
-    "id": "snomed:342400002",
+    "system": "http://snomed.info/sct",
     "code": "342400002",
-    "system": "http://snomed.info/sct",
     "display": "Bradycardia Finding",
-    "display_zh": "心动过缓发现",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Clinical finding of abnormally slow heart rate.",
-    "description_zh": "心动过缓的临床发现。",
-    "synonyms": [
-      "Slow heart rate finding"
-    ],
-    "synonyms_zh": [
-      "心率过慢发现"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.4 心率相关（Heart Rate，雷达检测心跳位移）"
-      }
-    ],
-    "detection": {
-      "radar_60ghz": {
-        "detectable": "indirect",
-        "method": "心率<60 bpm，提示中风相关循环问题",
-        "confidence": "low",
-        "requires_ml": true
-      }
-    }
+    "display_zh": "心动过缓发现"
   },
   {
-    "id": "snomed:49049000",
+    "system": "http://snomed.info/sct",
     "code": "49049000",
-    "system": "http://snomed.info/sct",
     "display": "Parkinson's Disease",
-    "display_zh": "帕金森病",
-    "category": "disorder_condition_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Progressive neurodegenerative disorder affecting movement.",
-    "description_zh": "进行性神经退行性疾病，影响运动功能。",
-    "synonyms": [
-      "PD",
-      "Parkinsonism"
-    ],
-    "synonyms_zh": [
-      "帕金森综合征",
-      "震颤麻痹"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、健康状况（HealthCondition Category）"
-      }
-    ]
+    "display_zh": "帕金森病"
   },
   {
-    "id": "snomed:230690007",
+    "system": "http://snomed.info/sct",
     "code": "230690007",
-    "system": "http://snomed.info/sct",
     "display": "Cerebrovascular Accident",
-    "display_zh": "脑血管意外",
-    "category": "disorder_condition_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Stroke or cerebrovascular accident, sudden loss of brain function.",
-    "description_zh": "中风或脑血管意外，脑功能突然丧失。",
-    "synonyms": [
-      "Stroke",
-      "CVA",
-      "Brain attack"
-    ],
-    "synonyms_zh": [
-      "中风",
-      "卒中",
-      "脑卒中"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.5 预警事件代码（Stroke/Heart Attack Warning）"
-      }
-    ]
+    "display_zh": "脑血管意外"
   },
   {
-    "id": "snomed:22298006",
+    "system": "http://snomed.info/sct",
     "code": "22298006",
-    "system": "http://snomed.info/sct",
     "display": "Myocardial Infarction",
-    "display_zh": "心肌梗死",
-    "category": "disorder_condition_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Heart attack, death of heart muscle due to blocked blood flow.",
-    "description_zh": "心肌梗死，由于血流阻塞导致的心肌死亡。",
-    "synonyms": [
-      "Heart attack",
-      "MI",
-      "Cardiac infarction"
-    ],
-    "synonyms_zh": [
-      "心梗",
-      "心肌梗塞",
-      "心脏病发作"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "1.5 预警事件代码（Stroke/Heart Attack Warning）"
-      }
-    ]
+    "display_zh": "心肌梗死"
   },
   {
-    "id": "snomed:29857009",
+    "system": "http://snomed.info/sct",
     "code": "29857009",
-    "system": "http://snomed.info/sct",
     "display": "Chest Pain",
-    "display_zh": "胸痛",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Pain or discomfort in the chest area, potential warning sign of heart attack.",
-    "description_zh": "胸部疼痛或不适，心梗的潜在预警信号。",
-    "synonyms": [
-      "Thoracic pain",
-      "Chest discomfort"
-    ],
-    "synonyms_zh": [
-      "胸部疼痛",
-      "胸闷"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、健康状况（HealthCondition Category）"
-      }
-    ]
+    "display_zh": "胸痛"
   },
   {
-    "id": "snomed:129839007",
+    "system": "http://snomed.info/sct",
     "code": "129839007",
-    "system": "http://snomed.info/sct",
     "display": "At Risk for Falls",
-    "display_zh": "跌倒风险",
-    "category": "safety_alert_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Patient at increased risk of falling.",
-    "description_zh": "患者有较高的跌倒风险。",
-    "synonyms": [
-      "Fall risk",
-      "High fall risk"
-    ],
-    "synonyms_zh": [
-      "易跌倒",
-      "跌倒高危"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "三、健康状况（HealthCondition Category）"
-      }
-    ]
+    "display_zh": "跌倒风险"
   },
   {
-    "id": "snomed:225602000",
+    "system": "http://snomed.info/sct",
     "code": "225602000",
-    "system": "http://snomed.info/sct",
     "display": "Unable to Sit Unsupported",
-    "display_zh": "无法独立坐稳",
-    "category": "physiological_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Inability to maintain sitting position without support, may indicate neurological impairment.",
-    "description_zh": "无法独立坐稳，可能提示中风、神经系统疾病或肌力不足。",
-    "synonyms": [
-      "Sitting instability"
-    ],
-    "synonyms_zh": [
-      "坐位不稳",
-      "坐姿失衡"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "坐姿"
-      }
-    ]
+    "display_zh": "无法独立坐稳"
   },
   {
-    "id": "snomed:17535004",
+    "system": "http://snomed.info/sct",
     "code": "17535004",
-    "system": "http://snomed.info/sct",
     "display": "Lying in Bed",
-    "display_zh": "躺在床上",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Patient in bed, specific state of being bedridden.",
-    "description_zh": "躺在床上，特指卧床状态。",
-    "synonyms": [
-      "Bedridden",
-      "In bed"
-    ],
-    "synonyms_zh": [
-      "卧床",
-      "在床上"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "躺卧姿势"
-      }
-    ]
+    "display_zh": "躺在床上"
   },
   {
-    "id": "snomed:43029002",
+    "system": "http://snomed.info/sct",
     "code": "43029002",
-    "system": "http://snomed.info/sct",
     "display": "Abnormal Posture",
-    "display_zh": "异常姿势",
-    "category": "posture_codes",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Atypical or irregular body posture.",
-    "description_zh": "非典型或不规则的身体姿势。",
-    "synonyms": [
-      "Atypical posture"
-    ],
-    "synonyms_zh": [
-      "异常体位",
-      "不正常姿态"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/fhir与snomed_ct代码.md",
-        "section": "其他姿势"
-      }
-    ]
+    "display_zh": "异常姿势"
   },
   {
-    "id": "internal:apnea_confirmed",
+    "system": "internal://tag",
     "code": "Apnea.Confirmed",
-    "system": "internal://tag",
     "display": "Apnea Confirmed",
-    "display_zh": "确诊呼吸暂停",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Confirmed apnea event (>=60S), respiratory rate < 5/min lasting over 10 seconds.",
-    "description_zh": "确诊呼吸暂停 (>=60S)，即呼吸率 < 5 次/分钟 且持续超过 10 秒。",
-    "synonyms": [
-      "Confirmed breath cessation"
-    ],
-    "synonyms_zh": [
-      "确诊屏气",
-      "呼吸停止确认"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "确诊呼吸暂停"
   },
   {
-    "id": "internal:apnea_suspected",
+    "system": "internal://tag",
     "code": "Apnea.Suspected",
-    "system": "internal://tag",
     "display": "Apnea Suspected",
-    "display_zh": "疑似呼吸暂停",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Suspected apnea event (>=10S).",
-    "description_zh": "疑似呼吸暂停 (>=10S)。",
-    "synonyms": [
-      "Possible apnea"
-    ],
-    "synonyms_zh": [
-      "可能呼吸暂停",
-      "疑似屏气"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "疑似呼吸暂停"
   },
   {
-    "id": "internal:cardiac_pause_confirmed",
+    "system": "internal://tag",
     "code": "CardiacPause.Confirmed",
-    "system": "internal://tag",
     "display": "Cardiac Pause Confirmed",
-    "display_zh": "确诊心率暂停",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Confirmed cardiac pause (>=3S).",
-    "description_zh": "确诊心率暂停 (>=3S)。",
-    "synonyms": [
-      "Confirmed heart pause"
-    ],
-    "synonyms_zh": [
-      "确诊心跳暂停",
-      "心脏停搏确认"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "确诊心率暂停"
   },
   {
-    "id": "internal:cardiac_pause_suspected",
+    "system": "internal://tag",
     "code": "CardiacPause.Suspected",
-    "system": "internal://tag",
     "display": "Cardiac Pause Suspected",
-    "display_zh": "疑似心率暂停",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Suspected cardiac pause.",
-    "description_zh": "疑似心率暂停。",
-    "synonyms": [
-      "Possible heart pause"
-    ],
-    "synonyms_zh": [
-      "可能心跳暂停",
-      "疑似心脏停搏"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "疑似心率暂停"
   },
   {
-    "id": "internal:convulsion",
+    "system": "internal://tag",
     "code": "Convulsion",
-    "system": "internal://tag",
     "display": "Convulsion",
-    "display_zh": "抽搐",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Involuntary muscle contraction and spasm.",
-    "description_zh": "不自主的肌肉收缩和痉挛。",
-    "synonyms": [
-      "Seizure activity",
-      "Spasm"
-    ],
-    "synonyms_zh": [
-      "痉挛",
-      "抽风"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "抽搐"
   },
   {
-    "id": "internal:convulsion_suspected",
+    "system": "internal://tag",
     "code": "Convulsion.Suspected",
-    "system": "internal://tag",
     "display": "Convulsion Suspected",
-    "display_zh": "疑似抽搐",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Suspected convulsion activity.",
-    "description_zh": "疑似抽搐活动。",
-    "synonyms": [
-      "Possible convulsion"
-    ],
-    "synonyms_zh": [
-      "可能抽搐",
-      "疑似痉挛"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 生理指标"
-      }
-    ]
+    "display_zh": "疑似抽搐"
   },
   {
-    "id": "internal:fall_suspected",
+    "system": "internal://tag",
     "code": "Fall.Suspected",
-    "system": "internal://tag",
     "display": "Fall Suspected",
-    "display_zh": "疑似跌倒",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Suspected fall event requiring verification.",
-    "description_zh": "疑似跌倒事件，需要验证。",
-    "synonyms": [
-      "Possible fall"
-    ],
-    "synonyms_zh": [
-      "可能跌倒",
-      "疑似摔倒"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 安全类"
-      }
-    ]
+    "display_zh": "疑似跌倒"
   },
   {
-    "id": "internal:on_floor",
+    "system": "internal://tag",
     "code": "OnFloor",
-    "system": "internal://tag",
     "display": "On Floor",
-    "display_zh": "在地面上",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Person detected on the floor (sitting on ground).",
-    "description_zh": "在地面上（坐地）。",
-    "synonyms": [
-      "Sitting on floor",
-      "On ground"
-    ],
-    "synonyms_zh": [
-      "坐在地上",
-      "在地上"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 安全类"
-      }
-    ]
+    "display_zh": "在地面上"
   },
   {
-    "id": "internal:prolonged_stay",
+    "system": "internal://tag",
     "code": "ProlongedStay",
-    "system": "internal://tag",
     "display": "Prolonged Stay",
-    "display_zh": "长时间滞留",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Extended stay in one location beyond normal duration.",
-    "description_zh": "在一个位置停留超过正常时长。",
-    "synonyms": [
-      "Extended stay",
-      "Long duration"
-    ],
-    "synonyms_zh": [
-      "长时间停留",
-      "滞留过久"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 安全类"
-      }
-    ]
+    "display_zh": "长时间滞留"
   },
   {
-    "id": "internal:no_turning",
+    "system": "internal://tag",
     "code": "NoTurning",
-    "system": "internal://tag",
     "display": "No Turning",
-    "display_zh": "未翻身",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "No body position change detected during sleep.",
-    "description_zh": "睡眠期间未检测到身体位置变化。",
-    "synonyms": [
-      "No position change"
-    ],
-    "synonyms_zh": [
-      "未变换体位",
-      "长时间同一姿势"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 行为类"
-      }
-    ]
+    "display_zh": "未翻身"
   },
   {
-    "id": "internal:lying_in_bed",
+    "system": "internal://tag",
     "code": "LyingInBed",
-    "system": "internal://tag",
     "display": "Lying in Bed",
-    "display_zh": "躺床",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Person lying in bed.",
-    "description_zh": "躺在床上。",
-    "synonyms": [
-      "In bed",
-      "Resting in bed"
-    ],
-    "synonyms_zh": [
-      "在床上",
-      "卧床"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 行为类"
-      }
-    ]
+    "display_zh": "躺床"
   },
   {
-    "id": "internal:sitting_in_bed",
+    "system": "internal://tag",
     "code": "SittingInBed",
-    "system": "internal://tag",
     "display": "Sitting in Bed",
-    "display_zh": "床上坐起",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Person sitting up in bed.",
-    "description_zh": "床上坐起。",
-    "synonyms": [
-      "Sitting up in bed"
-    ],
-    "synonyms_zh": [
-      "在床上坐着",
-      "床上坐姿"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 行为类"
-      }
-    ]
+    "display_zh": "床上坐起"
   },
   {
-    "id": "internal:into_bed",
+    "system": "internal://tag",
     "code": "IntoBed",
-    "system": "internal://tag",
     "display": "Into Bed",
-    "display_zh": "上床",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Person getting into bed.",
-    "description_zh": "上床动作。",
-    "synonyms": [
-      "Getting into bed"
-    ],
-    "synonyms_zh": [
-      "进入床上",
-      "上床睡觉"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 行为类"
-      }
-    ]
+    "display_zh": "上床"
   },
   {
-    "id": "internal:out_of_bed",
-    "code": "OutOfBed",
     "system": "internal://tag",
+    "code": "OutOfBed",
     "display": "Out of Bed",
-    "display_zh": "离床",
-    "category": "tag",
-    "status": "active",
-    "version": "1.0.0",
-    "description": "Person getting out of bed.",
-    "description_zh": "离床动作。",
-    "synonyms": [
-      "Leaving bed"
-    ],
-    "synonyms_zh": [
-      "下床",
-      "离开床"
-    ],
-    "source_refs": [
-      {
-        "file": "原始参考文件/tdpv1-0916-fixed.md",
-        "section": "tags 定义 - 行为类"
-      }
-    ]
+    "display_zh": "离床"
   }
 ]

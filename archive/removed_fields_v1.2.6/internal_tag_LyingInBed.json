@@ -1,0 +1,22 @@
+{
+  "id": "internal:lying_in_bed",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Person lying in bed.",
+  "description_zh": "躺在床上。",
+  "synonyms": [
+    "In bed",
+    "Resting in bed"
+  ],
+  "synonyms_zh": [
+    "在床上",
+    "卧床"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 行为类"
+    }
+  ]
+}

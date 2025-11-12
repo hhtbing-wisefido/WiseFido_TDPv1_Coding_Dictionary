@@ -1,0 +1,21 @@
+{
+  "id": "internal:cardiac_pause_suspected",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Suspected cardiac pause.",
+  "description_zh": "疑似心率暂停。",
+  "synonyms": [
+    "Possible heart pause"
+  ],
+  "synonyms_zh": [
+    "可能心跳暂停",
+    "疑似心脏停搏"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

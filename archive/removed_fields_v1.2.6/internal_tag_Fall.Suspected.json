@@ -1,0 +1,21 @@
+{
+  "id": "internal:fall_suspected",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Suspected fall event requiring verification.",
+  "description_zh": "疑似跌倒事件，需要验证。",
+  "synonyms": [
+    "Possible fall"
+  ],
+  "synonyms_zh": [
+    "可能跌倒",
+    "疑似摔倒"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 安全类"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "tdp:tdp://danger_level/normal",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Within expected parameters, no concern.",
+  "description_zh": "在预期范围内，无需担心。",
+  "synonyms": [
+    "Safe",
+    "Stable"
+  ],
+  "synonyms_zh": [
+    "安全",
+    "稳定"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ]
+}

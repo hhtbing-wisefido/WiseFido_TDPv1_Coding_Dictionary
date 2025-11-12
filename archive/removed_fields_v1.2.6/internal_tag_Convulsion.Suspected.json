@@ -1,0 +1,21 @@
+{
+  "id": "internal:convulsion_suspected",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Suspected convulsion activity.",
+  "description_zh": "疑似抽搐活动。",
+  "synonyms": [
+    "Possible convulsion"
+  ],
+  "synonyms_zh": [
+    "可能抽搐",
+    "疑似痉挛"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

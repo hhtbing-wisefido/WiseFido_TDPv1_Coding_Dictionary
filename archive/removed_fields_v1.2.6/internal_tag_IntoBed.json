@@ -1,0 +1,21 @@
+{
+  "id": "internal:into_bed",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Person getting into bed.",
+  "description_zh": "上床动作。",
+  "synonyms": [
+    "Getting into bed"
+  ],
+  "synonyms_zh": [
+    "进入床上",
+    "上床睡觉"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 行为类"
+    }
+  ]
+}

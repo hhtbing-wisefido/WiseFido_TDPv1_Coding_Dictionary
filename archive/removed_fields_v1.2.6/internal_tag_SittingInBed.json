@@ -1,0 +1,21 @@
+{
+  "id": "internal:sitting_in_bed",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Person sitting up in bed.",
+  "description_zh": "床上坐起。",
+  "synonyms": [
+    "Sitting up in bed"
+  ],
+  "synonyms_zh": [
+    "在床上坐着",
+    "床上坐姿"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 行为类"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "snomed:129006008",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Periodic gait pattern with low to moderate speed.",
+  "description_zh": "周期性步态，速度低到中等。",
+  "synonyms": [
+    "Ambulation",
+    "Gait"
+  ],
+  "synonyms_zh": [
+    "行走",
+    "走路"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "三、实际可检测的运动状态总结"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "速度检测（vel_x/y/z > 10 cm/s）+ 周期性步态信号（1-2 Hz）",
+      "confidence": "high"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "internal:0011",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "俯卧姿态。",
+  "description_zh": "俯卧姿态。"
+}

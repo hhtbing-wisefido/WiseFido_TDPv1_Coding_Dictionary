@@ -1,0 +1,28 @@
+{
+  "id": "snomed:271823003",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Irregular or abnormal respiratory pattern.",
+  "description_zh": "不规则或异常的呼吸模式。",
+  "synonyms": [
+    "Irregular breathing"
+  ],
+  "synonyms_zh": [
+    "呼吸不规则",
+    "呼吸异常"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "1.3 呼吸相关（Breathing，雷达检测胸腔位移）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "静止5分钟后运动时呼吸率>20次/分或不规则",
+      "confidence": "medium"
+    }
+  }
+}

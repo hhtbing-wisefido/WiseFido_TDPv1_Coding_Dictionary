@@ -1,0 +1,24 @@
+{
+  "id": "snomed:230690007",
+  "category": "disorder_condition_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Stroke or cerebrovascular accident, sudden loss of brain function.",
+  "description_zh": "中风或脑血管意外，脑功能突然丧失。",
+  "synonyms": [
+    "Stroke",
+    "CVA",
+    "Brain attack"
+  ],
+  "synonyms_zh": [
+    "中风",
+    "卒中",
+    "脑卒中"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "1.5 预警事件代码（Stroke/Heart Attack Warning）"
+    }
+  ]
+}

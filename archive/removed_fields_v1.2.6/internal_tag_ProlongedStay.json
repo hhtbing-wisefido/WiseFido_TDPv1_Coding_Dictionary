@@ -1,0 +1,22 @@
+{
+  "id": "internal:prolonged_stay",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Extended stay in one location beyond normal duration.",
+  "description_zh": "在一个位置停留超过正常时长。",
+  "synonyms": [
+    "Extended stay",
+    "Long duration"
+  ],
+  "synonyms_zh": [
+    "长时间停留",
+    "滞留过久"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 安全类"
+    }
+  ]
+}

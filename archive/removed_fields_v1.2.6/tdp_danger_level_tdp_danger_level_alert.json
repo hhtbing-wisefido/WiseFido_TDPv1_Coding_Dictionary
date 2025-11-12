@@ -1,0 +1,21 @@
+{
+  "id": "tdp:tdp://danger_level/alert",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Serious situation requiring prompt attention.",
+  "description_zh": "严重情况，需要及时关注。",
+  "synonyms": [
+    "High Alert"
+  ],
+  "synonyms_zh": [
+    "高度警戒",
+    "黄色预警"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ]
+}

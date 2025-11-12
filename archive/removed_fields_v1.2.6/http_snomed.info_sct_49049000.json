@@ -1,0 +1,22 @@
+{
+  "id": "snomed:49049000",
+  "category": "disorder_condition_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Progressive neurodegenerative disorder affecting movement.",
+  "description_zh": "进行性神经退行性疾病，影响运动功能。",
+  "synonyms": [
+    "PD",
+    "Parkinsonism"
+  ],
+  "synonyms_zh": [
+    "帕金森综合征",
+    "震颤麻痹"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "三、健康状况（HealthCondition Category）"
+    }
+  ]
+}

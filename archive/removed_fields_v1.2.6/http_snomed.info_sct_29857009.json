@@ -1,0 +1,22 @@
+{
+  "id": "snomed:29857009",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Pain or discomfort in the chest area, potential warning sign of heart attack.",
+  "description_zh": "胸部疼痛或不适，心梗的潜在预警信号。",
+  "synonyms": [
+    "Thoracic pain",
+    "Chest discomfort"
+  ],
+  "synonyms_zh": [
+    "胸部疼痛",
+    "胸闷"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "三、健康状况（HealthCondition Category）"
+    }
+  ]
+}

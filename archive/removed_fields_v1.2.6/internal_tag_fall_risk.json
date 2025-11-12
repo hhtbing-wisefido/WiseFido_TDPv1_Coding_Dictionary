@@ -1,0 +1,21 @@
+{
+  "id": "internal:fall_risk",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Indicator for potential fall hazard.",
+  "description_zh": "潜在跌倒危险的指示器。",
+  "synonyms": [
+    "High Fall Risk"
+  ],
+  "synonyms_zh": [
+    "高跌倒风险",
+    "易摔倒"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "Tag定义"
+    }
+  ]
+}

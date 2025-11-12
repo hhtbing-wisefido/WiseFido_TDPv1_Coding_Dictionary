@@ -1,0 +1,22 @@
+{
+  "id": "snomed:17535004",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Patient in bed, specific state of being bedridden.",
+  "description_zh": "躺在床上，特指卧床状态。",
+  "synonyms": [
+    "Bedridden",
+    "In bed"
+  ],
+  "synonyms_zh": [
+    "卧床",
+    "在床上"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "躺卧姿势"
+    }
+  ]
+}

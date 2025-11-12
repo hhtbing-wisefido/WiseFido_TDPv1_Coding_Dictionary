@@ -1,0 +1,15 @@
+{
+  "id": "internal:0002",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Fast movement with increased step frequency.",
+  "description_zh": "速度较快,步频提升。",
+  "synonyms": [
+    "Jogging"
+  ],
+  "synonyms_zh": [
+    "跑步",
+    "快跑"
+  ]
+}

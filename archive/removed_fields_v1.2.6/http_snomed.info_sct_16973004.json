@@ -1,0 +1,30 @@
+{
+  "id": "snomed:16973004",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Uncoordinated gait with irregular trajectory, related to stroke.",
+  "description_zh": "协调性差的运动，步态轨迹不规则，常见于中风患者。",
+  "synonyms": [
+    "Uncoordinated gait",
+    "Ataxia"
+  ],
+  "synonyms_zh": [
+    "失调步态",
+    "共济失调"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "雷达检测步态轨迹不规则（pos_x/y 随机波动）和平衡失调",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

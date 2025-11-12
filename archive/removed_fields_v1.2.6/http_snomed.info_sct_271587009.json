@@ -1,0 +1,29 @@
+{
+  "id": "snomed:271587009",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Prone position for surgical positioning and respiratory therapy.",
+  "description_zh": "俯卧姿势，手术体位、呼吸治疗。",
+  "synonyms": [
+    "Prone",
+    "Lying face down"
+  ],
+  "synonyms_zh": [
+    "俯卧",
+    "趴卧"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "补充常用姿势术语"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "躯干质心低 + 呼吸信号微弱（胸部受压）",
+      "confidence": "medium"
+    }
+  }
+}

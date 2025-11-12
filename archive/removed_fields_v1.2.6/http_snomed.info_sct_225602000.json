@@ -1,0 +1,21 @@
+{
+  "id": "snomed:225602000",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Inability to maintain sitting position without support, may indicate neurological impairment.",
+  "description_zh": "无法独立坐稳，可能提示中风、神经系统疾病或肌力不足。",
+  "synonyms": [
+    "Sitting instability"
+  ],
+  "synonyms_zh": [
+    "坐位不稳",
+    "坐姿失衡"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "坐姿"
+    }
+  ]
+}

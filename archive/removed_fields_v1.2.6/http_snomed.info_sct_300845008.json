@@ -1,0 +1,28 @@
+{
+  "id": "snomed:300845008",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Movement from standing to sitting position.",
+  "description_zh": "从站立到坐姿的动作过程。",
+  "synonyms": [
+    "Taking a seat"
+  ],
+  "synonyms_zh": [
+    "坐下",
+    "落座"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "雷达检测垂直位移（pos_z 减少>30 cm）和速度变化",
+      "confidence": "high"
+    }
+  }
+}

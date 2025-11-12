@@ -1,0 +1,29 @@
+{
+  "id": "snomed:1055001",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Slowness of movement, a cardinal feature of Parkinson's disease.",
+  "description_zh": "运动迟缓，帕金森病的主要特征之一。",
+  "synonyms": [
+    "Slow movement"
+  ],
+  "synonyms_zh": [
+    "动作迟缓",
+    "运动减慢"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "2.3 特定运动模式（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "雷达检测运动速度显著降低（vel_x/y/z < 5 cm/s）和动作启动延迟（>2秒）",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

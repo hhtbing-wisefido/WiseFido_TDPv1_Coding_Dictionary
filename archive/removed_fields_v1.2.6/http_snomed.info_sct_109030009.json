@@ -1,0 +1,29 @@
+{
+  "id": "snomed:109030009",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "General lying position, suitable for describing lying flat or on side.",
+  "description_zh": "通用躺卧姿势，适用于描述平躺或侧卧等状态。",
+  "synonyms": [
+    "Lying",
+    "Recumbent"
+  ],
+  "synonyms_zh": [
+    "躺卧",
+    "卧位"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "SNOMED CT 常用姿势标准术语"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "躯干质心高度<0.5m + 呼吸信号可检测",
+      "confidence": "high"
+    }
+  }
+}

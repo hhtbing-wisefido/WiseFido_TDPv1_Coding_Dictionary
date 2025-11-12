@@ -1,0 +1,29 @@
+{
+  "id": "snomed:217082002",
+  "category": "safety_alert_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Unintentional descent to lower level.",
+  "description_zh": "非自主性地下降到较低水平。",
+  "synonyms": [
+    "Falling",
+    "Fall Event"
+  ],
+  "synonyms_zh": [
+    "摔倒",
+    "跌落事件"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "DangerLevel定义"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "加速度突变（>2g）+ 姿态快速变化（站立→躺卧<1秒）",
+      "confidence": "high"
+    }
+  }
+}

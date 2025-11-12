@@ -1,0 +1,22 @@
+{
+  "id": "snomed:48867003",
+  "category": "physiological_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Abnormally slow heart rate (<60 bpm).",
+  "description_zh": "心率异常过慢（<60次/分钟）。",
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "四、健康状况（HealthCondition Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "心跳频率检测（需静止状态+长时间观测）",
+      "confidence": "low",
+      "requires_ml": true
+    }
+  }
+}

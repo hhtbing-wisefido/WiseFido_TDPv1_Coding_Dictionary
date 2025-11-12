@@ -1,0 +1,28 @@
+{
+  "id": "snomed:102557002",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Impaired ability to walk, may indicate neurological or musculoskeletal issues.",
+  "description_zh": "行走能力受损，可能提示神经或肌肉骨骼问题。",
+  "synonyms": [
+    "Walking impairment"
+  ],
+  "synonyms_zh": [
+    "步行障碍",
+    "行动不便"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "步行时步态不对称相关：预警核心"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "不对称导致的步态不稳（间接推测），速度减慢（<10 cm/s）",
+      "confidence": "low"
+    }
+  }
+}

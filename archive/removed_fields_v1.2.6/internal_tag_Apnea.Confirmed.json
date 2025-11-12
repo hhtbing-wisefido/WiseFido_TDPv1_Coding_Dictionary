@@ -1,0 +1,21 @@
+{
+  "id": "internal:apnea_confirmed",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Confirmed apnea event (>=60S), respiratory rate < 5/min lasting over 10 seconds.",
+  "description_zh": "确诊呼吸暂停 (>=60S)，即呼吸率 < 5 次/分钟 且持续超过 10 秒。",
+  "synonyms": [
+    "Confirmed breath cessation"
+  ],
+  "synonyms_zh": [
+    "确诊屏气",
+    "呼吸停止确认"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 生理指标"
+    }
+  ]
+}

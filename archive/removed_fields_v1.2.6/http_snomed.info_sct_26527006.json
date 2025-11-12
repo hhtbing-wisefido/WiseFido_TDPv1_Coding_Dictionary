@@ -1,0 +1,29 @@
+{
+  "id": "snomed:26527006",
+  "category": "posture_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Supine lying position for routine examination and rest state monitoring.",
+  "description_zh": "仰卧姿势，常规检查、休息状态监测。",
+  "synonyms": [
+    "Supine",
+    "Lying on back"
+  ],
+  "synonyms_zh": [
+    "仰卧",
+    "平卧"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "补充常用姿势术语"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "direct",
+      "method": "躯干质心<0.5m + 水平姿态 + 呼吸信号明显",
+      "confidence": "high"
+    }
+  }
+}

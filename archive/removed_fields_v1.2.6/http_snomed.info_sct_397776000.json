@@ -1,0 +1,30 @@
+{
+  "id": "snomed:397776000",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Sudden inability to initiate or continue walking, typical of advanced Parkinson's.",
+  "description_zh": "步态冻结，突然无法启动或继续行走，帕金森病严重症状。",
+  "synonyms": [
+    "Gait freezing",
+    "Motor blocks"
+  ],
+  "synonyms_zh": [
+    "冻结步态",
+    "运动阻滞"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/fhir与snomed_ct代码.md",
+      "section": "二、运动状态（MotionState Category）"
+    }
+  ],
+  "detection": {
+    "radar_60ghz": {
+      "detectable": "indirect",
+      "method": "雷达检测运动突然中断（速度从>10 cm/s降至0，持续<2秒）",
+      "confidence": "medium",
+      "requires_ml": true
+    }
+  }
+}

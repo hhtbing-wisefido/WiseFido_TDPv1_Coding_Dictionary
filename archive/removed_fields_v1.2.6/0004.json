@@ -1,0 +1,8 @@
+{
+  "id": "internal:0004",
+  "category": "motion_codes",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Stationary position without horizontal displacement.",
+  "description_zh": "无水平位移的静止状态。"
+}

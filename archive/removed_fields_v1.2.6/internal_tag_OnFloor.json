@@ -1,0 +1,22 @@
+{
+  "id": "internal:on_floor",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Person detected on the floor (sitting on ground).",
+  "description_zh": "在地面上（坐地）。",
+  "synonyms": [
+    "Sitting on floor",
+    "On ground"
+  ],
+  "synonyms_zh": [
+    "坐在地上",
+    "在地上"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "tags 定义 - 安全类"
+    }
+  ]
+}

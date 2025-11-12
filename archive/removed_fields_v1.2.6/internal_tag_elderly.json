@@ -1,0 +1,22 @@
+{
+  "id": "internal:elderly",
+  "category": "tag",
+  "status": "active",
+  "version": "1.0.0",
+  "description": "Aged population requiring special attention.",
+  "description_zh": "需要特别关注的老年人群。",
+  "synonyms": [
+    "Senior Citizen",
+    "Aged"
+  ],
+  "synonyms_zh": [
+    "老人",
+    "长者"
+  ],
+  "source_refs": [
+    {
+      "file": "原始参考文件/tdpv1-0916-fixed.md",
+      "section": "Tag定义"
+    }
+  ]
+}
