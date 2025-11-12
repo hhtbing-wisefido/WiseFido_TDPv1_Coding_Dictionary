@@ -1,136 +1,36 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$comment": "VS Code JSON Schema Validator compatible version",
+  "$comment": "VS Code JSON Schema Validator compatible version - v2.0.0 精简版",
   "title": "CodingItem",
+  "description": "符合FHIR标准的编码条目 (v2.0.0)。当前版本只保留核心字段，未来可按需增加category、synonyms等扩展字段。",
   "type": "object",
-  "required": ["id", "code", "system", "display", "display_zh", "category", "status", "version"],
+  "required": ["system", "code", "display", "display_zh"],
   "properties": {
-    "id": {
+    "system": {
       "type": "string",
-      "pattern": "^[a-z0-9_./:+-]+$",
-      "description": "全局唯一标识符"
+      "description": "编码系统 URI (如 http://snomed.info/sct)",
+      "pattern": "^https?://.+",
+      "minLength": 10
     },
     "code": {
       "type": "string",
-      "description": "编码值"
-    },
-    "system": {
-      "type": "string",
-      "description": "编码系统 URI"
+      "description": "编码值 (如 217082002)",
+      "minLength": 1,
+      "maxLength": 50
     },
     "display": {
       "type": "string",
-      "description": "英文显示名称"
+      "description": "英文显示名称 (如 Accidental fall)",
+      "minLength": 1,
+      "maxLength": 200
     },
     "display_zh": {
       "type": "string",
-      "description": "中文显示名称"
-    },
-    "category": {
-      "type": "string",
-      "enum": [
-        "posture_codes",
-        "motion_codes",
-        "physiological_codes",
-        "disorder_condition_codes",
-        "safety_alert_codes",
-        "tag"
-      ],
-      "description": "词条分类：posture_codes（姿态编码）、motion_codes（运动编码）、physiological_codes（生理指标编码）、disorder_condition_codes（疾病状况编码）、safety_alert_codes（安全警报编码）、tag（标签）"
-    },
-    "status": {
-      "type": "string",
-      "enum": ["active", "deprecated", "draft"],
-      "description": "词条状态"
-    },
-    "version": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-      "description": "语义版本号"
-    },
-    "description": {
-      "type": "string",
-      "description": "英文详细描述"
-    },
-    "description_zh": {
-      "type": "string",
-      "description": "中文详细描述"
-    },
-    "synonyms": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "英文同义词列表"
-    },
-    "synonyms_zh": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "中文同义词列表"
-    },
-    "source_refs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["file"],
-        "properties": {
-          "file": {
-            "type": "string",
-            "description": "来源文件"
-          },
-          "section": {
-            "type": "string",
-            "description": "来源章节"
-          }
-        }
-      },
-      "description": "来源追溯"
-    },
-    "detection": {
-      "type": "object",
-      "description": "检测能力标注",
-      "properties": {
-        "radar_60ghz": {
-          "type": "object",
-          "properties": {
-            "detectable": {
-              "type": "string",
-              "enum": ["direct", "indirect", "not_detectable"]
-            },
-            "method": {
-              "type": "string"
-            },
-            "confidence": {
-              "type": "string",
-              "enum": ["low", "medium", "high"]
-            },
-            "frequency_range": {
-              "type": "string"
-            },
-            "velocity_threshold": {
-              "type": "string"
-            },
-            "requires_ml": {
-              "type": "boolean"
-            }
-          }
-        }
-      }
-    },
-    "fhir": {
-      "type": "object",
-      "description": "FHIR 资源映射",
-      "properties": {
-        "resource_type": {
-          "type": "string"
-        },
-        "loinc_code": {
-          "type": "string"
-        }
-      }
+      "description": "中文显示名称 (如 意外跌倒)",
+      "minLength": 1,
+      "maxLength": 100
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true,
+  "_note": "additionalProperties设为true以支持未来按需扩展字段，如category、synonyms、description等"
 }
