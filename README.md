@@ -129,14 +129,80 @@ pip install -r requirements.txt
 python scripts/dic_tools.py
 ```
 
+**菜单功能列表**:
+
+#### 【数据管理】
+1. 校验词条数据 - 检查 JSON 格式和数据规范
+2. 生成文档 - 生成可读的 Markdown 文档
+3. 更新变更日志 - 记录词条变更历史
+4. 执行完整流程 - 一键校验+生成+更新
+
+#### 【数据查询】
+5. 显示统计信息 - 查看词条分类和数量统计
+6. 搜索词条 - 按条件查找词条
+7. 查看词条详情 - 查看单个词条完整信息
+
+#### 【数据编辑】
+8. 添加新词条 - 交互式添加单个词条
+9. 撤回最近添加 - 删除最后一次添加的词条
+
+#### 【质量检测】
+10. 运行测试套件 - 执行数据质量测试
+
+#### 【数据备份】
+11. 备份数据 - 手动备份词条数据
+12. 恢复数据 - 从备份恢复数据
+
+#### 【系统维护】
+13. 清理临时文件 - 删除临时目录内容
+14. 更新规则文档 - 自动生成目录规则文档
+0. 退出系统 - 关闭管理工具
+
+---
+
 ### 常用命令
 
+#### 完整参数列表
+
 ```bash
+# 数据管理
 python scripts/dic_tools.py --validate      # 校验数据
-python scripts/dic_tools.py --generate-md   # 生成文档  
+python scripts/dic_tools.py --generate-md   # 生成文档
 python scripts/dic_tools.py --changelog     # 更新变更日志
-python scripts/dic_tools.py --all           # 完整流程
+python scripts/dic_tools.py --all           # 完整流程(校验+生成+changelog)
+
+# 数据查询
 python scripts/dic_tools.py --stats         # 统计信息
+python scripts/dic_tools.py --search "system:snomed"   # 搜索词条
+python scripts/dic_tools.py --view "http://snomed.info/sct|129006008"  # 查看详情
+
+# 数据编辑
+# (添加词条请使用交互式菜单)
+
+# 质量检测
+python scripts/dic_tools.py --test          # 运行测试套件
+
+# 数据备份
+python scripts/dic_tools.py --backup        # 备份数据
+python scripts/dic_tools.py --restore       # 恢复数据
+python scripts/dic_tools.py --undo-last-add # 撤回最近添加
+
+# 系统维护
+python scripts/dic_tools.py --clean         # 清理临时文件
+
+# 组合使用
+python scripts/dic_tools.py --stats --menu-after  # 先查看统计再进入菜单
+```
+
+#### 精简模式(短选项)
+
+```bash
+python scripts/dic_tools.py -v             # 校验
+python scripts/dic_tools.py -g             # 生成文档
+python scripts/dic_tools.py -c             # 更新changelog
+python scripts/dic_tools.py -a             # 完整流程
+python scripts/dic_tools.py -s             # 统计信息
+python scripts/dic_tools.py -t             # 测试套件
 ```
 
 ---
