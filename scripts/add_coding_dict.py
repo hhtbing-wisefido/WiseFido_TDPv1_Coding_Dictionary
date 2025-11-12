@@ -3,9 +3,9 @@
 #   pip install -r requirements.txt
 # ============================================================
 """
-批量添加编码字典词条
+添加编码字典词条 (v2.0.0 精简版)
 用法: python scripts/add_coding_dict.py
-    python scripts/add_coding_dict.py --dry-run  # 生成到 temp/ 供验证
+交互式添加单个词条，只需输入 4 个核心字段
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
 import _config  # noqa: F401
@@ -15,53 +15,11 @@ import sys
 from pathlib import Path
 
 FILE = Path("coding_dictionary/coding_dictionary.json")
-TEMP_FILE = Path("temp/coding_dictionary_scaffold_new_tmp.json")
-
-TEMPLATES = [
-    ("motion_codes", "lying_down", "internal://motion_codes", "0005", "Lying Down", "躺下", "躺下动作。", "躺下动作。"),
-    ("motion_codes", "sitting_down", "internal://motion_codes", "0006", "Sitting Down", "坐下", "坐下动作。", "坐下动作。"),
-    ("posture_codes", "lying_prone", "internal://posture_codes", "0011", "Lying Prone", "俯卧", "俯卧姿态。", "俯卧姿态。"),
-    ("safety_alert_codes", "high", "internal://safety_alert_codes", "dl3", "High Risk", "高风险", "高风险等级。", "高风险等级。"),
-    ("safety_alert_codes", "critical", "internal://safety_alert_codes", "dl4", "Critical", "严重风险", "严重风险等级。", "严重风险等级。"),
-    ("tag", "new_tag_1", "internal://tag", "tag_001", "New Tag 1", "新标签1", "新增标签示例。", "新增标签示例。"),
-    ("tag", "new_tag_2", "internal://tag", "tag_002", "New Tag 2", "新标签2", "新增标签示例。", "新增标签示例。"),
-]
-
-
-def get_system_short(system: str) -> str:
-    """将 system URI 转换为简短的标识符
-    
-    Args:
-        system: 编码系统 URI，如 "http://snomed.info/sct", "internal://motion_codes", "internal://safety_alert_codes"
-    
-    Returns:
-        简短的 system 标识符，如 "snomed", "internal", "tdp"
-    """
-    if not system:
-        return "unknown"
-    
-    # 处理 http:// 或 https:// 开头的 URI
-    if system.startswith("http://") or system.startswith("https://"):
-        # 提取域名部分，去掉协议和路径
-        parts = system.replace("http://", "").replace("https://", "").split("/")
-        domain = parts[0]
-        # 对于 snomed.info/sct，返回 "snomed"
-        if "snomed" in domain:
-            return "snomed"
-        # 其他情况返回域名的主要部分
-        return domain.split(".")[0] if "." in domain else domain
-    
-    # 处理 internal:// 或 tdp:// 等自定义协议
-    if "://" in system:
-        protocol = system.split("://")[0]
-        return protocol
-    
-    # 其他情况，返回最后一个路径段
-    return system.split("/")[-1] if "/" in system else system
 
 
 def main():
-    dry_run = "--dry-run" in sys.argv
+    """交互式添加词条 (v2.0.0)"""
+    print("=== 添加新编码词条 (v2.0.0) ===\n")
     
     if not FILE.exists():
         print(f"[ERR] 缺失文件: {FILE}")
@@ -73,48 +31,55 @@ def main():
         print(f"[ERR] JSON 解析失败: {e}")
         sys.exit(1)
     
-    existing_ids = {d.get("id") for d in data}
-    added = 0
+    # 输入 4 个核心字段
+    print("请输入词条信息（4个核心字段）:\n")
+    system = input("1. 编码系统 URI (如 http://snomed.info/sct): ").strip()
+    code = input("2. 编码值 (如 217082002): ").strip()
+    display = input("3. 英文名称 (如 Accidental fall): ").strip()
+    display_zh = input("4. 中文名称 (如 意外跌倒): ").strip()
     
-    for cat, key, system, code, display, display_zh, desc_en, desc_zh in TEMPLATES:
-        system_short = get_system_short(system)
-        _id = f"{system_short}:{code}"
-        
-        if _id in existing_ids:
-            print(f"[SKIP] 已存在: {_id}")
-            continue
-        
-        data.append({
-            "id": _id,
-            "code": code,
-            "system": system,
-            "display": display,
-            "display_zh": display_zh,
-            "category": cat,
-            "status": "active",
-            "version": "1.0.0",
-            "description": desc_en,
-            "description_zh": desc_zh
-        })
-        print(f"[ADD] 新增: {_id}")
-        added += 1
+    # 验证必填字段
+    if not all([system, code, display, display_zh]):
+        print("\n[ERR] 所有字段都是必填的！")
+        sys.exit(1)
     
-    if dry_run:
-        # 写入到临时文件供验证
-        TEMP_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with open(TEMP_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"\n[OK] 草稿已保存到临时文件: {TEMP_FILE}")
-        print(f"   新增词条数: {added}")
-        print(f"   总词条数: {len(data)}")
-        print("\n   请运行以下命令验证:")
-        print(f"   python scripts/validate.py temp/coding_dictionary_scaffold_new_tmp.json")
-        print("\n   验证通过后，运行以下命令应用到主文件:")
-        print(f"   python scripts/add_coding_dict.py")
-    else:
-        with open(FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"\n[OK] 完成: 新增 {added} 条，总数 {len(data)}")
+    # 检查重复
+    for item in data:
+        if item['system'] == system and item['code'] == code:
+            print(f"\n[ERR] 词条已存在: {system}|{code}")
+            print(f"     {item['display']} / {item['display_zh']}")
+            sys.exit(1)
+    
+    # 构建新词条
+    new_entry = {
+        "system": system,
+        "code": code,
+        "display": display,
+        "display_zh": display_zh
+    }
+    
+    # 显示预览
+    print("\n=== 词条预览 ===")
+    print(json.dumps(new_entry, ensure_ascii=False, indent=2))
+    
+    # 确认添加
+    confirm = input("\n确认添加？(y/n): ").strip().lower()
+    if confirm != 'y':
+        print("[CANCEL] 已取消")
+        sys.exit(0)
+    
+    # 添加到列表
+    data.append(new_entry)
+    
+    # 保存
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    print(f"\n[OK] 成功添加词条！")
+    print(f"     {system}|{code}")
+    print(f"     {display} / {display_zh}")
+    print(f"     当前总词条数: {len(data)}")
+    print(f"\n建议运行验证: python scripts/validate_json.py")
 
 
 if __name__ == "__main__":
