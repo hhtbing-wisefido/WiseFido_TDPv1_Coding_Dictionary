@@ -20,7 +20,7 @@ from datetime import datetime
 
 # 依赖检查与自动安装
 try:
-    from tqdm import tqdm
+    from tqdm import tqdm  # type: ignore
 except ImportError:
     print("\n" + "=" * 70)
     print("  ⚠️  缺少必需的 Python 依赖包")
