@@ -8,8 +8,8 @@
   "properties": {
     "system": {
       "type": "string",
-      "description": "编码系统 URI (如 http://snomed.info/sct)",
-      "pattern": "^https?://.+",
+      "description": "编码系统 URI (如 http://snomed.info/sct, internal://motion_state, tdp://danger_level)",
+      "pattern": "^(https?|internal|tdp)://",
       "minLength": 10
     },
     "code": {

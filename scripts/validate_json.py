@@ -3,8 +3,8 @@
 #   pip install -r requirements.txt
 # ============================================================
 """
-JSON 词条校验器
-使用 JSON Schema 验证词条文件
+JSON 词条校验器 (v2.0.0)
+使用 JSON Schema 验证词条文件（精简版）
 """
 # 导入配置模块（必须在其他导入之前，确保 __pycache__ 统一生成到 temp 目录）
 import _config  # noqa: F401
@@ -91,43 +91,26 @@ def run(file_path=None):
         try:
             jsonschema.validate(instance=item, schema=schema)
         except jsonschema.ValidationError as e:
-            item_id = item.get("id", f"索引{idx}")
-            errors.append(f"词条 {item_id}: {e.message}")
+            # v2.0.0: 使用 system|code 标识词条（不再有 id 字段）
+            item_key = f"{item.get('system', 'unknown')}|{item.get('code', 'unknown')}"
+            errors.append(f"词条 {item_key}: {e.message}")
         
-        # ID 格式验证：确保使用简洁格式，避免臃肿格式
-        item_id = item.get("id", "")
-        if item_id:
-            # 检查是否使用了旧格式（category.code.system.code 的臃肿格式）
-            if "." in item_id and len(item_id.split(".")) >= 4:
-                # 检查是否匹配旧格式模式：category.xxx.system.xxx
-                parts = item_id.split(".")
-                if len(parts) >= 4:
-                    # 可能是旧格式，检查是否包含 category 和 system 信息
-                    category = item.get("category", "")
-                    system = item.get("system", "")
-                    if category and parts[0] == category:
-                        errors.append(
-                            f"词条 {item_id}: ID 使用了旧格式（臃肿格式）。"
-                            f"应使用简洁格式，如 'snomed:129006008' 或 'internal:0002'，"
-                            f"而不是 '{item_id}'"
-                        )
-            
-            # 验证新格式：应该是 system_prefix:code 或 tdp:uri 格式
-            # 允许的格式：snomed:xxx, internal:xxx, tdp:xxx
-            if not any(item_id.startswith(prefix) for prefix in ["snomed:", "internal:", "tdp:"]):
-                if not item_id.startswith("tdp://"):
-                    # 如果不是标准格式，给出警告（但不阻止，因为可能有其他合法格式）
-                    pass
+        # 检查必需字段（v2.0.0: 只有4个核心字段）
+        required_fields = ["system", "code", "display", "display_zh"]
+        for field in required_fields:
+            if field not in item or not item[field]:
+                item_key = f"{item.get('system', 'unknown')}|{item.get('code', 'unknown')}"
+                errors.append(f"词条 {item_key}: 缺少必需字段 '{field}'")
         
-        # 检查重复 (code + system)
+        # 检查重复 (system + code 组合)
         code = item.get("code")
         system = item.get("system")
         if code and system:
             key = f"{system}|{code}"
             if key in duplicates:
-                errors.append(f"重复词条: {item.get('id', '未知')} 与 {duplicates[key]} 的 code+system 相同")
+                errors.append(f"重复词条: {key} 在索引 {idx} 和 {duplicates[key]} 中重复")
             else:
-                duplicates[key] = item.get("id", f"索引{idx}")
+                duplicates[key] = idx
     
     # 输出结果
     if errors:
