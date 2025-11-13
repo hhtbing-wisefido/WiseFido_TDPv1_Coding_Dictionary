@@ -1,0 +1,37 @@
+# Docker Compose 配置
+# 简化本地开发和测试流程
+
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wisefido-coding-api
+    ports:
+      - "8080:8080"
+    volumes:
+      # 挂载数据文件（方便本地修改）
+      - ./coding_dictionary:/app/coding_dictionary:ro
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # 未来扩展：可添加同步服务
+  # sync:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.sync
+  #   depends_on:
+  #     - api
+  #   volumes:
+  #     - ./coding_dictionary:/app/coding_dictionary
+  #   environment:
+  #     - SYNC_SCHEDULE=0 0 1 * *  # 每月1日执行

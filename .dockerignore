@@ -1,0 +1,57 @@
+# .dockerignore - 减小 Docker 镜像大小
+
+# Git 相关
+.git/
+.gitignore
+.github/
+
+# Python 相关
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.coverage
+htmlcov/
+
+# 项目临时文件
+temp/
+auto_backup/
+Project_backup/
+*.tmp
+*.log
+
+# 文档和示例（不需要打包到镜像）
+原始参考文件/
+auto_generated_docs/
+docs/
+README.md
+CHANGELOG.md
+*.md
+*.txt
+!requirements.txt
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker 相关
+Dockerfile
+docker-compose.yml
+.dockerignore
