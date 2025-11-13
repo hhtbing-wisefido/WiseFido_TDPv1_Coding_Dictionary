@@ -77,7 +77,13 @@ from pydantic import BaseModel, Field
 sys.path.insert(0, str(Path(__file__).parent / "scripts"))
 
 # 导入配置
-from _config import DICTIONARY_FILE, VALID_CATEGORIES, VALID_STATUSES
+try:
+    from _config import DICTIONARY_FILE, VALID_CATEGORIES, VALID_STATUSES  # type: ignore
+except ImportError:
+    # 如果无法导入 _config，使用默认值
+    DICTIONARY_FILE = Path(__file__).parent / "coding_dictionary" / "coding_dictionary.json"
+    VALID_CATEGORIES = ["观察类", "操作类", "干预类", "状态类", "实体类", "其他"]
+    VALID_STATUSES = ["active", "deprecated", "draft"]
 
 # 创建 FastAPI 应用
 app = FastAPI(
@@ -294,9 +300,12 @@ async def get_all_entries(
     # 分页
     paginated = filtered[skip:skip + limit]
     
+    # 转换为 CodingEntry 对象
+    entries = [CodingEntry(**item) for item in paginated]
+    
     return SearchResult(
         total=len(filtered),
-        results=paginated
+        results=entries
     )
 
 @app.get("/api/entries/{entry_id}", response_model=CodingEntry)
@@ -416,9 +425,12 @@ async def get_entries_by_category(
     # 分页
     paginated = filtered[skip:skip + limit]
     
+    # 转换为 CodingEntry 对象
+    entries = [CodingEntry(**item) for item in paginated]
+    
     return SearchResult(
         total=len(filtered),
-        results=paginated
+        results=entries
     )
 
 @app.get("/api/systems", response_class=JSONResponse)

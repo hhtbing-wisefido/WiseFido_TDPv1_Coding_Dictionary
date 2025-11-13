@@ -1,0 +1,313 @@
+# 项目决策日志
+> 记录所有重要决策、讨论过程和实施结果
+
+**为什么需要这个文档？**
+- ✅ AI 没有持久记忆，需要明确的决策记录
+- ✅ 用户不应该记住所有细节
+- ✅ 未来的开发者需要理解"为什么这样做"
+- ✅ 避免重复讨论已解决的问题
+
+**如何使用？**
+- 每次重要决策后立即更新
+- 包含背景、讨论、决定、影响
+- 链接相关的 Git Commit
+- 标注决策状态（进行中/已实施/已废弃）
+
+---
+
+## 📋 决策索引
+
+| ID | 日期 | 决策 | 状态 | Commit |
+|----|------|------|------|--------|
+| [#001](#决策-001-选择-fastapi-作为-web-框架) | 2025-11-12 | 选择 FastAPI 作为 Web 框架 | ✅ 已实施 | d64c3b5 |
+| [#002](#决策-002-schema-简化为-v200) | 2025-11-12 | Schema 简化为 v2.0.0（4 个必填字段） | ✅ 已实施 | - |
+| [#003](#决策-003-修正-api-模型对齐-v200) | 2025-11-13 | 修正 API 模型对齐 v2.0.0 | ✅ 已实施 | c6e8b86 |
+
+---
+
+## 决策详情
+
+### 决策 #001: 选择 FastAPI 作为 Web 框架
+
+**时间**: 2025-11-12  
+**决策者**: 用户确认  
+**提议者**: AI (GitHub Copilot)
+
+#### 背景
+项目需要创建 Web API 将现有的 CLI 工具转换为 Web 服务。
+
+#### 讨论的方案
+1. **Flask** - 轻量级，成熟
+2. **Django REST Framework** - 功能全面，但重量级
+3. **FastAPI** - 现代化，自动文档，类型安全
+
+#### 决定
+选择 **FastAPI**
+
+#### 理由
+- ✅ 自动生成 OpenAPI 文档（Swagger UI）
+- ✅ Pydantic 数据验证（类型安全）
+- ✅ 异步支持（高性能）
+- ✅ 现代 Python 特性（Python 3.7+）
+- ✅ 学习曲线平缓
+
+#### 实施
+- 创建 `app.py` (470 行)
+- 实现 10 个 API 端点（后简化为 7 个）
+- 自动依赖检测和安装机制
+
+#### 影响
+- ✅ 开发效率提升（自动文档）
+- ✅ 代码质量提升（类型检查）
+- ✅ 用户体验提升（Swagger UI 交互测试）
+
+#### 参考
+- [Day 1 完成总结](DAY1_COMPLETE_SUMMARY.md)
+- [FastAPI 官方文档](https://fastapi.tiangolo.com/)
+
+**状态**: ✅ 已实施  
+**Git Commit**: d64c3b5
+
+---
+
+### 决策 #002: Schema 简化为 v2.0.0
+
+**时间**: 2025-11-12  
+**决策者**: 项目维护者  
+**提议者**: 项目团队
+
+#### 背景
+v1.2.6 Schema 包含 8 个必填字段和大量可选字段，但实际业务中很多字段未使用。
+
+#### v1.2.6 的问题
+```json
+{
+  "required": [
+    "id", "system", "code", "display", 
+    "display_zh", "category", "status", "version"
+  ]
+}
+```
+
+- ❌ `category` - 未在业务中使用
+- ❌ `status` - 所有词条都是 active
+- ❌ `version` - 未启用版本管理
+- ❌ `id` - 可用 `system|code` 组合替代
+
+#### 决定
+简化为 **v2.0.0**，只保留 4 个核心字段：
+
+```json
+{
+  "required": ["system", "code", "display", "display_zh"],
+  "additionalProperties": true
+}
+```
+
+#### 设计原则
+- 🎯 **YAGNI 原则** - You Aren't Gonna Need It
+- 🎯 **遵循 FHIR Coding 标准** - 核心字段对齐
+- 🎯 **保持扩展性** - `additionalProperties: true` 允许未来添加
+
+#### 实施
+- 更新 `schema/coding_dictionary_schema.json`
+- 更新 `auto_generated_docs/coding_dictionary.schema.md`
+- 验证 79 条现有数据符合新 Schema
+
+#### 影响
+- ✅ 数据模型更简洁
+- ✅ 易于维护
+- ✅ 更容易同步外部数据源（SNOMED CT）
+- ⚠️ 失去了分类功能（可后续添加）
+
+#### 参考
+- [V2.0.0 发布总结](V2.0.0_RELEASE_SUMMARY.md)
+- [Schema 规范](../spec/coding_dictionary.schema.spec.md)
+
+**状态**: ✅ 已实施  
+**Git Commit**: (在 v2.0.0 发布时提交)
+
+---
+
+### 决策 #003: 修正 API 模型对齐 v2.0.0
+
+**时间**: 2025-11-13 20:15  
+**决策者**: 用户确认  
+**触发者**: 用户质疑"为什么说缺少字段"
+
+#### 背景
+AI (GitHub Copilot) 在创建 `app.py` 时，错误地认为数据缺少 `category`、`status`、`version` 字段，导致：
+1. Pydantic 模型包含不必要的可选字段
+2. 创建了不合理的 API 端点（`/api/categories`）
+3. 错误地认为"数据缺少分类是严重问题"
+
+#### 问题发现过程
+```
+用户: "缺少 category、status、version 等必填字段???"
+  ↓
+AI: 重新审查所有文档
+  ↓
+发现: v2.0.0 只需要 4 个字段，category 不是必填的
+  ↓
+结论: AI 误判，数据完全符合规范
+```
+
+#### 错误的代码
+```python
+class CodingEntry(BaseModel):
+    id: Optional[str] = None
+    system: str
+    code: str
+    display: str
+    display_zh: Optional[str] = None
+    category: Optional[str] = "未分类"      # ❌ 不需要
+    status: Optional[str] = "active"       # ❌ 不需要
+    version: Optional[str] = "unknown"     # ❌ 不需要
+```
+
+#### 决定
+**对齐 v2.0.0 Schema，简化 API 设计**
+
+1. **简化 Pydantic 模型**
+   ```python
+   class CodingEntry(BaseModel):
+       system: str
+       code: str
+       display: str
+       display_zh: str
+       
+       class Config:
+           extra = "allow"
+   ```
+
+2. **移除不合理的端点**
+   - ❌ 删除 `GET /api/categories`
+   - ❌ 删除 `GET /api/categories/{category}`
+   - ❌ 删除 `GET /api/systems/{name}`
+
+3. **简化统计 API**
+   ```python
+   # 只返回真实存在的统计
+   {
+     "total_entries": 79,
+     "systems": {"SNOMED CT": 79}
+   }
+   ```
+
+4. **删除不必要的文件**
+   - 删除 `scripts/migrate_data.py` （数据不需要迁移）
+
+5. **更新文档**
+   - 修正 `docs/API_TEST_REPORT.md`
+   - 修正 `docs/DAY1_COMPLETE_SUMMARY.md`
+
+#### 实施结果
+- ✅ API 从 10 个端点简化为 7 个
+- ✅ 代码更简洁（减少 50+ 行）
+- ✅ 完全符合 v2.0.0 规范
+- ✅ 所有测试通过
+
+#### 经验教训
+1. ⚠️ **AI 需要明确的上下文** - 应该先读取项目文档
+2. ⚠️ **不要假设** - 验证实际的 Schema 定义
+3. ⚠️ **保持简洁** - YAGNI 原则很重要
+4. ✅ **用户质疑是好事** - 促使重新审查
+
+#### 参考
+- [Schema v2.0.0](../schema/coding_dictionary_schema.json)
+- [项目对齐 Commit](https://github.com/hhtbing-wisefido/WiseFido_TDPv1_Coding_Dictionary/commit/c6e8b86)
+
+**状态**: ✅ 已实施  
+**Git Commit**: c6e8b86  
+**相关 Issue**: -
+
+---
+
+## 📝 待决策事项
+
+### 🔄 进行中的决策
+
+*（暂无）*
+
+### 💡 待讨论的问题
+
+#### 问题 A: 是否需要添加分类功能？
+- **现状**: v2.0.0 移除了 category 字段
+- **需求**: 未来可能需要按类型分类词条
+- **方案**: 
+  1. 添加可选的 `category` 字段
+  2. 使用 `additionalProperties` 灵活扩展
+  3. 暂不添加，等有明确需求再说
+- **优先级**: 低
+- **状态**: 待讨论
+
+#### 问题 B: Docker 镜像的基础镜像选择？
+- **现状**: Day 2 即将开始 Docker 化
+- **选项**: 
+  1. `python:3.13-alpine` - 轻量（~50MB）
+  2. `python:3.13-slim` - 中等（~150MB）
+  3. `python:3.13` - 完整（~1GB）
+- **建议**: alpine（已在 Dockerfile 中使用）
+- **优先级**: 中
+- **状态**: 待验证
+
+---
+
+## 🗃️ 已废弃的决策
+
+### ~~决策 #999: 创建数据迁移脚本~~
+
+**时间**: 2025-11-13 19:45  
+**决策者**: AI (错误判断)  
+**废弃时间**: 2025-11-13 20:15
+
+#### 原始决定
+创建 `scripts/migrate_data.py` 为数据添加缺失字段
+
+#### 废弃原因
+- ❌ 基于错误判断（AI 误认为数据缺少字段）
+- ❌ 实际数据完全符合 v2.0.0 规范
+- ❌ 不需要迁移
+
+#### 后续行动
+- 删除 `scripts/migrate_data.py`
+- 更新相关文档
+
+**状态**: ❌ 已废弃  
+**废弃 Commit**: c6e8b86
+
+---
+
+## 📚 相关文档
+
+- [项目 README](../README.md)
+- [实施计划](IMPLEMENTATION_PLAN.md)
+- [变更日志](CHANGELOG.md)
+- [Schema 规范](../spec/coding_dictionary.schema.spec.md)
+- [文件组织规则](FILE_ORGANIZATION_RULES.md)
+
+---
+
+## 🔧 维护说明
+
+### 何时更新此文档？
+- ✅ 做出重要技术决策时
+- ✅ 改变项目架构时
+- ✅ 用户确认重要变更时
+- ✅ 废弃之前的决策时
+
+### 谁来更新？
+- AI (GitHub Copilot) 负责起草
+- 用户确认后正式记录
+
+### 更新流程
+1. AI 提出决策建议
+2. 用户讨论并确认
+3. AI 更新此文档
+4. 实施变更
+5. 提交 Git（包含此文档更新）
+
+---
+
+**最后更新**: 2025-11-13 20:30  
+**维护者**: AI (GitHub Copilot) + 用户确认

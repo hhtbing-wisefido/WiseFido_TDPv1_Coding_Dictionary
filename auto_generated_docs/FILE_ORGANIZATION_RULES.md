@@ -38,6 +38,9 @@
 - ✅ `coding_dictionary.schema.md` - Schema说明 (脚本生成)
 - ✅ `.snapshot.json` - 快照文件 (脚本维护)
 - ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则文档 (脚本生成)
+- ✅ `PROJECT_DECISION_LOG.md` - 项目决策日志 (AI/用户维护)
+- ✅ `SESSION_NOTES.md` - 开发会话笔记 (AI/用户维护)
+- ✅ `V2.0.0_RELEASE_SUMMARY.md` - 版本发布总结
 
 **禁止的文件**:
 - ❌ `*_SUMMARY.md` - 所有过程记录文档
