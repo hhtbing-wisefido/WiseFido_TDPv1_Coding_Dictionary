@@ -68,12 +68,20 @@ WiseFido_TDPv1_Coding_Dictionary/
 │       ├── 快速参考.md                     决策快速参考
 │       └── Curl与GET对比.md                命令对比
 │
-├── 📁 archive/                           归档数据
-│   └── removed_fields_v1.2.6/             v2.0.0 移除的字段（97个文件）
+├── 📁 tests/                             测试脚本
+│   ├── test_api.py                        API 诊断测试
+│   └── test_v2_migration.py               v2.0.0 迁移测试套件
+│
+├── 📁 archive/                           归档数据（历史记录）
+│   ├── removed_fields_v1.2.6/             v2.0.0 移除的字段（97个文件）
+│   ├── backups/                           历史备份
+│   │   └── v1.2.6/                        v1.2.6 原始数据备份
+│   ├── migration_scripts/                 迁移脚本归档
+│   │   ├── migrate_to_v2.py               v1→v2 迁移脚本
+│   │   └── README.md                      迁移说明文档
+│   └── readme_history/                    README 历史版本
 │
 ├── 📁 temp/                              临时文件（可定期清理）
-│   ├── *_SUMMARY.md                       开发记录
-│   └── __pycache__/                       Python 缓存
 │
 ├── 📁 auto_backup/                       自动备份（本地，不提交 Git）
 ├── 📁 Project_backup/                    项目备份（本地，不提交 Git）
@@ -95,11 +103,12 @@ WiseFido_TDPv1_Coding_Dictionary/
 |------|------|--------|------|
 | `coding_dictionary/` | 核心数据源 | ✅ 是 | 唯一可手动编辑的数据文件 |
 | `auto_generated_docs/` | 自动生成文档 | ❌ 否 | **仅存放脚本生成的产品文档和子目录** |
+| `tests/` | 测试脚本 | ✅ 是 | 自动化测试、API 诊断工具 |
 | `temp/` | 临时文件 | ✅ 是 | 草稿、测试、开发记录，可定期清理 |
 | `scripts/` | 维护脚本 | ✅ 是 | Python 脚本，不放数据文件 |
 | `schema/` | Schema 定义 | ✅ 是 | JSON Schema 规范 |
 | `spec/` | 规范文档 | ✅ 是 | 数据结构说明文档 |
-| `archive/` | 归档数据 | ✅ 是 | v2.0.0 重构移除的字段 |
+| `archive/` | 归档数据 | ✅ 是 | 历史版本、迁移脚本、备份数据 |
 | `auto_backup/` | 自动备份 | ❌ 否 | 脚本自动创建，本地保留 |
 | `Project_backup/` | 项目备份 | ❌ 否 | 里程碑备份，本地保留 |
 | `0_refer_files/` | 参考资料 | ✅ 是 | 医疗标准文档 |
@@ -115,6 +124,8 @@ WiseFido_TDPv1_Coding_Dictionary/
 - ✅ `.snapshot.json` - 快照文件
 - ✅ `AI决策日志系统/` - 决策和会话记录子目录
 - ✅ `Web服务开发文档/` - Web API 开发文档子目录
+- ✅ `项目里程碑/` - 项目里程碑报告子目录
+- ✅ `开发文档/` - 开发相关技术文档子目录
 
 **`temp/` 应存放这些**:
 - ✅ `*_SUMMARY.md` - 开发过程记录
