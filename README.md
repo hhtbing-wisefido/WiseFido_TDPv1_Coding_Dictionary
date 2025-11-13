@@ -53,9 +53,14 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   ├── changelog.md                       词条数据变更日志
 │   ├── coding_dictionary.md               词条表格
 │   ├── coding_dictionary.schema.md        Schema 说明
-│   ├── V2.0.0_RELEASE_SUMMARY.md          v2.0.0 发布总结
 │   ├── FILE_ORGANIZATION_RULES.md         目录规则文档
 │   ├── .snapshot.json                     快照文件
+│   ├── 项目里程碑/                       项目重要版本节点
+│   │   ├── v2.0.0_发布总结.md              v2.0.0 发布总结
+│   │   ├── v2.0.0_完整检查报告.md          v2.0.0 检查报告
+│   │   └── temp目录整理报告.md             目录整理报告
+│   ├── 开发文档/                         开发技术文档
+│   │   └── 脚本功能覆盖度检查.md            脚本功能说明
 │   ├── AI决策日志系统/                   AI 决策和会话记录
 │   │   ├── 项目决策日志.md                 重要决策记录
 │   │   ├── 开发会话笔记.md                 会话进度记录
@@ -119,13 +124,16 @@ WiseFido_TDPv1_Coding_Dictionary/
 - ✅ `changelog.md` - 词条数据变更日志（脚本生成）
 - ✅ `coding_dictionary.md` - 词条表格（脚本生成）
 - ✅ `coding_dictionary.schema.md` - Schema 说明（脚本生成）
-- ✅ `V2.0.0_RELEASE_SUMMARY.md` - 发布总结
-- ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则
+- ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则（脚本生成）
 - ✅ `.snapshot.json` - 快照文件
+- ✅ `项目里程碑/` - 项目里程碑报告子目录
+  - `v2.0.0_发布总结.md` - v2.0.0 版本发布总结
+  - `v2.0.0_完整检查报告.md` - v2.0.0 完整检查
+  - `temp目录整理报告.md` - 目录整理记录
+- ✅ `开发文档/` - 开发相关技术文档子目录
+  - `脚本功能覆盖度检查.md` - 脚本功能说明
 - ✅ `AI决策日志系统/` - 决策和会话记录子目录
 - ✅ `Web服务开发文档/` - Web API 开发文档子目录
-- ✅ `项目里程碑/` - 项目里程碑报告子目录
-- ✅ `开发文档/` - 开发相关技术文档子目录
 
 **`temp/` 应存放这些**:
 - ✅ `*_SUMMARY.md` - 开发过程记录
