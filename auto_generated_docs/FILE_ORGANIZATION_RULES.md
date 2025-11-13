@@ -33,14 +33,25 @@
 **说明**: **仅存放脚本自动生成的产品文档**,禁止手动修改
 
 **允许的文件**:
-- ✅ `changelog.md` - 变更日志 (脚本生成)
-- ✅ `coding_dictionary.md` - 词条表格 (脚本生成)
-- ✅ `coding_dictionary.schema.md` - Schema说明 (脚本生成)
+- ✅ `changelog.md` - 词条数据变更日志 (脚本自动生成)
+- ✅ `coding_dictionary.md` - 词条表格 (脚本自动生成)
+- ✅ `coding_dictionary.schema.md` - Schema说明 (脚本自动生成)
 - ✅ `.snapshot.json` - 快照文件 (脚本维护)
-- ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则文档 (脚本生成)
-- ✅ `PROJECT_DECISION_LOG.md` - 项目决策日志 (AI/用户维护)
-- ✅ `SESSION_NOTES.md` - 开发会话笔记 (AI/用户维护)
+- ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则文档 (脚本自动生成)
 - ✅ `V2.0.0_RELEASE_SUMMARY.md` - 版本发布总结
+
+**允许的子目录**:
+- ✅ `AI决策日志系统/` - AI 决策日志和会话笔记
+  - `项目决策日志.md` - 记录重要决策
+  - `开发会话笔记.md` - 记录开发进度
+  - `使用说明.md` - 系统使用说明
+- ✅ `Web服务开发文档/` - Web API 开发相关文档
+  - `实施计划.md` - 完整开发计划
+  - `Day1完成总结.md` - Day 1 完成报告
+  - `API测试报告.md` - API 测试结果
+  - `快速参考.md` - 开发决策快速参考
+  - `Curl与GET对比.md` - PowerShell 命令对比
+  - `README.md` - 目录说明
 
 **禁止的文件**:
 - ❌ `*_SUMMARY.md` - 所有过程记录文档

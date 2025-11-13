@@ -50,11 +50,23 @@ WiseFido_TDPv1_Coding_Dictionary/
 │   └── generate_rules_doc.py              规则文档生成
 │
 ├── 📁 auto_generated_docs/               自动生成（禁止手动修改）
+│   ├── changelog.md                       词条数据变更日志
 │   ├── coding_dictionary.md               词条表格
-│   ├── changelog.md                       变更日志
+│   ├── coding_dictionary.schema.md        Schema 说明
 │   ├── V2.0.0_RELEASE_SUMMARY.md          v2.0.0 发布总结
 │   ├── FILE_ORGANIZATION_RULES.md         目录规则文档
-│   └── .snapshot.json                     快照文件
+│   ├── .snapshot.json                     快照文件
+│   ├── AI决策日志系统/                   AI 决策和会话记录
+│   │   ├── 项目决策日志.md                 重要决策记录
+│   │   ├── 开发会话笔记.md                 会话进度记录
+│   │   └── 使用说明.md                     系统说明
+│   └── Web服务开发文档/                  Web API 开发文档
+│       ├── README.md                       文档目录说明
+│       ├── 实施计划.md                     完整开发计划
+│       ├── Day1完成总结.md                 Day 1 完成报告
+│       ├── API测试报告.md                  测试结果
+│       ├── 快速参考.md                     决策快速参考
+│       └── Curl与GET对比.md                命令对比
 │
 ├── 📁 archive/                           归档数据
 │   └── removed_fields_v1.2.6/             v2.0.0 移除的字段（97个文件）
@@ -82,7 +94,7 @@ WiseFido_TDPv1_Coding_Dictionary/
 | 目录 | 用途 | 可编辑 | 说明 |
 |------|------|--------|------|
 | `coding_dictionary/` | 核心数据源 | ✅ 是 | 唯一可手动编辑的数据文件 |
-| `auto_generated_docs/` | 自动生成文档 | ❌ 否 | **仅存放脚本生成的产品文档** |
+| `auto_generated_docs/` | 自动生成文档 | ❌ 否 | **仅存放脚本生成的产品文档和子目录** |
 | `temp/` | 临时文件 | ✅ 是 | 草稿、测试、开发记录，可定期清理 |
 | `scripts/` | 维护脚本 | ✅ 是 | Python 脚本，不放数据文件 |
 | `schema/` | Schema 定义 | ✅ 是 | JSON Schema 规范 |
@@ -90,16 +102,19 @@ WiseFido_TDPv1_Coding_Dictionary/
 | `archive/` | 归档数据 | ✅ 是 | v2.0.0 重构移除的字段 |
 | `auto_backup/` | 自动备份 | ❌ 否 | 脚本自动创建，本地保留 |
 | `Project_backup/` | 项目备份 | ❌ 否 | 里程碑备份，本地保留 |
-| `原始参考文件/` | 参考资料 | ✅ 是 | 医疗标准文档 |
+| `0_refer_files/` | 参考资料 | ✅ 是 | 医疗标准文档 |
 
 ### 文件分类规则
 
 **`auto_generated_docs/` 只放这些**:
-- ✅ `changelog.md` - 变更日志（脚本生成）
+- ✅ `changelog.md` - 词条数据变更日志（脚本生成）
 - ✅ `coding_dictionary.md` - 词条表格（脚本生成）
+- ✅ `coding_dictionary.schema.md` - Schema 说明（脚本生成）
 - ✅ `V2.0.0_RELEASE_SUMMARY.md` - 发布总结
 - ✅ `FILE_ORGANIZATION_RULES.md` - 目录规则
 - ✅ `.snapshot.json` - 快照文件
+- ✅ `AI决策日志系统/` - 决策和会话记录子目录
+- ✅ `Web服务开发文档/` - Web API 开发文档子目录
 
 **`temp/` 应存放这些**:
 - ✅ `*_SUMMARY.md` - 开发过程记录
